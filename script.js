@@ -95,45 +95,53 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-});// In-Memory Computing Background Animation
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('year').textContent = new Date().getFullYear();
 
   // Mobile Navigation Functionality
   const mobileNavToggle = document.getElementById('mobileNavToggle');
   const mobileNavMenu = document.getElementById('mobileNavMenu');
-  let isMobileNavOpen = false;
-
-  mobileNavToggle.addEventListener('click', () => {
-    isMobileNavOpen = !isMobileNavOpen;
+  
+  if (mobileNavToggle && mobileNavMenu) {
+    let isMobileNavOpen = false;
     
-    if (isMobileNavOpen) {
-      mobileNavToggle.classList.add('active');
-      mobileNavMenu.classList.add('active');
-    } else {
-      mobileNavToggle.classList.remove('active');
-      mobileNavMenu.classList.remove('active');
-    }
-  });
+    // Initialize - ensure menu is closed on load
+    mobileNavToggle.classList.remove('active');
+    mobileNavMenu.classList.remove('active');
 
-  // Close mobile nav when clicking outside
-  document.addEventListener('click', (e) => {
-    if (isMobileNavOpen && !mobileNavToggle.contains(e.target) && !mobileNavMenu.contains(e.target)) {
-      isMobileNavOpen = false;
-      mobileNavToggle.classList.remove('active');
-      mobileNavMenu.classList.remove('active');
-    }
-  });
-
-  // Close mobile nav when clicking on a nav link
-  const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-  mobileNavLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      isMobileNavOpen = false;
-      mobileNavToggle.classList.remove('active');
-      mobileNavMenu.classList.remove('active');
+    mobileNavToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation(); // Prevent event from bubbling to document
+      isMobileNavOpen = !isMobileNavOpen;
+      
+      console.log('Mobile nav toggled:', isMobileNavOpen); // Debug log
+      
+      if (isMobileNavOpen) {
+        mobileNavToggle.classList.add('active');
+        mobileNavMenu.classList.add('active');
+      } else {
+        mobileNavToggle.classList.remove('active');
+        mobileNavMenu.classList.remove('active');
+      }
     });
-  });
+
+    // Close mobile nav when clicking outside
+    document.addEventListener('click', (e) => {
+      if (isMobileNavOpen && !mobileNavToggle.contains(e.target) && !mobileNavMenu.contains(e.target)) {
+        isMobileNavOpen = false;
+        mobileNavToggle.classList.remove('active');
+        mobileNavMenu.classList.remove('active');
+      }
+    });
+
+    // Close mobile nav when clicking on a nav link
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        isMobileNavOpen = false;
+        mobileNavToggle.classList.remove('active');
+        mobileNavMenu.classList.remove('active');
+      });
+    });
+  }
 
   // Create circuit nodes background
   const createCircuitNodes = () => {
