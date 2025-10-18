@@ -1,0 +1,2999 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cimplic</title>
+  <meta name="description" content="Cimplic — in-memory compute design automation."/>
+  <!-- Old-school / typewriter fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Modern in-memory computing design */
+    :root{
+      --bg-primary: #0a0a0b;      /* deep dark for computing feel */
+      --bg-secondary: #141518;    /* slightly lighter dark */
+      --bg-accent: #1e1f24;       /* card backgrounds */
+      --text-primary: #ffffff;    /* white text */
+      --text-secondary: #a0a3a8;  /* muted text */
+      --accent1: #2DD6B6;         /* teal from logo - memory access */
+      --accent2: #376FB4;         /* blue from logo - processing */
+      --accent3: #7F66F0;         /* purple from logo - compute */
+      --accent-glow: rgba(45, 214, 182, 0.2);  /* glow effects */
+      --grid-color: #2a2d35;      /* subtle grid lines */
+      --max-width: 1200px;
+      --spacing: 24px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;overflow-x:hidden}
+    body{
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+    }
+    
+    /* Simple Professional Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 20%, rgba(45, 214, 182, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(55, 111, 180, 0.03) 0%, transparent 50%),
+        linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      pointer-events: none;
+      z-index: -3;
+    }
+
+    /* Minimal Grid Overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(45, 214, 182, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45, 214, 182, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    /* Simple Floating Elements */
+    .circuit-nodes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    .circuit-node {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--accent1);
+      border-radius: 50%;
+      animation: simpleFade 3s ease-in-out infinite;
+    }
+
+    .circuit-node:nth-child(2n) {
+      background: var(--accent2);
+      animation-delay: 1s;
+    }
+
+    .circuit-node:nth-child(3n) {
+      background: var(--accent3);
+      animation-delay: 2s;
+    }
+
+    @keyframes simpleFade {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.8; }
+    }
+
+    /* Minimal Data Flow */
+    .data-flow {
+      display: none; /* Removed for simplicity */
+    }
+
+    /* Modern computing layout */
+    .wrap{width:100%;position:relative}
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 var(--spacing)}
+
+    /* Futuristic header */
+    header{
+      position:relative;
+      background: rgba(10, 10, 11, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--grid-color);
+      z-index: 100;
+    }
+    .header-content{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:20px 0;
+    }
+    .brand{display:flex;align-items:center;gap:16px}
+    .logo{
+      width:48px;
+      height:48px;
+      object-fit:contain;
+      filter: drop-shadow(0 0 8px var(--accent-glow));
+    }
+    .title{
+      font-family:'JetBrains Mono', monospace;
+      font-size:1.4rem;
+      font-weight:600;
+      color:var(--text-primary);
+      letter-spacing:0.05em;
+    }
+    .tagline{
+      font-family:'JetBrains Mono', monospace;
+      font-size:0.8rem;
+      color:var(--accent1);
+      letter-spacing:0.1em;
+      text-transform:uppercase;
+    }
+    nav{display:flex;gap:32px}
+    nav a{
+      color:var(--text-secondary);
+      text-decoration:none;
+      font-weight:500;
+      font-size:15px;
+      transition:all 0.3s ease;
+      position:relative;
+    }
+    nav a:hover{
+      color:var(--accent1);
+    }
+    nav a::after{
+      content:'';
+      position:absolute;
+      bottom:-4px;
+      left:0;
+      width:0;
+      height:2px;
+      background:var(--accent1);
+      transition:width 0.3s ease;
+    }
+    nav a:hover::after{width:100%}
+
+    /* Hero section with computing theme */
+    .hero{
+      display:flex;
+      gap:60px;
+      align-items:center;
+      min-height:80vh;
+      position:relative;
+      padding:80px 0;
+    }
+    .hero-left{flex:1}
+    h1{
+      font-family:'Inter', sans-serif;
+      font-size:clamp(2.5rem, 5vw, 4rem);
+      font-weight:800;
+      line-height:1.1;
+      margin:0 0 24px;
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent1) 50%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    p.lead{
+      color:var(--text-secondary);
+      font-size:1.25rem;
+      line-height:1.6;
+      max-width:60ch;
+      margin:0 0 32px;
+    }
+    .tech-highlight{
+      color:var(--accent1);
+      font-family:'JetBrains Mono', monospace;
+      font-weight:600;
+    }
+
+    /* Futuristic computing buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      padding:14px 28px;
+      border-radius:8px;
+      border:2px solid var(--accent1);
+      background:transparent;
+      color:var(--accent1);
+      text-decoration:none;
+      font-weight:600;
+      font-size:16px;
+      transition:all 0.3s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .btn::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background:linear-gradient(90deg, transparent, rgba(45, 214, 182, 0.1), transparent);
+      transition:left 0.5s ease;
+    }
+    .btn:hover::before{left:100%}
+    .btn.accent{
+      background:var(--accent1);
+      color:var(--bg-primary);
+      box-shadow:0 0 20px rgba(45, 214, 182, 0.3);
+    }
+    .btn.accent:hover{
+      box-shadow:0 0 30px rgba(45, 214, 182, 0.5);
+      transform:translateY(-2px);
+    }
+    .btn:hover{
+      background:rgba(45, 214, 182, 0.1);
+      box-shadow:0 0 20px rgba(45, 214, 182, 0.2);
+    }
+
+    /* In-memory computing demo panel */
+    .hero-right{width:400px;flex:0 0 400px}
+    .panel{
+      background:rgba(30, 31, 36, 0.8);
+      border:1px solid var(--grid-color);
+      padding:24px;
+      border-radius:12px;
+      backdrop-filter:blur(20px);
+      box-shadow:0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    .chip-header{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:20px;
+      color:var(--text-secondary);
+      font-family:'JetBrains Mono', monospace;
+      font-size:0.9rem;
+      text-transform:uppercase;
+      letter-spacing:0.1em;
+    }
+    /* EDA Design Automation Interface */
+    .eda-header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--grid-color);
+    }
+    
+    .status-indicators {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--grid-color);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .status-dot.active[data-status="algorithms"] {
+      background: var(--accent1);
+      box-shadow: 0 0 8px rgba(45, 214, 182, 0.6);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    .status-dot.active[data-status="automation"] {
+      background: var(--accent2);
+      box-shadow: 0 0 8px rgba(55, 111, 180, 0.6);
+      animation: pulse 2s ease-in-out infinite 0.3s;
+    }
+    
+    .status-dot.active[data-status="optimization"] {
+      background: var(--accent3);
+      box-shadow: 0 0 8px rgba(127, 102, 240, 0.6);
+      animation: pulse 2s ease-in-out infinite 0.6s;
+    }
+    
+    .eda-title {
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .progress-bar {
+      height: 4px;
+      background: var(--grid-color);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      border-radius: 2px;
+      width: 0%;
+      animation: progressAnimation 8s ease-in-out infinite;
+    }
+    
+    @keyframes progressAnimation {
+      0%, 100% { width: 0%; }
+       50% { width: 87%; }
+    }
+    
+    .automation-display {
+      margin-bottom: 16px;
+    }
+    
+    .algorithm-selector {
+      margin-bottom: 12px;
+    }
+    
+    .algo-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .algo-display {
+      margin-bottom: 12px;
+    }
+    
+    .algo-indicator {
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      text-align: center;
+      color: var(--text-primary);
+      background: var(--accent1);
+      border: 1px solid var(--accent1);
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .layer-controls {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 12px;
+      background: var(--bg-primary);
+      border-radius: 6px;
+      padding: 2px;
+    }
+    
+    .layer-tab {
+      flex: 1;
+      padding: 6px 8px;
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-align: center;
+      color: var(--text-secondary);
+      background: transparent;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .layer-tab.active {
+      background: var(--accent1);
+      color: var(--bg-primary);
+      font-weight: 600;
+    }
+    
+    .design-canvas {
+      position: relative;
+      height: 140px;
+      background: var(--bg-primary);
+      border: 1px solid var(--grid-color);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    
+    .memory-array {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(8, 1fr);
+      gap: 1px;
+      padding: 8px;
+    }
+    
+    .memory-cell {
+      background: var(--bg-secondary);
+      border-radius: 2px;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    
+    .memory-cell.placed {
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      border-color: var(--accent1);
+    }
+    
+    .memory-cell.computing {
+      background: linear-gradient(135deg, var(--accent2), var(--accent3));
+      border-color: var(--accent2);
+      animation: computeFlash 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes computeFlash {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+    
+    .compute-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+    }
+    
+    .routing-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+    }
+    
+    .automation-stats {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    
+    .stat-item {
+      flex: 1;
+      text-align: center;
+    }
+    
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    
+    .stat-value {
+      font-size: 1rem;
+      color: var(--accent1);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+    }
+    
+    .eda-console {
+      background: var(--bg-primary);
+      border: 1px solid var(--grid-color);
+      border-radius: 6px;
+      padding: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      max-height: 80px;
+      overflow: hidden;
+    }
+    
+    .console-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 2px;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+    
+    .console-line.active {
+      opacity: 1;
+    }
+    
+    .timestamp {
+      color: var(--text-secondary);
+      min-width: 60px;
+    }
+    
+    .log-level {
+      min-width: 40px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .log-level.info { color: var(--accent2); }
+    .log-level.success { color: var(--accent1); }
+    .log-level.process { color: var(--accent3); }
+    
+    .log-message {
+      color: var(--text-primary);
+      flex: 1;
+    }
+    
+    .cursor {
+      color: var(--accent1);
+      animation: blink 1s ease-in-out infinite;
+    }
+    
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    
+    .automation-advantages {
+      margin-top: 16px;
+      padding: 12px;
+      background: rgba(45, 214, 182, 0.05);
+      border: 1px solid rgba(45, 214, 182, 0.2);
+      border-radius: 6px;
+    }
+    
+    .advantage-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent1);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .advantages-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    
+    .advantage-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px;
+    }
+    
+    .advantage-icon {
+      font-size: 0.9rem;
+    }
+    
+    .advantage-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* Metrics Section Styling */
+    .metrics-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(45, 214, 182, 0.02) 100%);
+      border-top: 1px solid var(--grid-color);
+      border-bottom: 1px solid var(--grid-color);
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .metrics-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .metrics-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .metric-card {
+      padding: 32px 24px;
+      background: var(--bg-primary);
+      border: 1px solid var(--grid-color);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .metric-card:hover {
+      background: var(--bg-secondary);
+      border-color: var(--accent1);
+      transform: translateY(-8px);
+      box-shadow: 0 8px 24px rgba(45, 214, 182, 0.2);
+    }
+
+    .metric-card:hover::before {
+      opacity: 1;
+    }
+
+    .metric-icon {
+      color: var(--accent1);
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .metric-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+
+    .metric-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .metric-bar {
+      width: 100%;
+      height: 4px;
+      background: var(--bg-secondary);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .metric-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      border-radius: 2px;
+      transition: width 0.8s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .automation-fill {
+      background: linear-gradient(90deg, var(--accent2), var(--accent3));
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* Advanced memory grid visualization */
+    .memory-grid{
+      display:grid;
+      grid-template-columns:repeat(8,1fr);
+      gap:4px;
+      background:var(--bg-primary);
+      padding:16px;
+      border-radius:8px;
+      border:1px solid var(--grid-color);
+    }
+    .memory-cell{
+      width:32px;
+      height:20px;
+      background:var(--bg-secondary);
+      border:1px solid var(--grid-color);
+      border-radius:3px;
+      transition:all 0.2s ease;
+      position:relative;
+    }
+    .memory-cell.on{
+      background:linear-gradient(135deg, var(--accent1), var(--accent2));
+      box-shadow:0 0 12px rgba(45, 214, 182, 0.6);
+      border-color:var(--accent1);
+      transform:scale(1.05);
+    }
+    .memory-cell.on::after{
+      content:'';
+      position:absolute;
+      inset:2px;
+      background:linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
+      border-radius:2px;
+    }
+
+    /* Computing-themed sections */
+    section{
+      margin:100px 0;
+      position:relative;
+    }
+    .section-title{
+      font-family:'Inter', sans-serif;
+      font-size:2.5rem;
+      font-weight:700;
+      margin-bottom:16px;
+      color:var(--text-primary);
+      position:relative;
+    }
+    .section-title::before{
+      content:'//';
+      font-family:'JetBrains Mono', monospace;
+      color:var(--accent1);
+      margin-right:16px;
+    }
+    .muted{
+      color:var(--text-secondary);
+      font-size:1.1rem;
+      line-height:1.6;
+    }
+
+    /* Solution Overview Flow */
+    .solution-overview {
+      margin: 48px 0;
+      padding: 32px;
+      background: rgba(30, 31, 36, 0.4);
+      border: 1px solid var(--grid-color);
+      border-radius: 12px;
+      backdrop-filter: blur(20px);
+    }
+    
+    .automation-pipeline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0;
+      margin: 40px 0;
+      padding: 32px 0;
+    }
+    
+    .pipeline-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .step-number {
+      background: var(--bg-primary);
+      border: 2px solid var(--accent1);
+      color: var(--accent1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 3;
+    }
+    
+    .pipeline-step[data-step="2"] .step-number { border-color: var(--accent2); color: var(--accent2); }
+    .pipeline-step[data-step="3"] .step-number { border-color: var(--accent3); color: var(--accent3); }
+    .pipeline-step[data-step="4"] .step-number { border-color: var(--accent1); color: var(--accent1); }
+    
+    .step-icon {
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+    }
+    
+    .pipeline-step:hover .step-icon {
+      color: var(--accent1);
+      transform: scale(1.1);
+    }
+    
+    .step-content {
+      max-width: 140px;
+    }
+    
+    .step-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    
+    .step-desc {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      line-height: 1.4;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .pipeline-connector {
+      flex: 0 0 80px;
+      height: 2px;
+      position: relative;
+      margin: 0 -10px;
+      z-index: 1;
+    }
+    
+    .connector-line {
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      position: relative;
+      opacity: 0.6;
+    }
+    
+    .connector-line::after {
+      content: '';
+      position: absolute;
+      right: -6px;
+      top: -4px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid var(--accent2);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+    }
+    
+    .connector-dot {
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      background: var(--accent1);
+      border-radius: 50%;
+      animation: connectorPulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes connectorPulse {
+      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.7; }
+      50% { transform: translateX(-50%) scale(1.3); opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      .automation-pipeline {
+        flex-direction: column;
+        gap: 32px;
+      }
+      
+      .pipeline-connector {
+        flex: 0 0 40px;
+        width: 2px;
+        height: 40px;
+        margin: 0;
+      }
+      
+      .connector-line {
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg, var(--accent1), var(--accent2));
+      }
+      
+      .connector-line::after {
+        top: auto;
+        bottom: -6px;
+        right: -4px;
+        left: auto;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 6px solid var(--accent2);
+        border-bottom: none;
+      }
+      
+      .connector-dot {
+        left: -3px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    /* Design Hierarchy Animation */
+    .design-hierarchy {
+      margin: 60px 0;
+      padding: 40px;
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(45, 214, 182, 0.02) 100%);
+      border: 1px solid var(--grid-color);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .hierarchy-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .hierarchy-subtitle {
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      font-size: 1rem;
+    }
+
+    .morphing-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      height: 400px;
+      margin: 0 auto 30px;
+      border: 2px solid var(--grid-color);
+      border-radius: 12px;
+      background: var(--bg-primary);
+      overflow: hidden;
+    }
+
+    .morphing-stage {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    #morphingSVG {
+      width: 100%;
+      height: 100%;
+    }
+
+    .morph-layer {
+      opacity: 0;
+      transform: scale(0.1);
+      transform-origin: center center;
+      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .morph-layer.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .morph-layer.morphing-out {
+      opacity: 0;
+      transform: scale(3);
+      transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .morph-layer.morphing-in {
+      opacity: 0;
+      transform: scale(0.3);
+      transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Device Level Styling */
+    .device-cell {
+      fill: none;
+      stroke: var(--accent1);
+      stroke-width: 2;
+      opacity: 0.3;
+      animation: devicePulse 2s ease-in-out infinite;
+    }
+
+    .device-core {
+      fill: var(--accent1);
+      animation: devicePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes devicePulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    /* Array Level Styling */
+    .array-cell {
+      fill: var(--accent1);
+      opacity: 0.4;
+      stroke: var(--accent1);
+      stroke-width: 0.5;
+      animation: cellAppear 0.1s ease-out forwards;
+      transform-origin: center center;
+    }
+
+    .array-cell.growing {
+      animation: cellGrow 0.3s ease-out forwards;
+    }
+
+    @keyframes cellAppear {
+      from { opacity: 0; transform: scale(0); }
+      to { opacity: 0.4; transform: scale(1); }
+    }
+
+    @keyframes cellGrow {
+      0% { transform: scale(1); opacity: 0.4; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 0.6; }
+    }
+
+    /* Bank Level Styling */
+    .bank-array {
+      fill: var(--accent1);
+      opacity: 0.3;
+      stroke: var(--accent1);
+      stroke-width: 2;
+    }
+
+    .peripheral {
+      opacity: 0.5;
+      stroke-width: 1;
+      animation: peripheralSlide 0.8s ease-out forwards;
+    }
+
+    .row-decoder, .sense-amp {
+      fill: var(--accent2);
+      stroke: var(--accent2);
+    }
+
+    .col-decoder, .io-circuit {
+      fill: var(--accent3);
+      stroke: var(--accent3);
+    }
+
+    @keyframes peripheralSlide {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 0.5; transform: scale(1); }
+    }
+
+    /* System Level Styling */
+    .system-bank {
+      fill: var(--accent1);
+      opacity: 0.3;
+      stroke: var(--accent1);
+      stroke-width: 1;
+      animation: bankAppear 0.5s ease-out forwards;
+    }
+
+    .cpu-block {
+      fill: var(--accent2);
+      opacity: 0.5;
+      stroke: var(--accent2);
+      stroke-width: 2;
+      animation: cpuPulse 2s ease-in-out infinite;
+    }
+
+    .interconnect {
+      stroke: var(--accent3);
+      stroke-width: 2;
+      opacity: 0.7;
+      animation: dataFlow 2s ease-in-out infinite;
+    }
+
+    @keyframes bankAppear {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 0.3; transform: scale(1); }
+    }
+
+    @keyframes cpuPulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
+
+    @keyframes dataFlow {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; stroke-width: 3; }
+    }
+
+    /* Application Level Styling */
+    .app-system {
+      fill: var(--bg-secondary);
+      stroke: var(--accent1);
+      stroke-width: 2;
+    }
+
+    .app-circle {
+      opacity: 0.6;
+      stroke-width: 2;
+      animation: appPulse 3s ease-in-out infinite;
+    }
+
+    .ml-app { fill: var(--accent1); stroke: var(--accent1); }
+    .ai-app { fill: var(--accent2); stroke: var(--accent2); animation-delay: 0.5s; }
+    .dsp-app { fill: var(--accent3); stroke: var(--accent3); animation-delay: 1s; }
+
+    .data-flow {
+      stroke: var(--accent1);
+      stroke-width: 2;
+      fill: none;
+      opacity: 0.7;
+      animation: flowPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes appPulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    @keyframes flowPulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    /* Text Styling */
+    .level-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      fill: var(--text-primary);
+    }
+
+    .component-label, .bank-label, .cpu-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      fill: var(--text-primary);
+    }
+
+    .peripheral-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      fill: var(--text-primary);
+    }
+
+    .app-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      fill: var(--text-primary);
+    }
+
+    .app-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      fill: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Technology selector overlay */
+    .tech-selector-overlay {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      gap: 8px;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .tech-selector-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .tech-option {
+      padding: 8px 16px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--grid-color);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+    }
+
+    .tech-option.active, .tech-option:hover {
+      background: var(--accent1);
+      color: var(--bg-primary);
+      border-color: var(--accent1);
+    }
+
+    .hierarchy-controls {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .zoom-btn {
+      padding: 12px 20px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--grid-color);
+      border-radius: 8px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+
+    .zoom-btn.active, .zoom-btn:hover {
+      background: var(--accent1);
+      color: var(--bg-primary);
+      border-color: var(--accent1);
+      transform: translateY(-2px);
+    }
+
+    .auto-play-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .play-btn {
+      padding: 12px 24px;
+      background: var(--accent1);
+      color: var(--bg-primary);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .play-btn:hover {
+      background: var(--accent2);
+      transform: translateY(-2px);
+    }
+
+    .progress-indicator {
+      width: 200px;
+    }
+
+    .progress-bar-hierarchy {
+      width: 100%;
+      height: 6px;
+      background: var(--bg-secondary);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill-hierarchy {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Animation for array generation */
+    .cell-grid rect {
+      animation: cellAppear 0.1s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes cellAppear {
+      from { opacity: 0; transform: scale(0); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Enhanced Feature cards */
+    .enhanced-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-top: 48px;
+    }
+    
+    .enhanced-card {
+      background: rgba(30, 31, 36, 0.6);
+      border: 1px solid var(--grid-color);
+      border-radius: 12px;
+      padding: 0;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .enhanced-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+    }
+    
+    .enhanced-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+      border-color: var(--accent1);
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid var(--grid-color);
+    }
+    
+    .card-header strong {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .tech-badges {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .badge {
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .badge.analog { background: rgba(45, 214, 182, 0.2); color: var(--accent1); }
+    .badge.digital { background: rgba(55, 111, 180, 0.2); color: var(--accent2); }
+    .badge.mixed { background: rgba(127, 102, 240, 0.2); color: var(--accent3); }
+    
+    .card-content {
+      padding: 24px;
+    }
+    
+    .tech-demo, .tech-selector, .tapeout-timeline {
+      margin: 20px 0;
+      padding: 16px;
+      background: var(--bg-primary);
+      border: 1px solid var(--grid-color);
+      border-radius: 8px;
+    }
+    
+    /* Application Mapper Demo */
+    .demo-input, .demo-output, .demo-final {
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .input-layer, .output-arch, .final-layout {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    
+    .input-layer {
+      background: rgba(55, 111, 180, 0.2);
+      color: var(--accent2);
+      margin-bottom: 12px;
+    }
+    
+    .output-arch {
+      background: rgba(45, 214, 182, 0.2);
+      color: var(--accent1);
+      margin-bottom: 12px;
+    }
+    
+    .final-layout {
+      background: rgba(127, 102, 240, 0.2);
+      color: var(--accent3);
+    }
+    
+    .mapping-process {
+      margin: 12px 0;
+      color: var(--text-secondary);
+    }
+    
+    .mapping-arrow {
+      font-size: 1.2rem;
+      color: var(--accent3);
+      animation: bounce 2s ease-in-out infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    
+    /* Technology Selector */
+    .selector-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    
+    .selector-grid-vertical {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    
+    .tech-option {
+      padding: 12px;
+      border: 1px solid var(--grid-color);
+      border-radius: 6px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .tech-option.active {
+      border-color: var(--accent1);
+      background: rgba(45, 214, 182, 0.1);
+    }
+    
+    .tech-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    
+    .tech-spec {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    
+    /* Tapeout Timeline */
+    .tapeout-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-item.completed, .timeline-item.active {
+      opacity: 1;
+    }
+    
+    .timeline-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--grid-color);
+      border: 2px solid var(--grid-color);
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-item.completed .timeline-dot {
+      background: var(--accent1);
+      border-color: var(--accent1);
+    }
+    
+    .timeline-item.active .timeline-dot {
+      background: var(--accent2);
+      border-color: var(--accent2);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    .timeline-label {
+      flex: 1;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    
+    .timeline-time {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    
+    /* Speedup Indicator */
+    .speedup-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .speedup-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: var(--accent1);
+      font-size: 0.9rem;
+    }
+    
+    .speedup-bar {
+      width: 60px;
+      height: 6px;
+      background: var(--grid-color);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    
+    .speedup-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      transform: translateX(-100%);
+      animation: speedupAnimation 3s ease-in-out infinite;
+    }
+    
+    @keyframes speedupAnimation {
+      0%, 100% { transform: translateX(-100%); }
+      50% { transform: translateX(0%); }
+    }
+    
+    .feature-list {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .feature {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .feature::before {
+      content: '✓';
+      color: var(--accent1);
+      font-weight: bold;
+    }
+
+    /* Feature cards with computing theme */
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+      gap:24px;
+      margin-top:48px;
+    }
+    .card{
+      background:rgba(30, 31, 36, 0.6);
+      border:1px solid var(--grid-color);
+      border-radius:12px;
+      padding:32px;
+      transition:all 0.3s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:3px;
+      background:linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 40px rgba(0, 0, 0, 0.3);
+      border-color:var(--accent1);
+    }
+    .card strong{
+      display:block;
+      font-size:1.25rem;
+      font-weight:600;
+      color:var(--text-primary);
+      margin-bottom:12px;
+      font-family:'JetBrains Mono', monospace;
+    }
+
+    /* TEAM — 3 co-founders in single line */
+    .team-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:40px;
+      margin-top:48px;
+      align-items:start;
+    }
+    .person{
+      background:rgba(30, 31, 36, 0.6);
+      border:1px solid var(--grid-color);
+      border-radius:12px;
+      padding:32px 24px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      align-items:center;
+      text-align:center;
+      transition:all 0.3s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .person::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:3px;
+      background:linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+    }
+    .person:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 40px rgba(0, 0, 0, 0.3);
+      border-color:var(--accent1);
+    }
+    .member-photo{
+      width:180px;
+      height:180px;
+      object-fit:cover;
+      border-radius:50%;
+      display:block;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      border:3px solid var(--grid-color);
+      transition:all 0.3s ease;
+      filter: grayscale(100%) contrast(1.1) brightness(1.1);
+    }
+    .person:hover .member-photo{
+      border-color:var(--accent1);
+      box-shadow:0 0 20px rgba(45, 214, 182, 0.3);
+      filter: grayscale(0%) contrast(1) brightness(1);
+    }
+    .person-info{display:flex;flex-direction:column;gap:8px;width:100%}
+    .person-info strong{
+      font-size:1.2rem;
+      font-weight:600;
+      color:var(--text-primary);
+      font-family:'JetBrains Mono', monospace;
+    }
+    .person-info .role{
+      color:var(--text-secondary);
+      font-size:0.95rem;
+      line-height:1.4;
+    }
+
+    .linkedin-link {
+      color: var(--text-secondary);
+      margin-top: 16px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.7;
+      text-decoration: none;
+      align-self: center;
+    }
+    
+    .linkedin-link:hover {
+      color: var(--accent1);
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    
+    .linkedin-link svg {
+      transition: all 0.3s ease;
+    }
+
+
+
+    /* contact form — computing theme */
+    .contact-grid{display:grid;grid-template-columns:1fr 260px;gap:24px;margin-top:48px}
+    input,textarea,select{
+      width:100%;
+      padding:12px 16px;
+      border:1px solid var(--grid-color);
+      border-radius:8px;
+      font-family:'Inter', sans-serif;
+      background:rgba(30, 31, 36, 0.8);
+      color:var(--text-primary);
+      font-size:16px;
+      transition:all 0.3s ease;
+    }
+    input::placeholder,textarea::placeholder{
+      color:var(--text-secondary);
+    }
+    input:focus,textarea:focus,select:focus{
+      outline:none;
+      border-color:var(--accent1);
+      box-shadow:0 0 0 2px rgba(45, 214, 182, 0.2);
+      background:rgba(30, 31, 36, 1);
+    }
+    textarea{min-height:120px;resize:vertical}
+
+    /* Footer Styling */
+    .site-footer {
+      margin-top: 100px;
+      padding: 60px 0 40px;
+      border-top: 1px solid var(--grid-color);
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+    
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .footer-logo {
+      height: 70px;
+      width: auto;
+      max-width: 120px;
+      object-fit: contain;
+      filter: brightness(1.1);
+    }
+    
+    .footer-tagline {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.5;
+      max-width: 300px;
+    }
+    
+    .footer-copyright {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 50px;
+    }
+    
+    .footer-column {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .footer-column h4 {
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .footer-column a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-column a:hover {
+      color: var(--accent1);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .social-link {
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid var(--grid-color);
+    }
+    
+    .social-link:hover {
+      color: var(--accent1);
+      border-color: var(--accent1);
+      transform: translateY(-2px);
+    }
+    
+    .footer-email {
+      color: var(--accent1) !important;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+    }
+
+    /* responsive adjustments */
+    @media (max-width:820px){
+      .hero{flex-direction:column;gap:40px;padding:40px 0}
+      .hero-right{width:100%}
+      .cards{grid-template-columns:1fr}
+      .team-grid{grid-template-columns:1fr;gap:24px}
+      .contact-grid{grid-template-columns:1fr}
+      nav{display:none}
+      .section-title{font-size:2rem}
+      
+      /* Footer responsive */
+      .footer-content {
+        flex-direction: column;
+        gap: 40px;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .footer-left {
+        text-align: center;
+      }
+      
+      .footer-tagline {
+        max-width: none;
+      }
+    }
+    
+    @media (max-width:1000px) and (min-width:821px){
+      .team-grid{grid-template-columns:repeat(3,1fr);gap:24px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="brand">
+        <!-- Cimplic logo -->
+        <img class="logo" src="image/cimplic.png" alt="Cimplic Logo" />
+
+        <div>
+          <div class="title">Cimplic</div>
+          <div class="tagline">Automation for In-Memory Computing</div>
+        </div>
+      </div>
+
+          <nav aria-label="Main">
+            <a href="#technology">Technology</a>
+            <a href="#team">Team</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+      <section class="hero" id="home">
+        <div class="hero-left">
+          <h1>Next-Gen <span class="tech-highlight">In-Memory Computing</span> Design Automation</h1>
+          <p class="lead">Revolutionary EDA tools for compute-in-memory architectures. Accelerate your <span class="tech-highlight">IMC/CIM</span> design workflows with intelligent automation, advanced verification, and seamless integration.</p>
+          <div style="display:flex;gap:16px;margin-top:32px">
+            <a class="btn accent" href="#contact">Start Computing</a>
+            <a class="btn" href="#technology">Explore Tech</a>
+          </div>
+          <div style="margin-top:24px;color:var(--text-secondary);font-family:'JetBrains Mono', monospace;font-size:0.9rem">
+            <div>→ Compute-in-Memory Optimization</div>
+            <div>→ Processing-in-Memory Verification</div>
+            <div>→ Real-time Memory-Compute Analytics</div>
+          </div>
+        </div>
+
+        <aside class="hero-right">
+          <div class="panel">
+            <div class="eda-header">
+              <div class="status-indicators">
+                <div class="status-dot active" data-status="algorithms"></div>
+                <div class="status-dot active" data-status="automation"></div>  
+                <div class="status-dot active" data-status="optimization"></div>
+              </div>
+              <div class="eda-title">Algorithm-to-Silicon Automation</div>
+              <div class="progress-bar">
+                <div class="progress-fill" id="edaProgress"></div>
+              </div>
+            </div>
+
+            <div class="automation-display">
+              <div class="algorithm-selector">
+                <div class="algo-header">Algorithm Selected</div>
+                <div class="algo-display">
+                  <div class="algo-indicator active">Algorithm</div>
+                </div>
+              </div>
+              
+              <div class="layer-controls">
+                <div class="layer-tab active" data-layer="digital">Digital</div>
+                <div class="layer-tab" data-layer="analog">Analog</div>
+                <div class="layer-tab" data-layer="mixed">Mixed</div>
+              </div>
+              
+              <div class="design-canvas" id="designCanvas">
+                <div class="memory-array" id="memoryArray"></div>
+                <div class="compute-overlay" id="computeOverlay"></div>
+                <div class="routing-layer" id="routingLayer"></div>
+              </div>
+              
+              <div class="automation-stats">
+                <div class="stat-item">
+                  <div class="stat-label">Status</div>
+                  <div class="stat-value" id="cellsPlaced">Mapped</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-label">Implementation</div>
+                  <div class="stat-value" id="routingProgress">Digital</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-label">Tech Selected</div>
+                  <div class="stat-value" id="powerOpt">SRAM</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="eda-console">
+              <div class="console-line">
+                <span class="timestamp">[15:42:33]</span>
+                <span class="log-level info">ALGO</span>
+                <span class="log-message">CNN algorithm analysis complete</span>
+              </div>
+              <div class="console-line">
+                <span class="timestamp">[15:42:34]</span>
+                <span class="log-level success">AUTO</span>
+                <span class="log-message">Digital IMC architecture generated</span>
+              </div>
+              <div class="console-line active">
+                <span class="timestamp">[15:42:35]</span>
+                <span class="log-level process">OPTIM</span>
+                <span class="log-message">Optimizing for SRAM technology...</span>
+                <span class="cursor">▋</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+     
+      <section id="technology">
+        <div class="section-title">Technology</div>
+        <div class="muted" style="text-align: justify;">Advanced EDA automation tools that intelligently map applications to optimized compute-in-memory architectures. Our platform analyzes computational patterns, selects optimal memory technologies (SRAM, RRAM, FeRAM), and generates complete IMC designs - accelerating tapeout by <span class="tech-highlight">2x</span>.</div>
+
+        <div class="automation-pipeline">
+          <div class="pipeline-step" data-step="1">
+            <div class="step-number">01</div>
+            <div class="step-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M8 21l4-4 4 4" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="step-content">
+              <div class="step-title">Input Application</div>
+              <div class="step-desc">ML • AI • DSP • Analytics</div>
+            </div>
+          </div>
+          
+          <div class="pipeline-connector">
+            <div class="connector-line"></div>
+            <div class="connector-dot"></div>
+          </div>
+          
+          <div class="pipeline-step" data-step="2">
+            <div class="step-number">02</div>
+            <div class="step-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L2 7v10c0 5.55 3.84 9.05 9 9.93 5.16-.88 9-4.38 9-9.93V7l-10-5z" stroke="currentColor" stroke-width="2"/>
+                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="step-content">
+              <div class="step-title">Analysis & Mapping</div>
+              <div class="step-desc"> • Pattern Recognition • Optimization</div>
+            </div>
+          </div>
+          
+          <div class="pipeline-connector">
+            <div class="connector-line"></div>
+            <div class="connector-dot"></div>
+          </div>
+          
+          <div class="pipeline-step" data-step="3">
+            <div class="step-number">03</div>
+            <div class="step-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                <rect x="9" y="9" width="6" height="6" stroke="currentColor" stroke-width="2"/>
+                <path d="M9 1v6M15 1v6M9 17v6M15 17v6M1 9h6M1 15h6M17 9h6M17 15h6" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="step-content">
+              <div class="step-title">Technology Selection</div>
+              <div class="step-desc"> • SRAM • RRAM • FeRAM</div>
+            </div>
+          </div>
+          
+          <div class="pipeline-connector">
+            <div class="connector-line"></div>
+            <div class="connector-dot"></div>
+          </div>
+          
+          <div class="pipeline-step" data-step="4">
+            <div class="step-number">04</div>
+            <div class="step-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="step-content">
+              <div class="step-title">Optimized IMC</div>
+              <div class="step-desc">Ready for Tapeout</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cards enhanced-cards" aria-hidden="false">
+          <div class="card enhanced-card" data-tech="analog">
+            <div class="card-header">
+              <strong>IMC Design Automation</strong>
+              <div class="tech-badges">
+                <span class="badge analog">Analog</span>
+                <span class="badge digital">Digital</span>
+                <span class="badge mixed">Mixed</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="muted">Intelligent automation that takes algorithms and maps them to optimized IMC designs, then generates complete layouts. Features algorithm-to-architecture mapping and automated placement & routing for maximum efficiency across IMC implementations.</div>
+              
+              <div class="tech-demo" id="mapperDemo">
+                <div class="demo-input">
+                  <div class="input-layer">Algorithm</div>
+                  <div class="mapping-process">
+                    <div class="mapping-arrow">↓</div>
+                    <div class="mapping-text">Mapping...</div>
+                  </div>
+                </div>
+                <div class="demo-output">
+                  <div class="output-arch">IMC Design</div>
+                  <div class="mapping-process">
+                    <div class="mapping-arrow">↓</div>
+                    <div class="mapping-text">Generating...</div>
+                  </div>
+                </div>
+                <div class="demo-final">
+                  <div class="final-layout">Layout</div>
+                </div>
+              </div>
+              
+              <div class="feature-list">
+                <div class="feature">Algorithm-to-Architecture Mapping</div>
+                <div class="feature">Automated IMC Design Generation</div>
+                <div class="feature">Intelligent Layout & Routing Optimization</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card enhanced-card" data-tech="digital">
+            <div class="card-header">
+              <strong>Device Agnostic Platform</strong>
+              <div class="tech-progress">
+                <div class="badge mixed">Universal</div>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="muted">Universal IMC platform supporting any memory technology and implementation type. Choose from emerging and traditional memories with flexible analog, digital, or mixed-signal implementations to match your specific requirements.</div>
+              
+              <div class="tech-selector" id="techSelector">
+                <div class="selector-grid-vertical">
+                  <div class="tech-option active" data-tech="sram">
+                    <div class="tech-name">SRAM</div>
+                    <div class="tech-spec">• High Speed • Volatile</div>
+                  </div>
+                  <div class="tech-option" data-tech="rram">
+                    <div class="tech-name">RRAM</div>
+                    <div class="tech-spec">• Non-volatile • Dense</div>
+                  </div>
+                  <div class="tech-option" data-tech="feram">
+                    <div class="tech-name">FeRAM</div>
+                    <div class="tech-spec">• Ultra-low Power • Fast</div>
+                  </div>
+                  <div class="tech-option" data-tech="mram">
+                    <div class="tech-name">MRAM</div>
+                    <div class="tech-spec">• Magnetic • Endurance</div>
+                  </div>
+                  <div class="tech-option" data-tech="pcm">
+                    <div class="tech-name">PCM</div>
+                    <div class="tech-spec">• Phase Change • Scalable</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="feature-list">
+                <div class="feature">Universal Memory Technology Support</div>
+                <div class="feature">Flexible Implementation Types (Analog/Digital/Mixed)</div>
+                <div class="feature">Technology-Agnostic Design Flow</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card enhanced-card" data-tech="verification">
+            <div class="card-header">
+              <strong>Memory-Compute Analytics</strong>
+              <div class="speedup-indicator">
+                <span class="speedup-text">2x Faster</span>
+                <div class="speedup-bar">
+                  <div class="speedup-fill"></div>
+                </div>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="muted" >Real-time performance analysis and power optimization tools for in-memory computing workflows. Advanced analytics engine provides actionable insights to accelerate design cycles and achieve optimal results.</div>
+              
+              <div class="tapeout-timeline" id="tapeoutTimeline">
+                <div class="timeline-item completed">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-label">Performance Analysis</div>
+                  <div class="timeline-time">Real-time</div>
+                </div>
+                <div class="timeline-item active">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-label">Power Optimization</div>
+                  <div class="timeline-time">Continuous</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-label">Debug Analysis</div>
+                  <div class="timeline-time">On-demand</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-label">Design Insights</div>
+                  <div class="timeline-time">Automated</div>
+                </div>
+              </div>
+              
+              <div class="feature-list">
+                <div class="feature">Real-time Performance Monitoring & Analysis</div>
+                <div class="feature">Visual Debugging & Design Exploration</div>
+                <div class="feature">Power Optimization & Efficiency Tracking</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+ <!-- Performance Metrics Section -->
+      <section class="metrics-section">
+        <div class="container">
+          <div class="section-title">Performance Metrics</div>
+          <div class="muted" style="text-align: center; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Proven results from our IMC design automation platform. These metrics demonstrate the tangible benefits of intelligent algorithm-to-silicon workflows across diverse in-memory computing implementations.
+          </div>
+          <div class="metrics-row">
+            <div class="metric-card">
+              <div class="metric-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                  <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="metric-value">2x</div>
+              <div class="metric-label">Faster Tapeout</div>
+              <div class="metric-bar">
+                <div class="metric-fill" style="width: 100%"></div>
+              </div>
+            </div>
+            
+            <div class="metric-card">
+              <div class="metric-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="metric-value">0%</div>
+              <div class="metric-label">Manual Work</div>
+              <div class="metric-bar">
+                <div class="metric-fill automation-fill" style="width: 0%"></div>
+              </div>
+            </div>
+            
+            <div class="metric-card">
+              <div class="metric-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                  <polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5" stroke="currentColor" stroke-width="2" fill="none"/>
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="metric-value">∞</div>
+              <div class="metric-label">Tech Support</div>
+              <div class="metric-bar">
+                <div class="metric-fill" style="width: 100%"></div>
+              </div>
+            </div>
+            
+            <div class="metric-card">
+              <div class="metric-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                  <path d="M3 3v18h18" stroke="currentColor" stroke-width="2"/>
+                  <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="metric-value">95%</div>
+              <div class="metric-label">PPA Optimization</div>
+              <div class="metric-bar">
+                <div class="metric-fill" style="width: 95%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="team">
+        <div class="section-title">Team</div>
+        <div class="muted">Small team — focused on EDA, memory systems and practical tooling.</div>
+
+        <div class="team-grid">
+          <div class="person">
+            <img class="member-photo" src="image/simranjeet.jpg" alt="Simranjeet — Co-founder & CTO">
+            <div class="person-info">
+              <strong>Simranjeet Singh</strong>
+              <div class="role">Co-founder & CTO</div>
+              <a href="#" class="linkedin-link" aria-label="Simranjeet's LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="person">
+            <img class="member-photo" src="image/farhad.png" alt="Farhad — Co-founder & CEO">
+            <div class="person-info">
+              <strong>Farhad</strong>
+              <div class="role">Co-founder & CEO</div>
+              <a href="#" class="linkedin-link" aria-label="Farhad's LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="person">
+            <img class="member-photo" src="image/niraj.jpeg" alt="Niraj — Co-founder & CPO">
+            <div class="person-info">
+              <strong>Niraj</strong>
+              <div class="role">Co-founder & CPO</div>
+              <a href="#" class="linkedin-link" aria-label="Niraj's LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-title">Contact</div>
+        <div class="muted">Reach out for demos, partnerships or hiring.</div>
+
+        <div class="contact-grid">
+          <form id="contactForm" class="panel" onsubmit="return false" aria-label="Contact form">
+            <input id="name" placeholder="Full name *" required autocomplete="name">
+            <input id="email" type="email" placeholder="Email address *" required autocomplete="email">
+            <input id="company" placeholder="Company/Organization" autocomplete="organization">
+            <select id="interest" required>
+              <option value="">I'm interested in... *</option>
+              <option value="demo">Request a Demo</option>
+              <option value="partnership">Partnership Opportunities</option>
+              <option value="hiring">Careers & Hiring</option>
+              <option value="other">Other Inquiries</option>
+            </select>
+            <textarea id="message" placeholder="Tell us more about your IMC/CIM project or requirements..." rows="4"></textarea>
+            <div style="display:flex;justify-content:flex-end;gap:12px;">
+              <button id="clearBtn" class="btn" type="button">Clear</button>
+              <button id="sendBtn" class="btn accent" type="submit">Send Message</button>
+            </div>
+          </form>
+
+          <aside class="panel" style="padding:24px">
+            <div style="font-weight:600;color:var(--text-primary);font-size:1.1rem;margin-bottom:16px;font-family:'JetBrains Mono', monospace;">Connect With Us</div>
+            <div style="color:var(--text-secondary);margin-bottom:16px;line-height:1.5;">
+              Ready to accelerate your in-memory computing design? Get in touch for demos, technical discussions, or partnership opportunities.
+            </div>
+            <div style="color:var(--text-secondary);margin-top:12px;">
+              <strong style="color:var(--text-primary);">Email:</strong> 
+              <a href="mailto:info@cimplic.com" style="color:var(--accent1);text-decoration:none;font-family:'JetBrains Mono', monospace;">info@cimplic.com</a>
+            </div>
+            <div style="color:var(--text-secondary);margin-top:8px;">
+              <strong style="color:var(--text-primary);">Location:</strong> Groningen, The Netherlands
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-content">
+          <div class="footer-left">
+            <div class="footer-brand">
+              <img src="image/cimplic.png" alt="Cimplic" class="footer-logo">
+              <div class="footer-tagline">Next-Gen In-Memory Computing Design Automation</div>
+            </div>
+            <div class="footer-copyright">© <span id="year"></span> Cimplic. All rights reserved.</div>
+          </div>
+          
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4>technology</h4>
+              <a href="#technologys">Solutions</a>
+              <a href="#features">Features</a>
+              <a href="#contact">Get Demo</a>
+            </div>
+            
+            <div class="footer-column">
+              <h4>Company</h4>
+              <a href="#team">Team</a>
+              <a href="#contact">Contact</a>
+              <a href="#contact">Careers</a>
+            </div>
+            
+            <div class="footer-column">
+              <h4>Connect</h4>
+              <div class="social-links">
+                <a href="#" class="social-link" aria-label="LinkedIn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </a>
+                <a href="#" class="social-link" aria-label="Twitter">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </a>
+                <a href="#" class="social-link" aria-label="GitHub">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                </a>
+              </div>
+              <a href="mailto:info@cimplic.com" class="footer-email">info@cimplic.com</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // In-Memory Computing Background Animation
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Create circuit nodes background
+      const createCircuitNodes = () => {
+        const container = document.createElement('div');
+        container.className = 'circuit-nodes';
+        
+        // Create scattered circuit nodes
+        for (let i = 0; i < 25; i++) {
+          const node = document.createElement('div');
+          node.className = 'circuit-node';
+          node.style.left = Math.random() * 100 + '%';
+          node.style.top = Math.random() * 100 + '%';
+          node.style.animationDelay = Math.random() * 2 + 's';
+          container.appendChild(node);
+        }
+        
+        document.body.appendChild(container);
+      };
+
+      // Create data flow lines
+      const createDataFlow = () => {
+        const container = document.createElement('div');
+        container.className = 'data-flow';
+        
+        // Horizontal flow lines
+        for (let i = 0; i < 8; i++) {
+          const line = document.createElement('div');
+          line.className = 'flow-line';
+          line.style.top = Math.random() * 100 + '%';
+          line.style.width = '150px';
+          line.style.animationDelay = Math.random() * 3 + 's';
+          container.appendChild(line);
+        }
+        
+        // Vertical flow lines
+        for (let i = 0; i < 6; i++) {
+          const line = document.createElement('div');
+          line.className = 'flow-line vertical';
+          line.style.left = Math.random() * 100 + '%';
+          line.style.animationDelay = Math.random() * 4 + 's';
+          container.appendChild(line);
+        }
+        
+        document.body.appendChild(container);
+      };
+
+      // Initialize background animations
+      createCircuitNodes();
+      createDataFlow();
+
+      // Recreate nodes periodically for variety
+      setInterval(createCircuitNodes, 15000);
+
+      // EDA Design Automation Interface
+      const memoryArray = document.getElementById('memoryArray');
+      if (memoryArray) {
+        const cols = 12, rows = 8;
+        const cells = [];
+        
+        // Create memory array cells
+        for (let i = 0; i < cols * rows; i++) {
+          const cell = document.createElement('div');
+          cell.className = 'memory-cell';
+          cell.dataset.index = i;
+          memoryArray.appendChild(cell);
+          cells.push(cell);
+        }
+        
+        // Simulate automated placement and routing
+        let placementProgress = 0;
+        const totalCells = cells.length;
+        
+        function simulateEDAProcess() {
+          // Reset all cells
+          cells.forEach(cell => {
+            cell.classList.remove('placed', 'computing');
+          });
+          
+          placementProgress = 0;
+          
+          // Animate placement process
+          const placementInterval = setInterval(() => {
+            if (placementProgress < totalCells * 0.8) {
+              const cellIndex = Math.floor(Math.random() * totalCells);
+              const cell = cells[cellIndex];
+              
+              if (!cell.classList.contains('placed')) {
+                cell.classList.add('placed');
+                placementProgress++;
+                
+                // Update stats
+                document.getElementById('cellsPlaced').textContent = placementProgress;
+              }
+            } else {
+              clearInterval(placementInterval);
+              
+              // Start compute simulation
+              setTimeout(() => {
+                simulateComputing();
+              }, 1000);
+            }
+          }, 150);
+        }
+        
+        function simulateComputing() {
+          const placedCells = cells.filter(cell => cell.classList.contains('placed'));
+          
+          function computeCycle() {
+            // Clear previous computing state
+            cells.forEach(cell => cell.classList.remove('computing'));
+            
+            // Randomly select cells for computing
+            const numComputing = 8 + Math.floor(Math.random() * 12);
+            for (let i = 0; i < numComputing; i++) {
+              const randomCell = placedCells[Math.floor(Math.random() * placedCells.length)];
+              if (randomCell) {
+                randomCell.classList.add('computing');
+              }
+            }
+          }
+          
+          // Run compute cycles
+          computeCycle();
+          setInterval(computeCycle, 2000);
+        }
+        
+        // Layer tab functionality (Digital/Analog/Mixed)
+        const layerTabs = document.querySelectorAll('.layer-tab');
+        layerTabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            layerTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Change visualization based on implementation type
+            const layer = tab.dataset.layer;
+            document.getElementById('routingProgress').textContent = tab.textContent;
+            
+            if (layer === 'digital') {
+              // Digital implementation - clean, structured layout
+              cells.forEach(cell => {
+                if (cell.classList.contains('placed')) {
+                  cell.style.borderColor = 'var(--accent2)';
+                  cell.classList.remove('computing');
+                }
+              });
+            } else if (layer === 'analog') {
+              // Analog implementation - more organic, flowing
+              cells.forEach(cell => {
+                if (cell.classList.contains('placed')) {
+                  cell.style.borderColor = 'var(--accent1)';
+                  cell.classList.add('computing');
+                }
+              });
+            } else if (layer === 'mixed') {
+              // Mixed-signal - combination approach
+              cells.forEach((cell, index) => {
+                if (cell.classList.contains('placed')) {
+                  cell.style.borderColor = index % 2 ? 'var(--accent1)' : 'var(--accent2)';
+                  if (index % 3 === 0) cell.classList.add('computing');
+                }
+              });
+            }
+          });
+        });
+        
+        // Start the EDA simulation
+        simulateEDAProcess();
+        
+        // Restart simulation every 20 seconds
+        setInterval(simulateEDAProcess, 20000);
+        
+        // Automation stats cycling
+        const statuses = ['Mapped', 'Optimized', 'Ready'];
+        const implementations = ['Digital', 'Analog', 'Mixed'];
+        const technologies = ['SRAM', 'RRAM', 'FeRAM', 'MRAM'];
+        
+        let statusIndex = 0;
+        let implIndex = 0;
+        let techIndex = 0;
+        
+        setInterval(() => {
+          document.getElementById('cellsPlaced').textContent = statuses[statusIndex];
+          document.getElementById('routingProgress').textContent = implementations[implIndex];
+          document.getElementById('powerOpt').textContent = technologies[techIndex];
+          
+          statusIndex = (statusIndex + 1) % statuses.length;
+          implIndex = (implIndex + 1) % implementations.length;
+          techIndex = (techIndex + 1) % technologies.length;
+        }, 3000);
+      }
+
+      // Computing Solutions Animations
+      
+      // Device-to-System Hierarchy Animation
+      function initializeHierarchyAnimation() {
+        const morphingContainer = document.getElementById('morphingContainer');
+        const zoomBtns = document.querySelectorAll('.zoom-btn');
+        const autoPlayBtn = document.getElementById('autoPlayBtn');
+        const progressFill = document.getElementById('hierarchyProgress');
+        const techOptions = document.querySelectorAll('.tech-option');
+        const techOverlay = document.querySelector('.tech-selector-overlay');
+        
+        let currentLevel = 3;
+        let isAutoPlaying = false;
+        let autoPlayInterval;
+        let isTransitioning = false;
+        
+        // Generate memory array cells dynamically
+        function generateArrayCells() {
+          const arrayLayer = document.getElementById('arrayLayer');
+          arrayLayer.innerHTML = '';
+          
+          // Create grid of cells
+          for (let i = 0; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+              const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+              rect.setAttribute('x', 120 + j * 20);
+              rect.setAttribute('y', 120 + i * 20);
+              rect.setAttribute('width', 18);
+              rect.setAttribute('height', 18);
+              rect.classList.add('array-cell');
+              rect.style.animationDelay = `${(i * 8 + j) * 0.02}s`;
+              arrayLayer.appendChild(rect);
+            }
+          }
+          
+          // Add label
+          const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          text.setAttribute('x', '200');
+          text.setAttribute('y', '340');
+          text.setAttribute('text-anchor', 'middle');
+          text.classList.add('level-text');
+          text.textContent = 'Memory Array';
+          arrayLayer.appendChild(text);
+        }
+        
+        // Smooth transition between levels
+        function morphToLevel(newLevel, direction = 'forward') {
+          if (isTransitioning) return;
+          isTransitioning = true;
+          
+          const currentLayer = document.querySelector('.morph-layer.active');
+          const newLayer = document.getElementById(getLevelId(newLevel));
+          
+          // Update tech overlay visibility
+          if (newLevel === 1) {
+            techOverlay.classList.remove('hidden');
+          } else {
+            techOverlay.classList.add('hidden');
+          }
+          
+          // Transition out current layer
+          if (currentLayer) {
+            currentLayer.classList.remove('active');
+            currentLayer.classList.add(direction === 'forward' ? 'morphing-out' : 'morphing-in');
+            
+            setTimeout(() => {
+              currentLayer.classList.remove('morphing-out', 'morphing-in');
+            }, 1000);
+          }
+          
+          // Transition in new layer
+          if (newLayer) {
+            newLayer.classList.add(direction === 'forward' ? 'morphing-in' : 'morphing-out');
+            
+            setTimeout(() => {
+              newLayer.classList.remove('morphing-in', 'morphing-out');
+              newLayer.classList.add('active');
+              
+              // Special animations for specific levels
+              if (newLevel === 2) {
+                generateArrayCells();
+                setTimeout(() => {
+                  document.querySelectorAll('.array-cell').forEach(cell => {
+                    cell.classList.add('growing');
+                  });
+                }, 300);
+              }
+              
+              isTransitioning = false;
+            }, 100);
+          } else {
+            isTransitioning = false;
+          }
+          
+          // Update controls
+          document.querySelectorAll('.zoom-btn').forEach(btn => {
+            btn.classList.remove('active');
+          });
+          
+          const targetBtn = document.querySelector(`[data-level="${newLevel}"]`);
+          if (targetBtn) {
+            targetBtn.classList.add('active');
+          }
+          
+          currentLevel = newLevel;
+        }
+        
+        function getLevelId(level) {
+          const levels = ['', 'deviceLayer', 'arrayLayer', 'bankLayer', 'systemLayer', 'applicationLayer'];
+          return levels[level];
+        }
+        
+        // Initialize zoom buttons
+        zoomBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const newLevel = parseInt(btn.getAttribute('data-level'));
+            const direction = newLevel > currentLevel ? 'forward' : 'backward';
+            morphToLevel(newLevel, direction);
+            stopAutoPlay();
+          });
+        });
+        
+        // Technology selector
+        techOptions.forEach(option => {
+          option.addEventListener('click', () => {
+            techOptions.forEach(opt => opt.classList.remove('active'));
+            option.classList.add('active');
+            
+            // Update device visualization based on technology
+            const tech = option.getAttribute('data-tech');
+            updateDeviceVisualization(tech);
+          });
+        });
+        
+        function updateDeviceVisualization(tech) {
+          const deviceCore = document.querySelector('.device-core');
+          const deviceCell = document.querySelector('.device-cell');
+          if (deviceCore && deviceCell) {
+            const colors = {
+              'sram': 'var(--accent1)',
+              'rram': 'var(--accent2)', 
+              'feram': 'var(--accent3)'
+            };
+            const color = colors[tech] || 'var(--accent1)';
+            deviceCore.setAttribute('fill', color);
+            deviceCell.setAttribute('stroke', color);
+          }
+        }
+        
+        // Auto play with smooth morphing
+        function startAutoPlay() {
+          isAutoPlaying = true;
+          autoPlayBtn.textContent = '⏸ Pause';
+          let progress = 0;
+          let level = 1;
+          
+          // Start from level 1
+          morphToLevel(1, 'forward');
+          
+          autoPlayInterval = setInterval(() => {
+            level++;
+            if (level > 5) {
+              level = 1;
+              progress = 0;
+            }
+            
+            morphToLevel(level, 'forward');
+            progress = (level - 1) * 20;
+            progressFill.style.width = `${progress}%`;
+          }, 3000);
+        }
+        
+        function stopAutoPlay() {
+          isAutoPlaying = false;
+          autoPlayBtn.textContent = '▶ Auto Play';
+          if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+          }
+          progressFill.style.width = '0%';
+        }
+        
+        autoPlayBtn.addEventListener('click', () => {
+          if (isAutoPlaying) {
+            stopAutoPlay();
+          } else {
+            startAutoPlay();
+          }
+        });
+        
+        // Initialize with bank level
+        morphToLevel(3, 'forward');
+      }
+      
+      // Initialize hierarchy animation when page loads
+      if (document.getElementById('morphingContainer')) {
+        initializeHierarchyAnimation();
+      }
+      
+      // Application Mapper Demo
+      const mapperDemo = document.getElementById('mapperDemo');
+      if (mapperDemo) {
+        const applications = [
+          { algo: 'CNN Algorithm', design: 'Convolution CIM', layout: 'Array Layout' },
+          { algo: 'Matrix Multiply', design: 'Crossbar CIM', layout: 'Optimized Layout' },
+          { algo: 'Neural Network', design: 'Synaptic CIM', layout: 'Memory Grid' },
+          { algo: 'ML Inference', design: 'PIM Architecture', layout: 'Hybrid Layout' },
+          { algo: 'AI Accelerator', design: 'Parallel CIM', layout: 'Tiled Layout' }
+        ];
+        
+        let appIndex = 0;
+        
+        function cycleApplications() {
+          const app = applications[appIndex];
+          const inputLayer = mapperDemo.querySelector('.input-layer');
+          const outputArch = mapperDemo.querySelector('.output-arch');
+          const finalLayout = mapperDemo.querySelector('.final-layout');
+          const mappingTexts = mapperDemo.querySelectorAll('.mapping-text');
+          
+          // Reset to initial state
+          inputLayer.textContent = app.algo;
+          outputArch.textContent = '...';
+          outputArch.style.opacity = '0.5';
+          finalLayout.textContent = '...';
+          finalLayout.style.opacity = '0.5';
+          mappingTexts[0].textContent = 'Mapping...';
+          mappingTexts[1].textContent = 'Generating...';
+          
+          // Step 1: Algorithm to CIM Design
+          setTimeout(() => {
+            mappingTexts[0].textContent = 'Analyzing...';
+          }, 800);
+          
+          setTimeout(() => {
+            outputArch.textContent = app.design;
+            outputArch.style.opacity = '1';
+            mappingTexts[0].textContent = 'Mapped!';
+          }, 1600);
+          
+          // Step 2: CIM Design to Layout
+          setTimeout(() => {
+            mappingTexts[1].textContent = 'Optimizing...';
+          }, 2400);
+          
+          setTimeout(() => {
+            finalLayout.textContent = app.layout;
+            finalLayout.style.opacity = '1';
+            mappingTexts[1].textContent = 'Complete!';
+          }, 3200);
+          
+          appIndex = (appIndex + 1) % applications.length;
+        }
+        
+        // Start the cycle
+        cycleApplications();
+        setInterval(cycleApplications, 6000);
+      }
+      
+      // Technology Selector
+      const techOptions = document.querySelectorAll('.tech-option');
+      if (techOptions.length > 0) {
+        let techIndex = 0;
+        const technologies = ['sram', 'rram', 'feram', 'mram', 'pcm'];
+        
+        function cycleTechnologies() {
+          techOptions.forEach(option => option.classList.remove('active'));
+          
+          const currentTech = technologies[techIndex];
+          const currentOption = document.querySelector(`[data-tech="${currentTech}"]`);
+          if (currentOption) {
+            currentOption.classList.add('active');
+          }
+          
+          techIndex = (techIndex + 1) % technologies.length;
+        }
+        
+        // Auto-cycle every 2.5 seconds for more technologies
+        setInterval(cycleTechnologies, 2500);
+        
+        // Manual selection
+        techOptions.forEach(option => {
+          option.addEventListener('click', () => {
+            techOptions.forEach(opt => opt.classList.remove('active'));
+            option.classList.add('active');
+          });
+        });
+      }
+      
+      // Tapeout Timeline Animation
+      const timelineItems = document.querySelectorAll('.timeline-item');
+      if (timelineItems.length > 0) {
+        let currentStep = 0;
+        
+        function animateTimeline() {
+          // Reset all items
+          timelineItems.forEach(item => {
+            item.classList.remove('completed', 'active');
+          });
+          
+          // Set completed and active states
+          for (let i = 0; i < currentStep; i++) {
+            timelineItems[i].classList.add('completed');
+          }
+          
+          if (currentStep < timelineItems.length) {
+            timelineItems[currentStep].classList.add('active');
+          }
+          
+          currentStep = (currentStep + 1) % (timelineItems.length + 1);
+          
+          // Reset when reaching the end
+          if (currentStep === timelineItems.length) {
+            setTimeout(() => {
+              currentStep = 0;
+            }, 2000);
+          }
+        }
+        
+        // Start timeline animation
+        animateTimeline();
+        setInterval(animateTimeline, 2500);
+      }
+      
+      // Flow Step Hover Effects
+      const flowSteps = document.querySelectorAll('.flow-step');
+      flowSteps.forEach((step, index) => {
+        step.addEventListener('mouseenter', () => {
+          // Add subtle animation to show the flow
+          setTimeout(() => {
+            const nextStep = flowSteps[index + 1];
+            if (nextStep) {
+              nextStep.style.transform = 'translateY(-2px)';
+              setTimeout(() => {
+                nextStep.style.transform = '';
+              }, 300);
+            }
+          }, 100);
+        });
+      });
+
+      // FAQ accordion
+      document.querySelectorAll('.faq-q').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const a = btn.nextElementSibling;
+          const open = a.style.display === 'block';
+          // close all
+          document.querySelectorAll('.faq-a').forEach(x => x.style.display = 'none');
+          a.style.display = open ? 'none' : 'block';
+        });
+      });
+
+      // Enhanced contact form handling
+      const contactForm = document.getElementById('contactForm');
+      const sendBtn = document.getElementById('sendBtn');
+      const clearBtn = document.getElementById('clearBtn');
+      
+      // Form submission
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const interest = document.getElementById('interest').value;
+        
+        // Validation
+        if (!name || !email || !interest) {
+          sendBtn.textContent = 'Please fill required fields';
+          sendBtn.style.backgroundColor = 'var(--accent2)';
+          setTimeout(() => {
+            sendBtn.textContent = 'Send Message';
+            sendBtn.style.backgroundColor = '';
+          }, 2000);
+          return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          sendBtn.textContent = 'Please enter valid email';
+          sendBtn.style.backgroundColor = 'var(--accent2)';
+          setTimeout(() => {
+            sendBtn.textContent = 'Send Message';
+            sendBtn.style.backgroundColor = '';
+          }, 2000);
+          return;
+        }
+        
+        // Success simulation
+        sendBtn.disabled = true;
+        sendBtn.textContent = 'Sending...';
+        
+        setTimeout(() => {
+          sendBtn.textContent = 'Message Sent ✓';
+          sendBtn.style.backgroundColor = 'var(--accent1)';
+          
+          // Reset form after delay
+          setTimeout(() => {
+            contactForm.reset();
+            sendBtn.disabled = false;
+            sendBtn.textContent = 'Send Message';
+            sendBtn.style.backgroundColor = '';
+          }, 3000);
+        }, 1500);
+        
+        // TODO: replace with real POST to backend / Netlify / etc.
+      });
+      
+      // Clear form button
+      clearBtn.addEventListener('click', () => {
+        contactForm.reset();
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Send Message';
+        sendBtn.style.backgroundColor = '';
+      });
+    });
+  </script>
+</body>
+</html>
