@@ -504,8 +504,32 @@
       padding: 8px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.75rem;
-      max-height: 80px;
-      overflow: hidden;
+      max-height: 120px;
+      min-height: 100px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      /* Custom scrollbar styling */
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent1) var(--bg-secondary);
+    }
+    
+    /* Webkit scrollbar styling */
+    .eda-console::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    .eda-console::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+      border-radius: 2px;
+    }
+    
+    .eda-console::-webkit-scrollbar-thumb {
+      background: var(--accent1);
+      border-radius: 2px;
+    }
+    
+    .eda-console::-webkit-scrollbar-thumb:hover {
+      background: var(--accent2);
     }
     
     .console-line {
@@ -2011,6 +2035,21 @@
 
             <div class="eda-console">
               <div class="console-line">
+                <span class="timestamp">[15:42:30]</span>
+                <span class="log-level info">INIT</span>
+                <span class="log-message">Starting EDA automation pipeline</span>
+              </div>
+              <div class="console-line">
+                <span class="timestamp">[15:42:31]</span>
+                <span class="log-level info">PARSE</span>
+                <span class="log-message">Parsing input algorithm specifications</span>
+              </div>
+              <div class="console-line">
+                <span class="timestamp">[15:42:32]</span>
+                <span class="log-level success">LOAD</span>
+                <span class="log-message">Technology library loaded: SRAM 28nm</span>
+              </div>
+              <div class="console-line">
                 <span class="timestamp">[15:42:33]</span>
                 <span class="log-level info">ALGO</span>
                 <span class="log-message">CNN algorithm analysis complete</span>
@@ -2020,11 +2059,31 @@
                 <span class="log-level success">AUTO</span>
                 <span class="log-message">Digital IMC architecture generated</span>
               </div>
-              <div class="console-line active">
+              <div class="console-line">
                 <span class="timestamp">[15:42:35]</span>
                 <span class="log-level process">OPTIM</span>
                 <span class="log-message">Optimizing for SRAM technology...</span>
                 <span class="cursor">▋</span>
+              </div>
+              <div class="console-line">
+                <span class="timestamp">[15:42:36]</span>
+                <span class="log-level info">MAP</span>
+                <span class="log-message">Memory array mapping: 128x64 cells</span>
+              </div>
+              <div class="console-line">
+                <span class="timestamp">[15:42:37]</span>
+                <span class="log-level success">ROUTE</span>
+                <span class="log-message">Routing optimization complete</span>
+              </div>
+              <div class="console-line">
+                <span class="timestamp">[15:42:38]</span>
+                <span class="log-level info">PPA</span>
+                <span class="log-message">Power analysis: 15.2mW estimated</span>
+              </div>
+              <div class="console-line">
+                <span class="timestamp">[15:42:39]</span>
+                <span class="log-level success">VERIFY</span>
+                <span class="log-message">Design rule check passed</span>
               </div>
             </div>
           </div>
