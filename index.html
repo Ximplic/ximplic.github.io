@@ -195,50 +195,6 @@
     }
     nav a:hover::after{width:100%}
 
-    /* Mobile Mode Toggle Button */
-    .mobile-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      background: rgba(30, 31, 36, 0.95);
-      border: 1px solid var(--grid-color);
-      border-radius: 20px;
-      color: var(--text-secondary);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-      user-select: none;
-    }
-    
-    .mobile-toggle:hover {
-      border-color: var(--accent1);
-      color: var(--accent1);
-      transform: translateY(-1px);
-    }
-    
-    .mobile-toggle.active {
-      background: rgba(45, 214, 182, 0.1);
-      border-color: var(--accent1);
-      color: var(--accent1);
-    }
-    
-    .toggle-icon {
-      width: 16px;
-      height: 16px;
-      transition: transform 0.3s ease;
-    }
-    
-    .mobile-toggle.active .toggle-icon {
-      transform: rotate(180deg);
-    }
-    
     /* Mobile mode forced styles */
     body.mobile-mode {
       font-size: 14px !important;
@@ -2869,15 +2825,6 @@
   </style>
 </head>
 <body>
-  <!-- Mobile Mode Toggle Button -->
-  <div class="mobile-toggle" id="mobileToggle">
-    <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <rect x="2" y="3" width="20" height="14" rx="2"/>
-      <path d="M8 21l4-4 4 4"/>
-    </svg>
-    <span id="toggleText">Mobile Mode</span>
-  </div>
-
   <div class="wrap">
     <header>
       <div class="container">
@@ -3458,55 +3405,6 @@
     // In-Memory Computing Background Animation
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('year').textContent = new Date().getFullYear();
-
-      // Mobile Mode Toggle Functionality
-      const mobileToggle = document.getElementById('mobileToggle');
-      const toggleText = document.getElementById('toggleText');
-      let isMobileMode = false;
-
-      // Check if user prefers mobile mode (stored in localStorage)
-      const savedMode = localStorage.getItem('cimplic-mobile-mode');
-      if (savedMode === 'true') {
-        isMobileMode = true;
-        document.body.classList.add('mobile-mode');
-        mobileToggle.classList.add('active');
-        toggleText.textContent = 'Desktop Mode';
-      }
-
-      mobileToggle.addEventListener('click', () => {
-        isMobileMode = !isMobileMode;
-        
-        if (isMobileMode) {
-          document.body.classList.add('mobile-mode');
-          mobileToggle.classList.add('active');
-          toggleText.textContent = 'Desktop Mode';
-          localStorage.setItem('cimplic-mobile-mode', 'true');
-          
-          // Smooth transition effect
-          document.body.style.transition = 'all 0.3s ease';
-          setTimeout(() => {
-            document.body.style.transition = '';
-          }, 300);
-        } else {
-          document.body.classList.remove('mobile-mode');
-          mobileToggle.classList.remove('active');
-          toggleText.textContent = 'Mobile Mode';
-          localStorage.setItem('cimplic-mobile-mode', 'false');
-          
-          // Smooth transition effect
-          document.body.style.transition = 'all 0.3s ease';
-          setTimeout(() => {
-            document.body.style.transition = '';
-          }, 300);
-        }
-      });
-
-      // Hide toggle button on actual mobile devices (optional)
-      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      if (isMobileDevice && window.innerWidth < 768) {
-        // Optionally hide the toggle on real mobile devices
-        // mobileToggle.style.display = 'none';
-      }
 
       // Mobile Navigation Functionality
       const mobileNavToggle = document.getElementById('mobileNavToggle');
