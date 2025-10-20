@@ -1226,6 +1226,53 @@ p.lead{
   overflow: hidden;
 }
 
+/* Coming Soon Overlay */
+.coming-soon-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 11, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border-radius: 12px;
+}
+
+.coming-soon-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent1);
+  background: linear-gradient(135deg, rgba(45, 214, 182, 0.15), rgba(55, 111, 180, 0.15));
+  border: 2px solid var(--accent1);
+  padding: 10px 24px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 
+    0 0 20px rgba(45, 214, 182, 0.3),
+    inset 0 0 20px rgba(45, 214, 182, 0.1);
+  animation: comingSoonPulse 2s ease-in-out infinite;
+}
+
+@keyframes comingSoonPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(45, 214, 182, 0.3),
+      inset 0 0 20px rgba(45, 214, 182, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(45, 214, 182, 0.5),
+      inset 0 0 30px rgba(45, 214, 182, 0.2);
+  }
+}
+
 .metric-card::before {
   content: '';
   position: absolute;
