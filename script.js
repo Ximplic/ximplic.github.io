@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { algo: 'CNN Algorithm', design: 'Convolution CIM', layout: 'Array Layout' },
       { algo: 'Matrix Multiply', design: 'Crossbar CIM', layout: 'Optimized Layout' },
       { algo: 'Neural Network', design: 'Synaptic CIM', layout: 'Memory Grid' },
-      { algo: 'ML Inference', design: 'PIM Architecture', layout: 'Hybrid Layout' },
+      { algo: 'ML Inference', design: 'CIM Architecture', layout: 'Hybrid Layout' },
       { algo: 'AI Accelerator', design: 'Parallel CIM', layout: 'Tiled Layout' }
     ];
     
