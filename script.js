@@ -458,13 +458,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(animateTimeline, 2500);
   }
 
-  // Enhanced contact form handling
+  // Enhanced contact form handling with Formspree
   const contactForm = document.getElementById('contactForm');
   const sendBtn = document.getElementById('sendBtn');
   const clearBtn = document.getElementById('clearBtn');
   
   // Form submission
-  contactForm.addEventListener('submit', (e) => {
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const name = document.getElementById('name').value.trim();
@@ -494,24 +494,43 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     
-    // Success simulation
+    // Send to Formspree
     sendBtn.disabled = true;
     sendBtn.textContent = 'Sending...';
     
-    setTimeout(() => {
-      sendBtn.textContent = 'Message Sent ✓';
-      sendBtn.style.backgroundColor = 'var(--accent1)';
+    try {
+      const formData = new FormData(contactForm);
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
       
-      // Reset form after delay
+      if (response.ok) {
+        sendBtn.textContent = 'Message Sent ✓';
+        sendBtn.style.backgroundColor = 'var(--accent1)';
+        
+        // Reset form after delay
+        setTimeout(() => {
+          contactForm.reset();
+          sendBtn.disabled = false;
+          sendBtn.textContent = 'Send Message';
+          sendBtn.style.backgroundColor = '';
+        }, 3000);
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      sendBtn.textContent = 'Error! Try again';
+      sendBtn.style.backgroundColor = '#e74c3c';
       setTimeout(() => {
-        contactForm.reset();
         sendBtn.disabled = false;
         sendBtn.textContent = 'Send Message';
         sendBtn.style.backgroundColor = '';
       }, 3000);
-    }, 1500);
-    
-    // TODO: replace with real POST to backend / Netlify / etc.
+    }
   });
   
   // Clear form button
