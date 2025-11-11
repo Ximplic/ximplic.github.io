@@ -2273,10 +2273,12 @@ textarea{min-height:120px;resize:vertical}
   .title {
     font-size: 1.1rem;
     letter-spacing: 0.03em;
+    color: #FFFFFF;
   }
   
   .tagline {
     font-size: 0.8rem;
+    color: #E0E0E0;
     display: none; /* Hide on small screens for cleaner look */
   }
   
@@ -2917,6 +2919,7 @@ textarea{min-height:120px;resize:vertical}
   
   .title {
     font-size: 1rem;
+    color: #FFFFFF;
   }
   
   .mobile-nav-toggle {
