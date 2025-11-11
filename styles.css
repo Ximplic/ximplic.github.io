@@ -580,13 +580,14 @@ body.mobile-mode .mobile-nav-toggle {
   min-height: var(--mobile-touch-target);
   width: 44px;
   height: 44px;
-  background: rgba(30, 31, 36, 0.8);
+  background: #ffffff;
   border: 1px solid var(--grid-color);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 1001;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   /* Improve touch response */
   -webkit-tap-highlight-color: transparent;
 }
@@ -598,13 +599,13 @@ body.mobile-mode .mobile-nav-toggle {
 .mobile-nav-toggle:hover {
   background: var(--bg-secondary);
   border-color: var(--accent1);
-  box-shadow: 0 0 12px rgba(45, 214, 182, 0.3);
+  box-shadow: 0 4px 12px rgba(233, 75, 60, 0.2);
 }
 
 .mobile-nav-toggle.active {
   background: var(--accent1);
   border-color: var(--accent1);
-  box-shadow: 0 0 16px rgba(45, 214, 182, 0.4);
+  box-shadow: 0 4px 16px rgba(233, 75, 60, 0.3);
 }
 
 .hamburger-line {
@@ -617,7 +618,7 @@ body.mobile-mode .mobile-nav-toggle {
 }
 
 .mobile-nav-toggle.active .hamburger-line {
-  background: var(--bg-primary);
+  background: #ffffff;
 }
 
 .mobile-nav-toggle.active .hamburger-line:nth-child(1) {
@@ -639,12 +640,12 @@ body.mobile-mode .mobile-nav-toggle {
   top: calc(var(--mobile-nav-height) + 8px);
   left: var(--mobile-spacing);
   right: var(--mobile-spacing);
-  background: rgba(20, 21, 24, 0.98);
+  background: #ffffff;
   border: 1px solid var(--grid-color);
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 16px;
   z-index: 1000;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   max-height: calc(100vh - var(--mobile-nav-height) - 32px);
@@ -680,7 +681,7 @@ body.mobile-mode .mobile-nav-toggle {
   color: var(--text-primary);
   text-decoration: none;
   border-radius: 8px;
-  background: rgba(30, 31, 36, 0.6);
+  background: var(--bg-secondary);
   border: 1px solid var(--grid-color);
   text-align: center;
   font-size: 15px;
@@ -699,10 +700,10 @@ body.mobile-mode .mobile-nav-toggle {
 
 .mobile-nav-links a:hover {
   background: var(--accent1);
-  color: var(--bg-primary);
+  color: #ffffff;
   border-color: var(--accent1);
   transform: translateX(4px);
-  box-shadow: 0 4px 12px rgba(45, 214, 182, 0.3);
+  box-shadow: 0 4px 12px rgba(233, 75, 60, 0.3);
 }
 
 body.mobile-mode .btn {
