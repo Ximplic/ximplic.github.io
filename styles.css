@@ -5,9 +5,9 @@
   --bg-accent: #E8E8E8;       /* card backgrounds */
   --text-primary: #0A0A0A;    /* near-black for text */
   --text-secondary: #6B6B6B;  /* medium gray for secondary */
-  --accent1: #5488d6;         /* black accent matching X */
+  --accent1: #6d8eae;         /* black accent matching X */
   --accent2: #2D2D2D;         /* charcoal gray */
-  --accent3: #5488d6;         /* bold blue accent for uniqueness */
+  --accent3: #6d8eae;         /* bold blue accent for uniqueness */
   --accent-glow: rgba(0, 102, 255, 0.2);  /* blue glow */
   --grid-color: #E0E0E0;      /* subtle grid */
   --max-width: 1280px;        /* balanced width */
@@ -151,8 +151,8 @@ header{
 }
 .brand{display:flex;align-items:center;gap:20px}
 .logo{
-  width:45px;
-  height:45px;
+  width:55px;
+  height:55px;
   object-fit:contain;
   filter: contrast(1.2);
   transition: transform 0.3s ease;
