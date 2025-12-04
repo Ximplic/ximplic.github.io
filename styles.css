@@ -2064,7 +2064,56 @@ section{
   transition: all 0.3s ease;
 }
 
+/* Partners Section */
+#partners {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
 
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+  align-items: center;
+  justify-items: center;
+}
+
+.partner-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--bg-accent);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 250px;
+  height: 150px;
+  text-decoration: none;
+  border: 2px solid transparent;
+}
+
+.partner-card:hover {
+  background: #FFFFFF;
+  border-color: var(--accent3);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.partner-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.partner-card:hover .partner-logo {
+  filter: grayscale(0%);
+  opacity: 1;
+}
 
 /* contact form — bold modern theme */
 .contact-grid{display:grid;grid-template-columns:1fr 260px;gap:24px;margin-top:48px}
@@ -2210,6 +2259,17 @@ textarea{min-height:120px;resize:vertical}
   .contact-grid{grid-template-columns:1fr}
   nav{display:none}
   .section-title{font-size:2rem}
+  
+  /* Partners responsive */
+  .partners-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+  }
+  
+  .partner-card {
+    height: 120px;
+    padding: 16px;
+  }
   
   /* Footer responsive */
   .footer-content {
