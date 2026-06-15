@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>News &amp; Updates · Ximplic</title>
-  <meta name="description" content="Latest developments, achievements and announcements from Ximplic, energy-efficient edge AI inference IP and in-memory computing.">
+  <title>Products · Ximplic</title>
+  <meta name="description" content="The XIM platform: energy-efficient edge AI inference IP, evaluated as a Virtual Prototype, mapped with the Compiler, and integrated as RTL IP, software to silicon.">
   <link rel="icon" href="XIM_Logo/favicon.svg" type="image/svg+xml"/>
   <link rel="icon" type="image/png" sizes="32x32" href="XIM_Logo/favicon/favicon-32.png"/>
   <link rel="apple-touch-icon" href="XIM_Logo/favicon/apple-touch-icon.png"/>
@@ -15,14 +15,13 @@
 </head>
 <body>
 
-<!-- NAV -->
 <header class="nav">
   <div class="wrap nav-in">
     <a href="index.html" class="brand"><img src="XIM_Logo/ximplic-mark.svg" alt="Ximplic"><span class="bt"><span class="bn">Ximplic</span><span class="btag">Simplifying AI for everyday devices</span></span></a>
     <nav class="nav-links" aria-label="Main">
       <a href="index.html#technology">Technology</a>
       <div class="nav-dd" id="navDd">
-        <button class="nav-dd-btn" id="ddBtn" aria-expanded="false" aria-haspopup="true">Products
+        <button class="nav-dd-btn active" id="ddBtn" aria-expanded="false" aria-haspopup="true">Products
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="nav-dd-menu">
@@ -35,7 +34,7 @@
       </div>
       <a href="index.html#integration">Integration</a>
       <a href="about.html">About</a>
-      <a href="news.html" class="active">News</a>
+      <a href="news.html">News</a>
     </nav>
     <div class="nav-actions">
       <a href="index.html#contact" class="btn btn-primary">Request access</a>
@@ -56,50 +55,65 @@
   </div>
 </header>
 
-<!-- PAGE HEAD -->
 <div class="page-head">
   <div class="wrap">
-    <div class="eyebrow">News &amp; updates</div>
-    <h1>Latest from Ximplic</h1>
-    <p class="lead muted">Developments, achievements and announcements in energy-efficient edge AI and in-memory computing.</p>
+    <div class="eyebrow">Products</div>
+    <h1>The XIM platform, software to silicon</h1>
+    <p class="lead muted">One energy-efficient inference accelerator, on a path you can de-risk. Evaluate it in pure software, map your models onto it, then take the same validated design into your chip.</p>
   </div>
 </div>
 
 <section>
   <div class="wrap">
-    <div class="news-list">
-
-      <article class="news-item reveal">
-        <div class="date">Award · 4 December 2024</div>
-        <h3>Ximplic wins 2025 HiPEAC Technology Transfer Award</h3>
-        <p>We're honored to be selected as one of five winners of the prestigious 2025 HiPEAC Technology Transfer Awards, recognising our work accelerating the design of computing-in-memory architectures through advanced design automation and IP. Winners are recognised at the HiPEAC conference in January 2025.</p>
-        <a class="more" style="color:var(--accent-ink);font-weight:700;display:inline-block;margin-top:14px" href="https://www.hipeac.net/news/7126/announcing-winners-2025-hipeac-technology-transfer-awards/" target="_blank" rel="noopener">Read full announcement →</a>
-      </article>
-
-      <article class="news-item reveal">
-        <div class="date">Launch · 11 November 2025</div>
-        <h3>Ximplic launches website &amp; LinkedIn profile</h3>
-        <p>We're thrilled to announce the official launch of Ximplic's website and LinkedIn profile. Connect with us to follow our journey building energy-efficient inference IP for the edge and in-memory computing technology.</p>
-        <a class="more" style="color:var(--accent-ink);font-weight:700;display:inline-block;margin-top:14px" href="https://www.linkedin.com/company/ximplic-systems" target="_blank" rel="noopener">Follow on LinkedIn →</a>
-      </article>
-
-      <article class="news-item reveal">
-        <div class="date">Achievement · 1 September 2025</div>
-        <h3>Simranjeet Singh awarded DeepTech Pioneer Fellowship</h3>
-        <p>Simranjeet Singh, Co-founder &amp; CTO of Ximplic, has been selected as a DeepTech Pioneer Fellow by the Business Generator Groningen. The fellowship supports development of Ximplic's energy-efficient computing-in-memory technology.</p>
-        <a class="more" style="color:var(--accent-ink);font-weight:700;display:inline-block;margin-top:14px" href="https://www.businessgeneratorgroningen.com/actualiteit-eng/first-fse-pioneer-deeptech-fellows-selected/" target="_blank" rel="noopener">Read more →</a>
-      </article>
-
-      <article class="news-item reveal" style="text-align:center;border-style:dashed">
-        <h3 style="margin-top:0">More news coming soon</h3>
-        <p>Stay tuned for more updates and announcements.</p>
-      </article>
-
+    <div class="section-rule reveal"><span>01 / The platform</span><span>XIM · software to silicon</span></div>
+    <div class="section-head reveal">
+      <div class="eyebrow">The platform</div>
+      <h2>Four parts, one validated design</h2>
+      <p class="lead muted">Evaluate in software, map your model, integrate the RTL, and design in with our support. It's the same accelerator at every step.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <span class="tag">Launching now</span>
+        <h3>Virtual Prototype</h3>
+        <p>A cycle-approximate SystemC TLM-2.0 model of the accelerator. Plug it into your SoC virtual platform over AXI, run your own neural workloads, and measure latency and energy, no FPGA board, no proprietary EDA, zero licence cost to evaluate.</p>
+        <a href="xim-vp-product.html" class="more">Explore the Virtual Prototype</a>
+      </div>
+      <div class="pillar reveal">
+        <span class="tag">Toolchain</span>
+        <h3>Compiler</h3>
+        <p>Map your ONNX or framework model straight onto the accelerator. The compiler prepares your network for the in-memory engine and targets both the Virtual Prototype and the RTL, the same graph, the same numbers, software to silicon.</p>
+        <a href="compiler.html" class="more">Explore the Compiler</a>
+      </div>
+      <div class="pillar reveal">
+        <span class="tag">Silicon IP</span>
+        <h3>RTL IP</h3>
+        <p>The synthesisable accelerator core, the energy-efficient inference engine itself. Configurable size and INT8–INT1 precision, with an IEEE 1685 IP-XACT register map and AMBA AXI interfaces for clean SoC integration.</p>
+        <a href="rtl-ip.html" class="more">Explore the RTL IP</a>
+      </div>
+      <div class="pillar reveal">
+        <span class="tag">Engagement</span>
+        <h3>Design-in &amp; support</h3>
+        <p>Scope your workloads and power budget with us, evaluate under NDA, integrate with our support, then design-in the IP toward your own silicon, with a validated software and architecture path the whole way.</p>
+        <a href="index.html#contact" class="more">Start a conversation</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- CTA -->
+<section id="contact" class="cta">
+  <div class="wrap cta-in">
+    <span class="pill">Partner with Ximplic</span>
+    <h2>Find the right starting point</h2>
+    <p>Not sure where to begin? Tell us your workloads and platform, we'll point you to the right product and set up an evaluation.</p>
+    <div class="cta-row">
+      <a href="mailto:info@ximplic.com?subject=XIM%20platform%20enquiry" class="btn btn-primary">Request access ↗</a>
+      <a href="mailto:info@ximplic.com?subject=Ximplic%20%E2%80%94%20talk%20to%20us" class="btn btn-light">Talk to us</a>
+    </div>
+    <div class="contact-meta">Email <a href="mailto:info@ximplic.com">info@ximplic.com</a> &nbsp;·&nbsp; Groningen, The Netherlands</div>
+  </div>
+</section>
+
 <footer class="site">
   <div class="wrap">
     <div class="foot-grid">
