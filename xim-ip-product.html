@@ -173,6 +173,61 @@
   </div>
 </section>
 
+<!-- INTEGRATION -->
+<section id="integration">
+  <div class="wrap">
+    <div class="section-rule reveal"><span>03 / Integration</span><span>Drop-in over AXI</span></div>
+    <div class="section-head reveal">
+      <h2>Two ways it integrates into your SoC</h2>
+      <p class="lead muted">From a low-risk drop-in accelerator to an in-place memory upgrade. Option A is available and silicon-tested today. Option B is on the way.</p>
+    </div>
+    <div class="integ">
+      <div class="ic available reveal">
+        <div class="ic-top"><span class="ic-opt">Option A</span><span class="ic-status live">Available · tested</span></div>
+        <h3>External Accelerator</h3>
+        <svg class="idia" viewBox="0 0 460 190" role="img" aria-label="XIM IP connected to a host SoC over an AXI bus">
+          <rect class="ibox" x="34" y="58" width="160" height="74" rx="12"/>
+          <text class="il" x="114" y="92">Host SoC</text>
+          <text class="is" x="114" y="112">unchanged</text>
+          <rect class="ibox x" x="266" y="58" width="160" height="74" rx="12"/>
+          <text class="il x" x="346" y="92">XIM IP</text>
+          <text class="is" x="346" y="112">drop-in block</text>
+          <path class="iwire" d="M194 95 H256"/>
+          <polygon class="iarr" points="266,95 253,88 253,102"/>
+          <text class="iwl" x="226" y="83">AXI</text>
+        </svg>
+        <ul class="ic-list">
+          <li>Sits next to the host SoC as separate IP</li>
+          <li>Standard AXI bus connection</li>
+          <li>Zero changes to host silicon</li>
+        </ul>
+        <a class="ic-link" href="xim-vp-product.html">Evaluate via the Virtual Prototype</a>
+        <div class="ic-tag">Lowest risk · fastest PoC</div>
+      </div>
+      <div class="ic soon reveal">
+        <div class="ic-top"><span class="ic-opt">Option B</span><span class="ic-status wip">In progress</span></div>
+        <h3>In-Place Memory Upgrade</h3>
+        <svg class="idia" viewBox="0 0 460 190" role="img" aria-label="XIM SRAM replacing passive SRAM inside a host node">
+          <rect class="idash" x="34" y="40" width="392" height="120" rx="16"/>
+          <text class="icap" x="56" y="66">HOST NODE</text>
+          <rect class="ibox" x="58" y="80" width="160" height="64" rx="12"/>
+          <text class="il" x="138" y="117">cores</text>
+          <rect class="ibox x" x="242" y="80" width="160" height="64" rx="12"/>
+          <text class="il x" x="322" y="108">XIM SRAM</text>
+          <text class="is" x="322" y="128">compute + memory</text>
+        </svg>
+        <ul class="ic-list">
+          <li>Replaces passive on-chip SRAM</li>
+          <li>Same footprint, memory now computes</li>
+          <li>Zero data movement</li>
+        </ul>
+        <a class="ic-link" href="#contact">Register interest</a>
+        <div class="ic-tag">Highest performance · production target</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 03 · SPECS -->
 <section id="specs">
   <div class="wrap">
