@@ -130,79 +130,104 @@
   </div>
 </section>
 
-<!-- STAT BAND -->
-<div class="stats">
-  <div class="wrap stats-in">
-    <div class="stat"><b>In-SRAM</b><span>Compute in memory, no weight-streaming energy</span></div>
-    <div class="stat"><b>Always-on</b><span>Built for continuous, battery-powered edge AI</span></div>
-    <div class="stat"><b>$0</b><span>No EDA licence to evaluate the VP</span></div>
-    <div class="stat"><b>SW → Si</b><span>The same validated IP, software to silicon</span></div>
-  </div>
-</div>
-
-
-<!-- PRODUCTS & HOW YOU ADOPT (merged) -->
-<section id="integration" class="spec-wrap">
+<!-- 01 · PROBLEM -->
+<section>
   <div class="wrap">
-    <div class="section-rule reveal"><span>02 / Integration</span><span>Drop-in over AXI</span></div>
+    <div class="section-rule reveal"><span>01 / The problem</span><span>Energy is data movement</span></div>
     <div class="section-head reveal">
-      <h2>Two ways XIM integrates into your SoC</h2>
-      <p class="lead muted">Pick the integration that fits your design, from a low-risk drop-in accelerator to an in-place memory upgrade. Option A is available and silicon-tested today. Option B is on the way.</p>
+      <h2>Most edge-AI energy is spent moving data</h2>
+      <p class="lead muted">Not computing it. We compute inside the memory, so always-on inference runs on a fraction of the power.</p>
     </div>
-    <div class="integ">
-      <div class="ic available reveal">
-        <div class="ic-top"><span class="ic-opt">Option A</span><span class="ic-status live">Available · tested</span></div>
-        <h3>External Accelerator</h3>
-        <svg class="idia" viewBox="0 0 460 190" role="img" aria-label="XIM IP connected to a host SoC over an AXI bus">
-          <rect class="ibox" x="34" y="58" width="160" height="74" rx="12"/>
-          <text class="il" x="114" y="92">Host SoC</text>
-          <text class="is" x="114" y="112">unchanged</text>
-          <rect class="ibox x" x="266" y="58" width="160" height="74" rx="12"/>
-          <text class="il x" x="346" y="92">XIM IP</text>
-          <text class="is" x="346" y="112">drop-in block</text>
-          <path class="iwire" d="M194 95 H256"/>
-          <polygon class="iarr" points="266,95 253,88 253,102"/>
-          <text class="iwl" x="226" y="83">AXI</text>
-        </svg>
-        <ul class="ic-list">
-          <li>Sits next to the host SoC as separate IP</li>
-          <li>Standard AXI bus connection</li>
-          <li>Zero changes to host silicon</li>
-        </ul>
-        <a class="ic-link" href="xim-vp-product.html">Evaluate via the Virtual Prototype</a>
-        <div class="ic-tag">Lowest risk · fastest PoC</div>
+    <div class="fig reveal">
+      <div class="ebars">
+        <div class="ebar conv">
+          <div class="col"><div class="seg move">Data movement</div><div class="seg comp">Compute</div></div>
+          <div class="lbl">Conventional NPU</div>
+          <div class="sub">energy dominated by movement</div>
+        </div>
+        <div class="ebar xim">
+          <div class="col"><div class="seg move">Movement</div><div class="seg comp">Compute</div></div>
+          <div class="lbl">Ximplic in-memory</div>
+          <div class="sub">energy tracks useful work</div>
+        </div>
       </div>
-      <div class="ic soon reveal">
-        <div class="ic-top"><span class="ic-opt">Option B</span><span class="ic-status wip">In progress</span></div>
-        <h3>In-Place Memory Upgrade</h3>
-        <svg class="idia" viewBox="0 0 460 190" role="img" aria-label="XIM SRAM replacing passive SRAM inside a host node">
-          <rect class="idash" x="34" y="40" width="392" height="120" rx="16"/>
-          <text class="icap" x="56" y="66">HOST NODE</text>
-          <rect class="ibox" x="58" y="80" width="160" height="64" rx="12"/>
-          <text class="il" x="138" y="117">cores</text>
-          <rect class="ibox x" x="242" y="80" width="160" height="64" rx="12"/>
-          <text class="il x" x="322" y="108">XIM SRAM</text>
-          <text class="is" x="322" y="128">compute + memory</text>
-        </svg>
-        <ul class="ic-list">
-          <li>Replaces passive on-chip SRAM</li>
-          <li>Same footprint, memory now computes</li>
-          <li>Zero data movement</li>
-        </ul>
-        <a class="ic-link" href="index.html#contact">Register interest</a>
-        <div class="ic-tag">Highest performance · production target</div>
+      <div class="elegend"><span><i class="k-comp"></i>Compute</span><span><i class="k-move"></i>Data movement</span></div>
+      <div class="figcap">Illustrative energy split, not measured values.</div>
+    </div>
+    <p class="product-path reveal"><a href="technology.html">See how it works</a></p>
+  </div>
+</section>
+
+<!-- 02 · WHAT WE DO -->
+<section id="products" class="spec-wrap">
+  <div class="wrap">
+    <div class="section-rule reveal"><span>02 / What we do</span><span>One accelerator, three products</span></div>
+    <div class="section-head reveal">
+      <h2>Energy-efficient inference IP, software to silicon</h2>
+      <p class="lead muted">Evaluate it in software, map your models onto it, then take the same validated design to silicon.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <span class="tag">Launching now</span>
+        <h3>Virtual Prototype</h3>
+        <p>A SystemC model you plug into your SoC to run your own models and measure power, before any hardware.</p>
+        <a href="xim-vp-product.html" class="more">Explore the Virtual Prototype</a>
+      </div>
+      <div class="pillar reveal">
+        <span class="tag">Toolchain</span>
+        <h3>Compiler</h3>
+        <p>Map your ONNX model onto the accelerator, quantized and validated, software to silicon.</p>
+        <a href="xim-compiler-product.html" class="more">Explore the Compiler</a>
+      </div>
+      <div class="pillar reveal">
+        <span class="tag">Silicon IP</span>
+        <h3>RTL IP</h3>
+        <p>The synthesisable in-memory accelerator core, with AMBA AXI interfaces for clean SoC integration.</p>
+        <a href="xim-ip-product.html" class="more">Explore the RTL IP</a>
       </div>
     </div>
-    <p class="product-path reveal">
-      However you integrate, you evaluate first with the <a href="xim-vp-product.html">Virtual Prototype</a>, map your model with the <a href="xim-compiler-product.html">Compiler</a>, then license the <a href="xim-ip-product.html">RTL IP</a>. &nbsp;·&nbsp; <a href="products.html">See all products</a>
-    </p>
+  </div>
+</section>
+
+<!-- 03 · HOW YOU ADOPT -->
+<section id="adopt" class="adopt">
+  <div class="wrap">
+    <div class="section-rule reveal"><span>03 / How you adopt</span><span>Evaluate → Integrate → Ship</span></div>
+    <div class="section-head reveal">
+      <h2>From evaluation to efficient silicon</h2>
+      <p class="lead">Prove the value in software first, then take the same validated IP into your chip.</p>
+    </div>
+    <div class="journey">
+      <div class="jstep reveal"><div class="jnum">1</div><span class="jtag">Evaluate</span><h3>Virtual Prototype</h3><p>Run your own models in software and measure power. No board, no EDA cost.</p></div>
+      <div class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="jstep reveal"><div class="jnum">2</div><span class="jtag">Integrate</span><h3>RTL IP</h3><p>Drop the synthesisable core into your SoC over standard AXI.</p></div>
+      <div class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="jstep reveal"><div class="jnum">3</div><span class="jtag">Ship</span><h3>Efficient silicon</h3><p>Tape out an edge-AI product that runs at a fraction of NPU energy.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · PROOF -->
+<section>
+  <div class="wrap">
+    <div class="section-rule reveal"><span>04 / Proof</span><span>Validated on silicon</span></div>
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto">
+      <h2>Validated on silicon, built with leading institutions</h2>
+      <p class="lead muted">Correlated to RTL co-simulation and calibrated on a silicon board. <a href="technology.html#performance" style="color:var(--accent-ink);font-weight:700">See validation →</a></p>
+    </div>
+    <div class="partners">
+      <a href="https://www.businessgeneratorgroningen.com/" target="_blank" rel="noopener" class="partner-card reveal"><img src="image/partners/logo-bgg.svg" alt="Business Generator Groningen" class="partner-logo"></a>
+      <a href="https://www.rug.nl/" target="_blank" rel="noopener" class="partner-card reveal"><img src="image/partners/logo--en.svg" alt="University of Groningen" class="partner-logo"></a>
+      <a href="https://www.innokite.nl/" target="_blank" rel="noopener" class="partner-card reveal"><img src="image/partners/innokite.svg" alt="Innokite" class="partner-logo"></a>
+      <a href="https://www.rug.nl/research/fse/cognitive-systems-and-materials/?lang=en" target="_blank" rel="noopener" class="partner-card reveal"><img src="image/partners/cognigron.jpeg" alt="Cognigron" class="partner-logo"></a>
+    </div>
   </div>
 </section>
 
 <!-- USE CASES -->
 <section id="usecases">
   <div class="wrap">
-    <div class="section-rule reveal"><span>03 / Deployment</span><span>Always-on edge</span></div>
+    <div class="section-rule reveal"><span>05 / Where it fits</span><span>Always-on edge</span></div>
     <div class="section-head reveal">
       <h2>Built for always-on edge inference</h2>
       <p class="lead muted">Efficiency matters most when models are small and run all the time. Those are exactly the workloads that flatten a battery on a conventional NPU.</p>

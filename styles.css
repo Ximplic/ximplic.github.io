@@ -653,3 +653,7 @@ section:not(.hero):not(.cta):not(.adopt){padding:100px 0}
 .idia .wcell{fill:#fff;stroke:var(--line);stroke-width:1}
 .idia .wcell.x{fill:rgba(19,211,163,.20);stroke:rgba(19,211,163,.55)}
 .idia .arow{fill:none;stroke:var(--accent);stroke-width:2}
+
+/* datum rule on dark bands */
+.adopt .section-rule{border-top-color:rgba(255,255,255,.22);color:#9FB0D0}
+.adopt .section-rule span:first-child{color:#fff}
