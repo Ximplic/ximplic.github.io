@@ -625,3 +625,23 @@ section:not(.hero):not(.cta):not(.adopt){padding:100px 0}
   letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
 .foot-brand .brand .bn{color:#fff}
 .foot-brand .brand .btag{color:#8A99BD;display:block}
+
+/* ===== technology page figures ===== */
+.fig{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:34px}
+.figcap{font-size:12.5px;color:var(--muted);margin-top:16px;text-align:center;letter-spacing:.02em}
+.ebars{display:flex;gap:56px;justify-content:center;align-items:flex-end;padding:8px 0 4px}
+.ebar{width:120px;text-align:center}
+.ebar .col{display:flex;flex-direction:column;border-radius:8px 8px 0 0;overflow:hidden;border:1px solid var(--line);border-bottom:0}
+.ebar .seg{display:grid;place-items:center;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.ebar .move{background:repeating-linear-gradient(45deg,#E6EAF2,#E6EAF2 6px,#eef1f7 6px,#eef1f7 12px);color:var(--muted)}
+.ebar .comp{background:var(--accent-soft);color:var(--accent-ink)}
+.ebar .lbl{margin-top:12px;font-weight:700;font-size:13px;color:var(--ink)}
+.ebar .sub{font-size:11px;color:var(--muted)}
+.ebar.conv .move{height:188px}
+.ebar.conv .comp{height:46px}
+.ebar.xim .move{height:26px}
+.ebar.xim .comp{height:46px}
+.elegend{display:flex;gap:22px;justify-content:center;margin-top:22px;font-size:12px;color:var(--muted)}
+.elegend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:7px;vertical-align:-1px}
+.elegend .k-move{background:repeating-linear-gradient(45deg,#E6EAF2,#E6EAF2 4px,#eef1f7 4px,#eef1f7 8px);border:1px solid var(--line)}
+.elegend .k-comp{background:var(--accent-soft);border:1px solid rgba(19,211,163,.4)}

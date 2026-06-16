@@ -20,7 +20,7 @@
   <div class="wrap nav-in">
     <a href="index.html" class="brand"><img src="XIM_Logo/ximplic-mark.svg" alt="Ximplic"><span class="bt"><span class="bn">Ximplic</span><span class="btag">Simplifying AI for everyday devices</span></span></a>
     <nav class="nav-links" aria-label="Main">
-      <a href="#technology">Technology</a>
+      <a href="technology.html">Technology</a>
       <div class="nav-dd" id="navDd">
         <button class="nav-dd-btn" id="ddBtn" aria-expanded="false" aria-haspopup="true">Products
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
@@ -43,7 +43,7 @@
     <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#technology">Technology</a>
+    <a href="technology.html">Technology</a>
     <div class="mm-group">Products</div>
     <a class="mm-sub" href="products.html">All products</a>
     <a class="mm-sub" href="xim-vp-product.html">Virtual Prototype</a>
@@ -61,7 +61,7 @@
   <div class="wrap hero-grid">
     <div>
       <div class="eyebrow">Energy-efficient · Edge AI · Silicon IP</div>
-      <h1>Energy-efficient AI inference IP for <span class="accent">always-on edge devices</span></h1>
+      <h1>Energy-efficient AI for <span class="accent">everyday devices</span></h1>
       <p class="lead">Ximplic builds energy-efficient AI inference IP for always-on edge devices, so your AI runs far longer on the same battery. Try it today with the <strong>XIM Virtual Prototype</strong>. Drop it into your SoC, run your own models, and get real power and performance numbers months before you commit to RTL or silicon.</p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary">Request VP evaluation ↗</a>
@@ -142,40 +142,12 @@
   </div>
 </div>
 
-<!-- THE DIFFERENCE (why in-memory wins) -->
-<section id="technology">
-  <div class="wrap">
-    <div class="section-rule reveal"><span>01 / The difference</span><span>XIM · in-memory compute</span></div>
-    <div class="section-head reveal">
-      <div class="eyebrow">The difference</div>
-      <h2>Compute where the data lives</h2>
-      <p class="lead muted">Conventional accelerators inherit the von Neumann bottleneck. They burn most of their energy shuttling weights back and forth to the compute units. We keep the weights in SRAM and do the work right where they sit.</p>
-    </div>
-    <div class="compare">
-      <div class="ccol win reveal">
-        <div class="chead"><h3>Ximplic in-memory</h3><span class="cbadge">Compute in SRAM</span></div>
-        <div class="citem"><span class="cmark">✓</span><span>Weights stay resident inside the compute array</span></div>
-        <div class="citem"><span class="cmark">✓</span><span>Inference runs in place, with no data shuttling</span></div>
-        <div class="citem"><span class="cmark">✓</span><span>Energy scales with useful work, not memory traffic</span></div>
-        <div class="citem"><span class="cmark">✓</span><span>Standard SRAM you can build today, sized to your budget</span></div>
-      </div>
-      <div class="ccol lose reveal">
-        <div class="chead"><h3>Conventional NPU</h3><span class="cbadge">von Neumann</span></div>
-        <div class="citem"><span class="cmark">✕</span><span>Weights streamed from memory every inference</span></div>
-        <div class="citem"><span class="cmark">✕</span><span>Data shuttled back and forth to the compute units</span></div>
-        <div class="citem"><span class="cmark">✕</span><span>Memory traffic dominates total energy</span></div>
-        <div class="citem"><span class="cmark">✕</span><span>Battery drains fast on small, frequently-run models</span></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- PRODUCTS & HOW YOU ADOPT (merged) -->
 <section id="integration" class="spec-wrap">
   <div class="wrap">
     <div class="section-rule reveal"><span>02 / Integration</span><span>Drop-in over AXI</span></div>
     <div class="section-head reveal">
-      <div class="eyebrow">Integration</div>
       <h2>Two ways XIM integrates into your SoC</h2>
       <p class="lead muted">Pick the integration that fits your design, from a low-risk drop-in accelerator to an in-place memory upgrade. Option A is available and silicon-tested today. Option B is on the way.</p>
     </div>
@@ -234,7 +206,6 @@
   <div class="wrap">
     <div class="section-rule reveal"><span>03 / Deployment</span><span>Always-on edge</span></div>
     <div class="section-head reveal">
-      <div class="eyebrow">Where it fits</div>
       <h2>Built for always-on edge inference</h2>
       <p class="lead muted">Efficiency matters most when models are small and run all the time. Those are exactly the workloads that flatten a battery on a conventional NPU.</p>
     </div>
