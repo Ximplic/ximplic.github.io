@@ -29,11 +29,10 @@
           <a href="products.html">All products<small>Overview of the platform</small></a>
           <div class="dd-sep"></div>
           <a href="xim-vp-product.html">Virtual Prototype<small>Evaluate in software</small></a>
-          <a href="compiler.html">Compiler<small>Map your ONNX model</small></a>
-          <a href="rtl-ip.html">RTL IP<small>Synthesisable core</small></a>
+          <a href="xim-compiler-product.html">Compiler<small>Map your ONNX model</small></a>
+          <a href="xim-ip-product.html">RTL IP<small>Synthesisable core</small></a>
         </div>
       </div>
-      <a href="index.html#integration">Integration</a>
       <a href="about.html">About</a>
       <a href="news.html">News</a>
     </nav>
@@ -47,9 +46,8 @@
     <div class="mm-group">Products</div>
     <a class="mm-sub" href="products.html">All products</a>
     <a class="mm-sub" href="xim-vp-product.html">Virtual Prototype</a>
-    <a class="mm-sub" href="compiler.html">Compiler</a>
-    <a class="mm-sub" href="rtl-ip.html">RTL IP</a>
-    <a href="index.html#integration">Integration</a>
+    <a class="mm-sub" href="xim-compiler-product.html">Compiler</a>
+    <a class="mm-sub" href="xim-ip-product.html">RTL IP</a>
     <a href="about.html">About</a>
     <a href="news.html">News</a>
     <a href="index.html#contact">Request access</a>
@@ -71,7 +69,7 @@
     <div class="section-rule reveal"><span>01 / The memory wall</span><span>Why efficiency is hard</span></div>
     <div class="section-head reveal">
       <h2>The bottleneck is data movement</h2>
-      <p class="lead muted">A conventional NPU stores weights in memory and streams them to the compute units for every inference. On the small models that run all the time at the edge, that back-and-forth traffic, not the maths, is what drains the battery.</p>
+      <p class="lead muted">A conventional NPU streams weights from memory for every inference. On always-on edge models, that traffic, not the maths, is what drains the battery.</p>
     </div>
     <div class="compare">
       <div class="ccol win reveal">
@@ -99,7 +97,7 @@
     <div class="split">
       <div class="reveal">
         <h2>The memory is the compute engine</h2>
-        <p class="lead muted">Instead of a separate memory and a separate processor, the SRAM array itself performs the multiply-accumulate. Weights are written once and stay put; activations stream in, the array computes, and only the result comes out.</p>
+        <p class="lead muted">The SRAM array does the multiply-accumulate itself. Weights are written once; activations stream in, the array computes, and only the result comes out.</p>
         <ul class="acc-list">
           <li>Weights resident on-chip, written once</li>
           <li>Compute happens in the array, not beside it</li>
@@ -107,32 +105,32 @@
           <li>Standard-cell digital design, portable across foundries</li>
         </ul>
       </div>
-      <div class="fig reveal">
-        <svg class="soc" viewBox="0 0 420 330" role="img" aria-label="XIM accelerator inside a host SoC, connected over AXI">
-          <rect class="blk" x="16"  y="14" width="116" height="46" rx="10"/>
-          <text class="blk-l" x="74"  y="42">RISC-V CPU</text>
-          <rect class="blk" x="152" y="14" width="116" height="46" rx="10"/>
-          <text class="blk-l" x="210" y="42">SRAM / DDR</text>
-          <rect class="blk" x="288" y="14" width="116" height="46" rx="10"/>
-          <text class="blk-l" x="346" y="42">Sensors I/O</text>
-          <path class="wire" d="M74 60 V112"/>
-          <path class="wire" d="M210 60 V112"/>
-          <path class="wire" d="M346 60 V112"/>
-          <rect class="bus" x="16" y="112" width="388" height="36" rx="8"/>
-          <text class="bus-l" x="210" y="134">AXI INTERCONNECT</text>
-          <path class="wire" d="M210 148 V200"/>
-          <path class="flow" d="M210 148 V196"/>
-          <polygon class="arrow" points="210,206 203,194 217,194"/>
-          <text class="axi-l" x="222" y="176">AXI4</text>
-          <rect class="accel" x="70" y="206" width="280" height="108" rx="12"/>
-          <text class="accel-l" x="210" y="230">XIM ACCELERATOR</text>
-          <text class="accel-s" x="210" y="247">in-memory compute engine</text>
+      <div class="reveal">
+        <svg class="idia" viewBox="0 0 460 250" role="img" aria-label="Activations stream into the SRAM compute array where weights are resident; only the result comes out">
+          <!-- activations in -->
+          <rect class="ibox" x="20" y="92" width="92" height="64" rx="10"/>
+          <text class="il" x="66" y="120">Activations</text>
+          <text class="is" x="66" y="137">stream in</text>
+          <path class="iwire" d="M112 124 H146"/>
+          <polygon class="iarr" points="152,124 140,118 140,130"/>
+          <!-- SRAM compute array -->
+          <rect class="ibox x" x="152" y="34" width="186" height="182" rx="14"/>
+          <text class="il x" x="245" y="58">SRAM compute array</text>
           <g>
-            <rect class="scell on" x="96"  y="262" width="14" height="14" rx="3"/><rect class="scell" x="114" y="262" width="14" height="14" rx="3"/><rect class="scell on" x="132" y="262" width="14" height="14" rx="3"/><rect class="scell on" x="150" y="262" width="14" height="14" rx="3"/><rect class="scell" x="168" y="262" width="14" height="14" rx="3"/><rect class="scell on" x="186" y="262" width="14" height="14" rx="3"/><rect class="scell" x="204" y="262" width="14" height="14" rx="3"/><rect class="scell on" x="222" y="262" width="14" height="14" rx="3"/><rect class="scell" x="240" y="262" width="14" height="14" rx="3"/><rect class="scell on" x="258" y="262" width="14" height="14" rx="3"/><rect class="scell" x="276" y="262" width="14" height="14" rx="3"/><rect class="scell on" x="294" y="262" width="14" height="14" rx="3"/>
-            <rect class="scell" x="96"  y="280" width="14" height="14" rx="3"/><rect class="scell on" x="114" y="280" width="14" height="14" rx="3"/><rect class="scell on" x="132" y="280" width="14" height="14" rx="3"/><rect class="scell" x="150" y="280" width="14" height="14" rx="3"/><rect class="scell on" x="168" y="280" width="14" height="14" rx="3"/><rect class="scell" x="186" y="280" width="14" height="14" rx="3"/><rect class="scell on" x="204" y="280" width="14" height="14" rx="3"/><rect class="scell on" x="222" y="280" width="14" height="14" rx="3"/><rect class="scell" x="240" y="280" width="14" height="14" rx="3"/><rect class="scell on" x="258" y="280" width="14" height="14" rx="3"/><rect class="scell on" x="276" y="280" width="14" height="14" rx="3"/><rect class="scell" x="294" y="280" width="14" height="14" rx="3"/>
+            <rect class="wcell"   x="170" y="74" width="22" height="22" rx="4"/><rect class="wcell x" x="198" y="74" width="22" height="22" rx="4"/><rect class="wcell" x="226" y="74" width="22" height="22" rx="4"/><rect class="wcell x" x="254" y="74" width="22" height="22" rx="4"/><rect class="wcell" x="282" y="74" width="22" height="22" rx="4"/><rect class="wcell x" x="310" y="74" width="22" height="22" rx="4"/>
+            <rect class="wcell x" x="170" y="102" width="22" height="22" rx="4"/><rect class="wcell" x="198" y="102" width="22" height="22" rx="4"/><rect class="wcell x" x="226" y="102" width="22" height="22" rx="4"/><rect class="wcell" x="254" y="102" width="22" height="22" rx="4"/><rect class="wcell x" x="282" y="102" width="22" height="22" rx="4"/><rect class="wcell" x="310" y="102" width="22" height="22" rx="4"/>
+            <rect class="wcell"   x="170" y="130" width="22" height="22" rx="4"/><rect class="wcell x" x="198" y="130" width="22" height="22" rx="4"/><rect class="wcell" x="226" y="130" width="22" height="22" rx="4"/><rect class="wcell x" x="254" y="130" width="22" height="22" rx="4"/><rect class="wcell" x="282" y="130" width="22" height="22" rx="4"/><rect class="wcell x" x="310" y="130" width="22" height="22" rx="4"/>
+            <rect class="arow" x="166" y="98" width="172" height="30" rx="6"/>
           </g>
+          <text class="is" x="245" y="178">weights resident · MAC in place</text>
+          <text class="is" x="245" y="196" style="fill:var(--accent-ink);font-weight:700">active row</text>
+          <!-- result out -->
+          <path class="iwire" d="M338 124 H372"/>
+          <polygon class="iarr" points="378,124 366,118 366,130"/>
+          <rect class="ibox" x="378" y="92" width="64" height="64" rx="10"/>
+          <text class="il" x="410" y="128">Result</text>
         </svg>
-        <div class="figcap">The accelerator drops into a host SoC over AXI; the compute array sits inside it.</div>
+        <div class="figcap">Activations stream in, the resident weights compute in place, only the result comes out.</div>
       </div>
     </div>
   </div>
@@ -168,10 +166,10 @@
 <!-- 04 · VALIDATED -->
 <section class="spec-wrap">
   <div class="wrap">
-    <div class="section-rule reveal"><span>04 / Validated</span><span>Measured, not hand-waved</span></div>
+    <div class="section-rule reveal"><span>04 / Validated</span><span>RTL + silicon</span></div>
     <div class="section-head reveal">
       <h2>Numbers you can trust</h2>
-      <p class="lead muted">We build the IP with our own design-automation flow and check it at every level, so the model you evaluate matches the silicon you ship.</p>
+      <p class="lead muted">The model you evaluate matches the silicon you ship.</p>
     </div>
     <div class="cards">
       <div class="card reveal">
@@ -190,7 +188,7 @@
         <p>Reports label what is measured versus projected. We share the full methodology under NDA.</p>
       </div>
     </div>
-    <p class="product-path reveal">Want the numbers for your own models? Evaluate with the <a href="xim-vp-product.html">Virtual Prototype</a>, or see <a href="index.html#integration">how it integrates</a>.</p>
+    <p class="product-path reveal">Want the numbers for your own models? Evaluate with the <a href="xim-vp-product.html">Virtual Prototype</a>, or see <a href="xim-ip-product.html#integration">how it integrates</a>.</p>
   </div>
 </section>
 
@@ -220,8 +218,8 @@
         <h4>Products</h4>
         <a href="products.html">All products</a>
         <a href="xim-vp-product.html">Virtual Prototype</a>
-        <a href="compiler.html">Compiler</a>
-        <a href="rtl-ip.html">RTL IP</a>
+        <a href="xim-compiler-product.html">Compiler</a>
+        <a href="xim-ip-product.html">RTL IP</a>
       </div>
       <div class="foot-col">
         <h4>Company</h4>

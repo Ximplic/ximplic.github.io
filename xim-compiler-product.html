@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XIM Compiler · Ximplic</title>
+  <meta name="description" content="Compile a standard ONNX model to the XIM accelerator: multi-precision quantization, structured pruning, and silicon-validated deployment from one toolchain.">
+  <link rel="icon" href="XIM_Logo/favicon.svg" type="image/svg+xml"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="XIM_Logo/favicon/favicon-32.png"/>
+  <link rel="apple-touch-icon" href="XIM_Logo/favicon/apple-touch-icon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="brand"><img src="XIM_Logo/ximplic-mark.svg" alt="Ximplic"><span class="bt"><span class="bn">Ximplic</span><span class="btag">Simplifying AI for everyday devices</span></span></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="technology.html">Technology</a>
+      <div class="nav-dd" id="navDd">
+        <button class="nav-dd-btn active" id="ddBtn" aria-expanded="false" aria-haspopup="true">Products
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dd-menu">
+          <a href="products.html">All products<small>Overview of the platform</small></a>
+          <div class="dd-sep"></div>
+          <a href="xim-vp-product.html">Virtual Prototype<small>Evaluate in software</small></a>
+          <a href="xim-compiler-product.html">Compiler<small>Map your ONNX model</small></a>
+          <a href="xim-ip-product.html">RTL IP<small>Synthesisable core</small></a>
+        </div>
+      </div>
+      <a href="about.html">About</a>
+      <a href="news.html">News</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#contact" class="btn btn-primary">Request access</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="technology.html">Technology</a>
+    <div class="mm-group">Products</div>
+    <a class="mm-sub" href="products.html">All products</a>
+    <a class="mm-sub" href="xim-vp-product.html">Virtual Prototype</a>
+    <a class="mm-sub" href="xim-compiler-product.html">Compiler</a>
+    <a class="mm-sub" href="xim-ip-product.html">RTL IP</a>
+    <a href="about.html">About</a>
+    <a href="news.html">News</a>
+    <a href="#contact">Request access</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Toolchain · ONNX · Deploy</div>
+      <h1>XIM Compiler<br><span class="accent">ONNX to silicon-ready inference</span></h1>
+      <p class="lead">Take a trained ONNX model and deploy it on the XIM accelerator: quantized, optionally pruned, and packaged for the hardware in one toolchain. Multi-precision to INT4, validated on silicon.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Request access ↗</a>
+        <a href="#overview" class="btn btn-light">How it works</a>
+      </div>
+      <div class="hero-meta">
+        <span><i class="dot"></i> Standard ONNX input</span>
+        <span><i class="dot"></i> INT8 / INT4 mixed precision</span>
+        <span><i class="dot"></i> Structured pruning</span>
+      </div>
+    </div>
+
+    <div class="chip">
+      <div class="chip-title">Compile flow <span class="chip-badge">ONNX → deploy</span></div>
+      <svg class="soc" viewBox="0 0 300 332" role="img" aria-label="Compile flow: ONNX model, quantize and prune, schedule banks, deploy to the accelerator">
+        <rect class="blk" x="40" y="12" width="220" height="46" rx="10"/><text class="blk-l" x="150" y="40">ONNX model</text>
+        <path class="wire" d="M150 58 V80"/><polygon class="arrow" points="150,86 144,76 156,76"/>
+        <rect class="blk" x="40" y="86" width="220" height="46" rx="10"/><text class="blk-l" x="150" y="114">Quantize · prune</text>
+        <path class="wire" d="M150 132 V154"/><polygon class="arrow" points="150,160 144,150 156,150"/>
+        <rect class="blk" x="40" y="160" width="220" height="46" rx="10"/><text class="blk-l" x="150" y="188">Schedule banks</text>
+        <path class="wire" d="M150 206 V228"/><polygon class="arrow" points="150,234 144,224 156,224"/>
+        <rect class="accel" x="40" y="234" width="220" height="64" rx="12"/><text class="accel-l" x="150" y="262">DEPLOY</text><text class="accel-s" x="150" y="280">to the accelerator</text>
+      </svg>
+      <div class="chip-stats">
+        <div><b>INT8–INT4</b><small>PRECISION</small></div>
+        <div><b>Multi</b><small>MODEL FAMILIES</small></div>
+        <div><b>Board</b><small>VALIDATED</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAT BAND -->
+<div class="stats">
+  <div class="wrap stats-in">
+    <div class="stat"><b>ONNX</b><span>Standard input, no bespoke model format</span></div>
+    <div class="stat"><b>INT8 → INT4</b><span>Per-layer mixed-precision quantization</span></div>
+    <div class="stat"><b>Pruning</b><span>Structured, hardware-aware sparsity</span></div>
+    <div class="stat"><b>On silicon</b><span>Validated on the XIM accelerator</span></div>
+  </div>
+</div>
+
+<!-- 01 · OVERVIEW -->
+<section id="overview">
+  <div class="wrap">
+    <div class="section-rule reveal"><span>01 / What it is</span><span>XIM Compiler</span></div>
+    <div class="section-head reveal">
+      <h2>From a trained model to running on the accelerator</h2>
+      <p class="lead muted">The toolchain that turns a standard ONNX model into a hardware-ready deployment. It quantizes, calibrates, prunes, schedules across the compute banks, and emits the descriptor the hardware runs.</p>
+    </div>
+    <div class="split">
+      <div class="reveal">
+        <p style="font-size:16px;color:var(--ink-2)">A model-agnostic core. A thin frontend reads the ONNX graph; the core makes the hardware decisions: tiling wide layers, splitting columns, allocating banks, and choosing per-layer precision. Convolutional, depthwise-separable and dense networks all use the same path.</p>
+        <p style="font-size:16px;color:var(--ink-2)">Quantization is where it earns its keep. Per-layer mixed precision keeps sensitive layers at INT8 while the rest run INT4, with structured pruning and a requantization path calibrated so software matches silicon, confirmed on the board.</p>
+      </div>
+      <div class="panel reveal">
+        <h3>Deploy a model in a few lines</h3>
+        <p class="muted" style="color:#9FB0D0;font-size:14px">A clean Python API takes an ONNX model and calibration data to a hardware deployment:</p>
+        <div class="codeblk"><span class="c"># normalize an ONNX graph into the compiler IR</span>
+layers = onnx_frontend(<span class="s">"model.onnx"</span>, calibration)
+
+<span class="c"># quantize, prune, schedule -&gt; hardware descriptor</span>
+model = compile_ir(layers)
+
+<span class="c"># emit the deploy header the accelerator runs</span>
+emit_model_header(model)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · CAPABILITIES -->
+<section id="features" class="spec-wrap">
+  <div class="wrap">
+    <div class="section-rule reveal"><span>02 / Capabilities</span><span>Production toolchain</span></div>
+    <div class="section-head reveal">
+      <h2>A deployment toolchain, not a demo script</h2>
+    </div>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg></div>
+        <h3>Standard ONNX frontend</h3>
+        <p>Bring a model from any framework, exported to ONNX. No proprietary model format to learn.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+        <h3>Multi-precision quantization</h3>
+        <p>INT8 and INT4 with per-layer mixed precision, calibrated to the hardware datapath so software and silicon agree.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5h14v14H5z"/><path d="M9 9h6v6H9z"/></svg></div>
+        <h3>Structured pruning</h3>
+        <p>Hardware-aware column pruning the accelerator can actually skip, with prune-aware fine-tuning to hold accuracy.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/></svg></div>
+        <h3>Tiling &amp; scheduling</h3>
+        <p>Wide layers are tiled and scheduled across the compute banks automatically. Large models map to fixed silicon without hand-tuning.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Hardware-faithful</h3>
+        <p>A fail-loud contract rejects anything the hardware can't run, and the deployment is checked bit-for-bit against the chip.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-4 4 3 4-6"/></svg></div>
+        <h3>Multiple model families</h3>
+        <p>Keyword-spotting CNNs, depthwise-separable vision nets and dense autoencoders deploy through the same core.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · SPECS -->
+<section id="specs">
+  <div class="wrap">
+    <div class="section-rule reveal"><span>03 / Specifications</span><span>Technical summary</span></div>
+    <div class="section-head reveal"><h2>Technical summary</h2></div>
+    <div class="spec reveal">
+      <div class="spec-row"><span class="k">Input</span><span class="v">Standard ONNX + calibration data</span></div>
+      <div class="spec-row"><span class="k">Scheduling</span><span class="v">Tiling, column-split, bank allocation</span></div>
+      <div class="spec-row"><span class="k">Output</span><span class="v">Hardware deploy descriptor</span></div>
+      <div class="spec-row"><span class="k">Model families</span><span class="v">CNN · depthwise-separable · dense</span></div>
+      <div class="spec-row"><span class="k">Precision</span><span class="v">INT8 / INT4, per-layer mixed</span></div>
+      <div class="spec-row"><span class="k">Toolchain</span><span class="v">Python, pip-installable</span></div>
+      <div class="spec-row"><span class="k">Sparsity</span><span class="v">Structured column pruning</span></div>
+      <div class="spec-row"><span class="k">Validation</span><span class="v">Bit-exact vs accelerator</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · USE CASES -->
+<section id="usecases" class="spec-wrap">
+  <div class="wrap">
+    <div class="section-rule reveal"><span>04 / Where it fits</span><span>Always-on edge</span></div>
+    <div class="section-head reveal">
+      <h2>Built for always-on edge inference</h2>
+      <p class="lead muted">The compiler targets the small, continuously-running models that define battery-powered edge AI.</p>
+    </div>
+    <div class="uc">
+      <div class="uc-card reveal"><div class="tag">Audio</div><h3>Keyword spotting</h3><p>Wake-word and command detection, quantized for sub-mW duty cycles.</p></div>
+      <div class="uc-card reveal"><div class="tag">Sensors</div><h3>Anomaly detection</h3><p>Predictive-maintenance autoencoders on industrial sensor streams, on-device.</p></div>
+      <div class="uc-card reveal"><div class="tag">Vision</div><h3>Compact CNN inference</h3><p>MobileNet-class person, gesture and presence sensing for wearables.</p></div>
+      <div class="uc-card reveal"><div class="tag">Fusion</div><h3>Sensor-hub AI</h3><p>Low-power classification in always-on sensor hubs, weights resident on-chip.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · DELIVERABLES -->
+<section id="deliverables">
+  <div class="wrap split">
+    <div class="reveal">
+      <div class="section-rule reveal"><span>05 / What you get</span><span>Deployment kit</span></div>
+      <h2 style="margin:6px 0 24px">A complete deployment toolchain</h2>
+      <ul class="deliv">
+        <li><b>The compiler</b><span>A pip-installable Python package: ONNX in, hardware descriptor out.</span></li>
+        <li><b>Quantization &amp; pruning</b><span>Mixed-precision calibration and structured pruning with prune-aware fine-tuning.</span></li>
+        <li><b>Model frontends</b><span>ONNX and exported-weight frontends, plus a pattern for adding new models.</span></li>
+        <li><b>Deploy-faithful simulation</b><span>A software model of the hardware datapath to validate accuracy before a board.</span></li>
+        <li><b>Reference recipes</b><span>Worked examples for keyword spotting, anomaly detection and vision.</span></li>
+        <li><b>Regression tests</b><span>Bit-exact pins against the accelerator so updates can't silently change a model.</span></li>
+        <li><b>Integration guide</b><span>The compile flow, the deployment ABI, and the host runtime.</span></li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="section-rule reveal"><span>06 / How to engage</span><span>Model to deployment</span></div>
+      <h2 style="margin:6px 0 24px">From a model to a deployment</h2>
+      <div class="steps">
+        <div class="step"><h3>Scope</h3><p>Share your model, target accuracy and power budget. We confirm fit.</p></div>
+        <div class="step"><h3>Compile</h3><p>Run your ONNX model through the toolchain under NDA: quantize, prune, explore precision.</p></div>
+        <div class="step"><h3>Validate</h3><p>Check accuracy in the simulator, then confirm bit-exact behaviour on hardware.</p></div>
+        <div class="step"><h3>Deploy</h3><p>Ship the model on the XIM accelerator, with a software path validated against silicon.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · VALIDATION -->
+<section id="performance" class="spec-wrap">
+  <div class="wrap">
+    <div class="section-rule reveal"><span>07 / Validation</span><span>On silicon</span></div>
+    <div class="section-head reveal">
+      <h2>Validated on silicon</h2>
+      <p class="lead muted">Deployments are confirmed on the XIM accelerator on a ZCU102 board, against simulation.</p>
+    </div>
+    <table class="t reveal">
+      <thead><tr><th>Reference workload</th><th>Precision</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Keyword spotting (DS-CNN-L)</td><td>INT8</td><td class="ok">Board-validated</td><td>Bit-exact, full accuracy</td></tr>
+        <tr><td>Keyword spotting (DS-CNN-L)</td><td>INT4 mixed</td><td class="ok">Board-validated</td><td>Multi-precision deployment</td></tr>
+        <tr><td>Keyword spotting (DS-CNN-L)</td><td>INT8, pruned</td><td class="ok">Board-validated</td><td>Structured pruning + fine-tune</td></tr>
+        <tr><td>Anomaly-detection autoencoder</td><td>INT8</td><td class="ok">Board-validated</td><td>Dense model family</td></tr>
+      </tbody>
+    </table>
+    <div class="note reveal">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
+      <p><b>Accuracy is a trade-off, and we say so.</b> Lower precision and pruning trade accuracy for energy; the right operating point depends on the model. The compiler makes that trade explicit, measured on hardware per model. We share the methodology and per-model results under NDA.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta">
+  <div class="wrap cta-in">
+    <span class="pill">Partner with Ximplic</span>
+    <h2>Have a model to run at the edge?</h2>
+    <p>Ready to deploy a model on the XIM accelerator? Let's set up an evaluation of the compiler against your own workloads.</p>
+    <div class="cta-row">
+      <a href="mailto:info@ximplic.com?subject=XIM%20Compiler%20enquiry" class="btn btn-primary">Contact us ↗</a>
+      <a href="mailto:info@ximplic.com?subject=XIM%20Compiler%20evaluation%20request" class="btn btn-light">Request an evaluation</a>
+    </div>
+    <div class="contact-meta">Email <a href="mailto:info@ximplic.com">info@ximplic.com</a> &nbsp;·&nbsp; Groningen, The Netherlands</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand"><img src="XIM_Logo/ximplic-mark-white.svg" alt="Ximplic"><span class="bt"><span class="bn">Ximplic</span><span class="btag">Simplifying AI for everyday devices</span></span></a>
+        <p>Energy-efficient AI inference IP for always-on edge devices.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Products</h4>
+        <a href="products.html">All products</a>
+        <a href="xim-vp-product.html">Virtual Prototype</a>
+        <a href="xim-compiler-product.html">Compiler</a>
+        <a href="xim-ip-product.html">RTL IP</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Get in touch</h4>
+        <a href="mailto:info@ximplic.com">info@ximplic.com</a>
+        <a href="index.html#contact">Request access</a>
+        <a href="https://www.linkedin.com/company/ximplic-systems" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Ximplic. All rights reserved.</span>
+      <span>Edge AI inference IP</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
