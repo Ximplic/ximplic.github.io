@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Technology · Ximplic</title>
-  <meta name="description" content="How Ximplic's energy-efficient inference IP works: computing inside SRAM to cut the data movement that dominates energy on conventional NPUs, with figures and a validation summary.">
+  <meta name="description" content="How Ximplic's energy-efficient AI works, in plain words: the memory does the maths in place, so devices run AI all day on a fraction of the battery.">
   <link rel="icon" href="XIM_Logo/favicon.svg" type="image/svg+xml"/>
   <link rel="icon" type="image/png" sizes="32x32" href="XIM_Logo/favicon/favicon-32.png"/>
   <link rel="apple-touch-icon" href="XIM_Logo/favicon/apple-touch-icon.png"/>
@@ -58,137 +58,136 @@
 <div class="page-head">
   <div class="wrap">
     <div class="eyebrow">Technology</div>
-    <h1>Compute where the data lives</h1>
-    <p class="lead muted">Most of the energy in edge AI is spent moving data, not computing on it. Our IP does the work inside the memory, so always-on inference runs on a fraction of the power.</p>
+    <h1>How it works, in plain words</h1>
+    <p class="lead muted">Devices that listen, watch and sense all day need AI that barely touches the battery. Here is the idea behind ours, with no jargon.</p>
   </div>
 </div>
 
-<!-- 01 · THE MEMORY WALL -->
+<!-- 01 · THE PROBLEM -->
 <section>
   <div class="wrap">
-    <div class="section-rule reveal"><span>The memory wall</span></div>
+    <div class="section-rule reveal"><span>The problem</span></div>
     <div class="section-head reveal">
-      <h2>The bottleneck is data movement</h2>
-      <p class="lead muted">A conventional NPU streams weights from memory for every inference. On always-on edge models, that traffic, not the maths, is what drains the battery.</p>
+      <h2>Most of the battery is wasted just carrying information</h2>
+      <p class="lead muted">In a normal AI chip, the part that remembers things and the part that does the maths sit apart. For every small decision, information is carried back and forth between them. That carrying, not the thinking, is what flattens the battery.</p>
     </div>
     <div class="compare">
       <div class="ccol win reveal">
-        <div class="chead"><h3>Ximplic in-memory</h3><span class="cbadge">Compute in SRAM</span></div>
-        <div class="citem"><span class="cmark">✓</span><span>Weights stay resident inside the compute array</span></div>
-        <div class="citem"><span class="cmark">✓</span><span>Inference runs in place, with no data shuttling</span></div>
-        <div class="citem"><span class="cmark">✓</span><span>Energy scales with useful work, not memory traffic</span></div>
-        <div class="citem"><span class="cmark">✓</span><span>Standard SRAM, buildable today, sized to the target budget</span></div>
+        <div class="chead"><h3>The Ximplic way</h3><span class="cbadge">Think in place</span></div>
+        <div class="citem"><span class="cmark">✓</span><span>The memory does the maths itself</span></div>
+        <div class="citem"><span class="cmark">✓</span><span>Almost nothing is carried around</span></div>
+        <div class="citem"><span class="cmark">✓</span><span>The battery lasts far longer</span></div>
+        <div class="citem"><span class="cmark">✓</span><span>Built from standard, proven memory</span></div>
       </div>
       <div class="ccol lose reveal">
-        <div class="chead"><h3>Conventional NPU</h3><span class="cbadge">von Neumann</span></div>
-        <div class="citem"><span class="cmark">✕</span><span>Weights streamed from memory every inference</span></div>
-        <div class="citem"><span class="cmark">✕</span><span>Data shuttled back and forth to the compute units</span></div>
-        <div class="citem"><span class="cmark">✕</span><span>Memory traffic dominates total energy</span></div>
-        <div class="citem"><span class="cmark">✕</span><span>Battery drains fast on small, frequently-run models</span></div>
+        <div class="chead"><h3>A normal AI chip</h3><span class="cbadge">Today</span></div>
+        <div class="citem"><span class="cmark">✕</span><span>Memory and maths sit in separate places</span></div>
+        <div class="citem"><span class="cmark">✕</span><span>Information is carried back and forth constantly</span></div>
+        <div class="citem"><span class="cmark">✕</span><span>Most of the energy goes into the carrying</span></div>
+        <div class="citem"><span class="cmark">✕</span><span>The battery drains fast when AI runs all day</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 02 · HOW IT WORKS -->
+<!-- 02 · THE IDEA -->
 <section class="spec-wrap">
   <div class="wrap">
-    <div class="section-rule reveal"><span>How it works</span></div>
+    <div class="section-rule reveal"><span>The idea</span></div>
     <div class="split">
       <div class="reveal">
-        <h2>The memory is the compute engine</h2>
-        <p class="lead muted">The SRAM array does the multiply-accumulate itself. Weights are written once; activations stream in, the array computes, and only the result comes out.</p>
+        <h2>Do the thinking right where the information is kept</h2>
+        <p class="lead muted">Picture a chef who keeps every ingredient on the counter instead of running to the pantry for each one. We do the same for AI: the memory itself does the work, so information barely has to move.</p>
         <ul class="acc-list">
-          <li>Weights resident on-chip, written once</li>
-          <li>Compute happens in the array, not beside it</li>
-          <li>INT8 to INT1 precision, configurable array size</li>
-          <li>Standard-cell digital design, portable across foundries</li>
+          <li>The memory and the calculator become one</li>
+          <li>Information is read and used in the same place</li>
+          <li>Far less movement, so far less power</li>
+          <li>Made from standard memory, so it can be built anywhere</li>
         </ul>
       </div>
       <div class="reveal">
-        <svg class="idia" viewBox="0 0 460 250" role="img" aria-label="Activations stream into the SRAM compute array where weights are resident; only the result comes out">
-          <!-- activations in -->
+        <svg class="idia" viewBox="0 0 460 250" role="img" aria-label="Information goes into a memory that does the maths in place, and the answer comes out">
+          <!-- information in -->
           <rect class="ibox" x="20" y="92" width="92" height="64" rx="10"/>
-          <text class="il" x="66" y="120">Activations</text>
-          <text class="is" x="66" y="137">stream in</text>
+          <text class="il" x="66" y="120">Information</text>
+          <text class="is" x="66" y="137">goes in</text>
           <path class="iwire" d="M112 124 H146"/>
           <polygon class="iarr" points="152,124 140,118 140,130"/>
-          <!-- SRAM compute array -->
+          <!-- memory that thinks -->
           <rect class="ibox x" x="152" y="34" width="186" height="182" rx="14"/>
-          <text class="il x" x="245" y="58">SRAM compute array</text>
+          <text class="il x" x="245" y="58">Memory that does the maths</text>
           <g>
             <rect class="wcell"   x="170" y="74" width="22" height="22" rx="4"/><rect class="wcell x" x="198" y="74" width="22" height="22" rx="4"/><rect class="wcell" x="226" y="74" width="22" height="22" rx="4"/><rect class="wcell x" x="254" y="74" width="22" height="22" rx="4"/><rect class="wcell" x="282" y="74" width="22" height="22" rx="4"/><rect class="wcell x" x="310" y="74" width="22" height="22" rx="4"/>
             <rect class="wcell x" x="170" y="102" width="22" height="22" rx="4"/><rect class="wcell" x="198" y="102" width="22" height="22" rx="4"/><rect class="wcell x" x="226" y="102" width="22" height="22" rx="4"/><rect class="wcell" x="254" y="102" width="22" height="22" rx="4"/><rect class="wcell x" x="282" y="102" width="22" height="22" rx="4"/><rect class="wcell" x="310" y="102" width="22" height="22" rx="4"/>
             <rect class="wcell"   x="170" y="130" width="22" height="22" rx="4"/><rect class="wcell x" x="198" y="130" width="22" height="22" rx="4"/><rect class="wcell" x="226" y="130" width="22" height="22" rx="4"/><rect class="wcell x" x="254" y="130" width="22" height="22" rx="4"/><rect class="wcell" x="282" y="130" width="22" height="22" rx="4"/><rect class="wcell x" x="310" y="130" width="22" height="22" rx="4"/>
             <rect class="arow" x="166" y="98" width="172" height="30" rx="6"/>
           </g>
-          <text class="is" x="245" y="178">weights resident · MAC in place</text>
-          <text class="is" x="245" y="196" style="fill:var(--accent-ink);font-weight:700">active row</text>
-          <!-- result out -->
+          <text class="is" x="245" y="184">the answer is worked out in place</text>
+          <!-- answer out -->
           <path class="iwire" d="M338 124 H372"/>
           <polygon class="iarr" points="378,124 366,118 366,130"/>
           <rect class="ibox" x="378" y="92" width="64" height="64" rx="10"/>
-          <text class="il" x="410" y="128">Result</text>
+          <text class="il" x="410" y="128">Answer</text>
         </svg>
-        <div class="figcap">Activations stream in, the resident weights compute in place, only the result comes out.</div>
+        <div class="figcap">Information goes in, the memory works out the answer in place, and only the answer comes out.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 03 · ENERGY -->
+<!-- 03 · WHY IT MATTERS -->
 <section>
   <div class="wrap">
-    <div class="section-rule reveal"><span>The energy difference</span></div>
+    <div class="section-rule reveal"><span>Why it matters</span></div>
     <div class="section-head reveal">
-      <h2>Where the energy goes</h2>
-      <p class="lead muted">The compute cost is similar either way. The difference is the data movement around it, which in-memory computing largely removes.</p>
+      <h2>Less carrying means a lot less power</h2>
+      <p class="lead muted">The actual maths costs about the same either way. The big difference is all the carrying around it, which our approach mostly removes.</p>
     </div>
     <div class="fig reveal">
       <div class="ebars">
         <div class="ebar conv">
-          <div class="col"><div class="seg move">Data movement</div><div class="seg comp">Compute</div></div>
-          <div class="lbl">Conventional NPU</div>
-          <div class="sub">energy dominated by movement</div>
+          <div class="col"><div class="seg move">Carrying data</div><div class="seg comp">The maths</div></div>
+          <div class="lbl">A normal AI chip</div>
+          <div class="sub">most power spent carrying</div>
         </div>
         <div class="ebar xim">
-          <div class="col"><div class="seg move">Movement</div><div class="seg comp">Compute</div></div>
-          <div class="lbl">Ximplic in-memory</div>
-          <div class="sub">energy tracks useful work</div>
+          <div class="col"><div class="seg move">Carrying</div><div class="seg comp">The maths</div></div>
+          <div class="lbl">The Ximplic way</div>
+          <div class="sub">power goes to useful work</div>
         </div>
       </div>
-      <div class="elegend"><span><i class="k-comp"></i>Compute</span><span><i class="k-move"></i>Data movement</span></div>
-      <div class="figcap">Illustrative energy split, not measured values. Per-workload numbers come from the Virtual Prototype.</div>
+      <div class="elegend"><span><i class="k-comp"></i>The maths</span><span><i class="k-move"></i>Carrying data</span></div>
+      <div class="figcap">A simple illustration, not exact numbers. Real figures for a given use case come from the Virtual Prototype.</div>
     </div>
   </div>
 </section>
 
-<!-- 04 · VALIDATED -->
+<!-- 04 · IS IT REAL -->
 <section class="spec-wrap" id="performance">
   <div class="wrap">
-    <div class="section-rule reveal"><span>Validated</span></div>
+    <div class="section-rule reveal"><span>Is it real?</span></div>
     <div class="section-head reveal">
-      <h2>Numbers worth trusting</h2>
-      <p class="lead muted">The model under evaluation matches the hardware that gets built.</p>
+      <h2>Tested on real hardware, honest about the rest</h2>
+      <p class="lead muted">This is more than a slide. The design already runs on a real test board, and we are clear about what is measured today versus what is still a goal.</p>
     </div>
     <div class="cards">
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div>
-        <h3>Correlated to RTL</h3>
-        <p>Compute-cycle model correlated to RTL co-simulation, so software timing matches hardware.</p>
+        <h3>Runs on real hardware</h3>
+        <p>The design works end to end on a real test board (FPGA) today.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V6z"/></svg></div>
-        <h3>Calibrated to the FPGA</h3>
-        <p>Calibrated against FPGA-board measurement (ZCU102) on a reference workload.</p>
+        <h3>Matches the blueprint</h3>
+        <p>The software results line up with the hardware design, step for step.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg></div>
-        <h3>Honest about scope</h3>
-        <p>Reports label measured versus projected. Full methodology shared under NDA.</p>
+        <h3>No exaggeration</h3>
+        <p>We mark clearly what is measured and what is still a target.</p>
       </div>
     </div>
-    <p class="product-path reveal">Want the numbers for a specific model? Evaluate with the <a href="xim-vp-product.html">Virtual Prototype</a>, or see <a href="xim-ip-product.html#integration">how it integrates</a>.</p>
+    <p class="product-path reveal">Want the numbers for a specific use case? Try the <a href="xim-vp-product.html">Virtual Prototype</a>, or see <a href="xim-ip-product.html#integration">how it fits into a chip</a>.</p>
   </div>
 </section>
 
@@ -196,8 +195,8 @@
 <section class="cta">
   <div class="wrap cta-in">
     <span class="pill">Talk to us</span>
-    <h2>Put efficient inference in the design</h2>
-    <p>Evaluate the Virtual Prototype on target workloads, then integrate the same validated IP as RTL.</p>
+    <h2>Curious how this fits a product?</h2>
+    <p>Try it in software first with the Virtual Prototype, then build it in as ready-made hardware.</p>
     <div class="cta-row">
       <a href="mailto:info@ximplic.com?subject=XIM%20Virtual%20Prototype%20evaluation%20request" class="btn btn-primary">Request access ↗</a>
       <a href="mailto:info@ximplic.com?subject=Ximplic%20%E2%80%94%20talk%20to%20us" class="btn btn-light">Talk to us</a>
