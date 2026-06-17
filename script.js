@@ -124,4 +124,24 @@
       reveals.forEach(function (el) { io.observe(el); });
     }
   }
+
+  /* subnav scrollspy */
+  var subnav = document.querySelector('.subnav');
+  if (subnav) {
+    var links = [].slice.call(subnav.querySelectorAll('a'));
+    var targets = links
+      .map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); })
+      .filter(Boolean);
+    if (targets.length && 'IntersectionObserver' in window) {
+      var setActive = function (id) {
+        links.forEach(function (a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      };
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) setActive(en.target.id); });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+      targets.forEach(function (t) { spy.observe(t); });
+    }
+  }
 })();
