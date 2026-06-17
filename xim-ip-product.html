@@ -86,7 +86,7 @@
         <rect class="blk" x="40" y="290" width="220" height="32" rx="10"/><text class="blk-l" x="150" y="310">Eltwise · pooling</text>
       </svg>
       <div class="chip-stats">
-        <div><b>20+ TOPS/W</b><small>INT8 TARGET</small></div>
+        <div><b>In-SRAM</b><small>COMPUTE</small></div>
         <div><b>INT8–INT1</b><small>RUNTIME</small></div>
         <div><b>FPGA→ASIC</b><small>ONE IP</small></div>
       </div>
@@ -245,7 +245,6 @@
       <div class="spec-row"><span class="k">FPGA prototype</span><span class="v">Proven end to end on FPGA</span></div>
       <div class="spec-row"><span class="k">Sparsity</span><span class="v">Input + weight, row/column masking</span></div>
       <div class="spec-row"><span class="k">ASIC target</span><span class="v">Custom low-voltage SRAM macro</span></div>
-      <div class="spec-row"><span class="k">Efficiency target</span><span class="v">20+ TOPS/W INT8 · 50+ TOPS/W INT4 (ASIC)</span></div>
       <div class="spec-row"><span class="k">Toolchain</span><span class="v">XIM Compiler + Virtual Prototype</span></div>
     </div>
   </div>
@@ -302,8 +301,8 @@
   <div class="wrap">
     <div class="section-rule reveal"><span>Validation</span></div>
     <div class="section-head reveal">
-      <h2>Proven on FPGA, clear on what's target</h2>
-      <p class="lead muted">The accelerator runs real models end-to-end on an FPGA, bit-exact against simulation. The efficiency figures are ASIC design intent.</p>
+      <h2>Proven on FPGA</h2>
+      <p class="lead muted">The accelerator runs real models end-to-end on an FPGA, bit-exact against simulation.</p>
     </div>
     <table class="t reveal">
       <thead><tr><th>What</th><th>Status</th><th>Where</th></tr></thead>
@@ -311,12 +310,11 @@
         <tr><td>End-to-end inference, INT8</td><td class="ok">Measured</td><td>FPGA, matches simulation</td></tr>
         <tr><td>Multi-precision (INT4) deployment</td><td class="ok">Measured</td><td>FPGA, mixed precision</td></tr>
         <tr><td>Two model families, one bitstream</td><td class="ok">Measured</td><td>Keyword spotting + anomaly detection</td></tr>
-        <tr><td>20+ TOPS/W INT8 efficiency</td><td>Design target</td><td>ASIC, custom SRAM macro</td></tr>
       </tbody>
     </table>
     <div class="note reveal">
       <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
-      <p><b>Measured vs. target, stated plainly.</b> Functional correctness and per-layer timing are measured on the FPGA prototype, where block RAM stands in for the in-memory array. The headline TOPS/W figures are ASIC design intent: they depend on the custom low-voltage SRAM macro and process node, not the FPGA. We share the methodology, the FPGA results and the ASIC modeling under NDA.</p>
+      <p><b>What's measured, stated plainly.</b> Functional correctness and per-layer timing are measured on the FPGA prototype, where block RAM stands in for the in-memory array. Final power and efficiency depend on the custom SRAM macro and process node at ASIC. We share the methodology and the FPGA results under NDA.</p>
     </div>
   </div>
 </section>
