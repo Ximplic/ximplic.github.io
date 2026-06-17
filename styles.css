@@ -606,11 +606,11 @@ section:not(.hero):not(.cta):not(.adopt){padding:100px 0}
 /* hero visual: balanced, centered */
 .hero-fig .fig-ring{stroke-dasharray:2 11}
 
-/* engineered datum rule above section heads */
-.section-rule{display:flex;justify-content:space-between;gap:24px;border-top:2px solid var(--ink);
-  padding-top:12px;margin-bottom:34px;font:700 11px/1 'Inter',sans-serif;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--muted)}
-.section-rule span:first-child{color:var(--ink)}
+/* section eyebrow label above section heads */
+.section-rule{margin-bottom:16px;font:700 12px/1 'Inter',sans-serif;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent-ink)}
+.section-rule span:first-child{color:var(--accent-ink)}
+.section-rule span:not(:first-child){display:none}
 
 /* deliberate link treatment (no inline styles) */
 .product-path{text-align:left;margin:36px 0 0;font-size:14.5px;max-width:760px;color:var(--muted)}
@@ -656,5 +656,4 @@ section:not(.hero):not(.cta):not(.adopt){padding:100px 0}
 .idia .arow{fill:none;stroke:var(--accent);stroke-width:2}
 
 /* datum rule on dark bands */
-.adopt .section-rule{border-top-color:rgba(255,255,255,.22);color:#9FB0D0}
-.adopt .section-rule span:first-child{color:#fff}
+.adopt .section-rule,.adopt .section-rule span:first-child{color:var(--accent)}
