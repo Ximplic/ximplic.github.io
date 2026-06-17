@@ -209,7 +209,16 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 70px)}
 .pillar p{color:var(--muted);font-size:15px;margin:0 0 18px}
 .pillar .more{margin-top:auto;font-weight:700;color:var(--accent-ink);font-size:14.5px}
 .pillar .more::after{content:" \2192"}
-@media(max-width:880px){.pillars,.pillars.cols-3{grid-template-columns:1fr}}
+/* coming-soon pillar */
+.pillar.soon{background:var(--bg-soft);border-style:dashed;border-color:#D3DAE8;box-shadow:none}
+.pillar.soon:hover{transform:none;box-shadow:none;border-color:#D3DAE8}
+.pillar.soon .tag{color:#90A0BC}
+.pillar.soon h3,.pillar.soon p{color:#90A0BC}
+.pillar.soon .soon-note{margin-top:auto;font-weight:700;font-size:14.5px;color:#A6B2C8;display:inline-flex;align-items:center;gap:7px}
+.pillar.soon .soon-note::before{content:"";width:8px;height:8px;border-radius:50%;background:#C2CBDD}
+.pillars.cols-4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1040px){.pillars.cols-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:880px){.pillars,.pillars.cols-3,.pillars.cols-4{grid-template-columns:1fr}}
 
 /* ---------- spec table ---------- */
 .spec-wrap{background-color:var(--bg-soft);
