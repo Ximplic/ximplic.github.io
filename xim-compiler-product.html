@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>XIM Compiler · Ximplic</title>
-  <meta name="description" content="Compile a standard ONNX model to the XIM accelerator: multi-precision quantization, structured pruning, and silicon-validated deployment from one toolchain.">
+  <meta name="description" content="Compile a standard ONNX model to the XIM accelerator: multi-precision quantization, structured pruning, and FPGA-validated deployment from one toolchain.">
   <link rel="icon" href="XIM_Logo/favicon.svg" type="image/svg+xml"/>
   <link rel="icon" type="image/png" sizes="32x32" href="XIM_Logo/favicon/favicon-32.png"/>
   <link rel="apple-touch-icon" href="XIM_Logo/favicon/apple-touch-icon.png"/>
@@ -60,7 +60,7 @@
     <div>
       <div class="eyebrow">Toolchain · ONNX · Deploy</div>
       <h1>XIM Compiler<br><span class="accent">ONNX to silicon-ready inference</span></h1>
-      <p class="lead">Take a trained ONNX model and deploy it on the XIM accelerator: quantized, optionally pruned, and packaged for the hardware in one toolchain. Multi-precision to INT4, validated on silicon.</p>
+      <p class="lead">Take a trained ONNX model and deploy it on the XIM accelerator: quantized, optionally pruned, and packaged for the hardware in one toolchain. Multi-precision to INT4, validated on FPGA.</p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary">Request access ↗</a>
         <a href="#overview" class="btn btn-light">How it works</a>
@@ -98,7 +98,7 @@
     <div class="stat"><b>ONNX</b><span>Standard input, no bespoke model format</span></div>
     <div class="stat"><b>INT8 → INT4</b><span>Per-layer mixed-precision quantization</span></div>
     <div class="stat"><b>Pruning</b><span>Structured, hardware-aware sparsity</span></div>
-    <div class="stat"><b>On silicon</b><span>Validated on the XIM accelerator</span></div>
+    <div class="stat"><b>On FPGA</b><span>Validated on the XIM accelerator (ZCU102)</span></div>
   </div>
 </div>
 
@@ -179,7 +179,7 @@ emit_model_header(model)</div>
     </div>
     <div class="note reveal" style="margin-top:24px">
       <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg></div>
-      <p><b>Deployment kit and validation data on request.</b> The full compiler kit (frontends, reference recipes, deploy-faithful simulator, regression suite) and the per-model accuracy/energy trade-off results on silicon are shared under NDA. <a href="#contact" style="color:var(--accent-ink);font-weight:700">Request access</a>.</p>
+      <p><b>Deployment kit and validation data on request.</b> The full compiler kit (frontends, reference recipes, deploy-faithful simulator, regression suite) and the per-model accuracy/energy trade-off results measured on the FPGA are shared under NDA. <a href="#contact" style="color:var(--accent-ink);font-weight:700">Request access</a>.</p>
     </div>
   </div>
 </section>
