@@ -97,8 +97,10 @@
   <div class="wrap subnav-in">
     <a href="#overview">Overview</a>
     <a href="#features">Capabilities</a>
-    <a href="#specs">Details</a>
-    <a href="#contact">Contact</a>
+    <a href="#specs">Specifications</a>
+    <a href="#usecases">Applications</a>
+    <a href="#deliverables">What you get</a>
+    <a href="#performance">Validation</a>
   </div>
 </nav>
 
@@ -118,12 +120,12 @@
     <div class="section-rule reveal"><span>What it is</span></div>
     <div class="section-head reveal">
       <h2>From a trained model to running on the accelerator</h2>
-      <p class="lead muted">The toolchain that turns a standard ONNX model into a hardware-ready deployment. It quantizes, calibrates, prunes, schedules across the compute banks, and emits the descriptor the hardware runs.</p>
+      <p class="lead muted">In-memory computing only pays off if you can get your model onto it. The XIM Compiler turns a standard ONNX model into a hardware-ready deployment for the XIM accelerator: it quantizes weights and activations, calibrates the requantization, optionally prunes channels, schedules the work across the compute banks, and emits the descriptor the hardware runs, with the numerical behaviour matched to the hardware.</p>
     </div>
     <div class="split">
       <div class="reveal">
-        <p style="font-size:16px;color:var(--ink-2)">A model-agnostic core. A thin frontend reads the ONNX graph; the core makes the hardware decisions: tiling wide layers, splitting columns, allocating banks, and choosing per-layer precision. Convolutional, depthwise-separable and dense networks all use the same path.</p>
-        <p style="font-size:16px;color:var(--ink-2)">Quantization is where it earns its keep. Per-layer mixed precision keeps sensitive layers at INT8 while the rest run INT4, with structured pruning and a requantization path calibrated so software matches the hardware, confirmed on the FPGA board.</p>
+        <p style="font-size:16px;color:var(--ink-2)">The compiler is built around a model-agnostic core. A thin frontend reads the ONNX graph and normalizes it; the core handles the hardware-shaping decisions: tiling wide layers, splitting columns, allocating compute banks, and choosing per-layer precision. The same path serves convolutional, depthwise-separable and fully-connected networks, so adding a model means describing it, not hand-writing a deployment.</p>
+        <p style="font-size:16px;color:var(--ink-2)">Quantization is the hard part of edge deployment, and it is where the compiler earns its keep. It supports per-layer mixed precision (keeping sensitive layers at INT8 while the rest run INT4), structured weight pruning with hardware-aware masking, and a requantization path calibrated so that what you measure in software is what the chip computes, confirmed against the FPGA board, not assumed.</p>
       </div>
       <div class="panel reveal">
         <h3>Deploy a model in a few lines</h3>
@@ -152,44 +154,123 @@ emit_model_header(model)</div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg></div>
         <h3>Standard ONNX frontend</h3>
-        <p>Bring a model from any framework, exported to ONNX. No proprietary model format to learn.</p>
+        <p>Bring a model trained in any framework and exported to ONNX. The compiler parses the graph, classifies the layers, and maps them to the accelerator, with no proprietary model format to learn.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
         <h3>Multi-precision quantization</h3>
-        <p>INT8 and INT4 with per-layer mixed precision, calibrated to the hardware datapath so software and hardware agree.</p>
+        <p>INT8 and INT4 with per-layer mixed precision: keep accuracy-critical layers wide while the rest run narrow. Requantization is calibrated to the hardware datapath so software and hardware agree.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5h14v14H5z"/><path d="M9 9h6v6H9z"/></svg></div>
-        <h3>Structured pruning</h3>
-        <p>Hardware-aware column pruning the accelerator can actually skip, with prune-aware fine-tuning to hold accuracy.</p>
+        <h3>Structured weight pruning</h3>
+        <p>Hardware-aware column pruning trims channels the accelerator can actually skip, paired with prune-aware fine-tuning to recover accuracy and turn sparsity into real energy savings.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/></svg></div>
+        <h3>Tiling &amp; bank scheduling</h3>
+        <p>Wide and deep layers are tiled, columns are split to fit the compute array, and work is scheduled across the compute banks automatically, so large models map to fixed hardware without hand-tuning.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3>Hardware-faithful</h3>
-        <p>A fail-loud contract rejects anything the hardware can't run, and the deployment is checked bit-for-bit against the chip.</p>
+        <h3>Hardware-faithful behaviour</h3>
+        <p>A fail-loud contract rejects anything the hardware can't run, and the deployment is checked bit-for-bit against the accelerator, so a compile that succeeds is a compile that runs correctly on chip.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-4 4 3 4-6"/></svg></div>
+        <h3>Multiple model families</h3>
+        <p>Keyword-spotting CNNs, depthwise-separable vision nets and dense autoencoders all deploy through the same core, so adding a model is configuration, not a rewrite.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 03 · FULL DETAIL (gated) -->
-<section id="specs" class="spec-wrap">
+<!-- SPECS -->
+<section id="specs">
   <div class="wrap">
-    <div class="section-rule reveal"><span>Full detail</span></div>
-    <div class="section-head reveal">
-      <h2>The headline specs, and where to get the rest</h2>
-      <p class="lead muted">Enough to judge fit. The full deployment kit and per-model validation data follow under NDA.</p>
-    </div>
+    <div class="section-rule reveal"><span>Specifications</span></div>
+    <div class="section-head reveal"><h2>Technical summary</h2></div>
     <div class="spec reveal">
       <div class="spec-row"><span class="k">Input</span><span class="v">Standard ONNX + calibration data</span></div>
-      <div class="spec-row"><span class="k">Precision</span><span class="v">INT8 / INT4, per-layer mixed</span></div>
+      <div class="spec-row"><span class="k">Scheduling</span><span class="v">Tiling, column-split, bank allocation</span></div>
       <div class="spec-row"><span class="k">Output</span><span class="v">Hardware deploy descriptor</span></div>
-      <div class="spec-row"><span class="k">Validation</span><span class="v">Bit-exact vs accelerator, board-confirmed</span></div>
+      <div class="spec-row"><span class="k">Model families</span><span class="v">CNN · depthwise-separable · dense</span></div>
+      <div class="spec-row"><span class="k">Precision</span><span class="v">INT8 / INT4, per-layer mixed</span></div>
+      <div class="spec-row"><span class="k">Toolchain</span><span class="v">Python, pip-installable</span></div>
+      <div class="spec-row"><span class="k">Quantization</span><span class="v">Calibrated requant, hardware-matched</span></div>
+      <div class="spec-row"><span class="k">Validation</span><span class="v">Bit-exact vs accelerator + regression pins</span></div>
+      <div class="spec-row"><span class="k">Sparsity</span><span class="v">Structured column pruning</span></div>
+      <div class="spec-row"><span class="k">Target</span><span class="v">XIM accelerator, FPGA-proven (ZCU102)</span></div>
     </div>
-    <div class="note reveal" style="margin-top:24px">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg></div>
-      <p><b>Deployment kit and validation data on request.</b> The full compiler kit (frontends, reference recipes, deploy-faithful simulator, regression suite) and the per-model accuracy/energy trade-off results measured on the FPGA are shared under NDA. <a href="#contact" style="color:var(--accent-ink);font-weight:700">Request access</a>.</p>
+  </div>
+</section>
+
+<!-- APPLICATIONS -->
+<section id="usecases" class="spec-wrap">
+  <div class="wrap">
+    <div class="section-rule reveal"><span>Where it fits</span></div>
+    <div class="section-head reveal">
+      <h2>Built for always-on edge inference</h2>
+      <p class="lead muted">The compiler targets the small, continuously-running models that define battery-powered edge AI, the workloads in-memory computing was made for.</p>
+    </div>
+    <div class="uc">
+      <div class="uc-card reveal"><div class="tag">Audio</div><h3>Keyword spotting</h3><p>Always-listening wake-word and command detection, compiled and quantized for sub-mW duty cycles.</p></div>
+      <div class="uc-card reveal"><div class="tag">Sensors</div><h3>Anomaly detection</h3><p>Predictive-maintenance autoencoders on industrial sensor streams, deployed on-device and continuous.</p></div>
+      <div class="uc-card reveal"><div class="tag">Vision</div><h3>Compact CNN inference</h3><p>MobileNet-class person detection, gesture and presence sensing for wearables and hearables.</p></div>
+      <div class="uc-card reveal"><div class="tag">Fusion</div><h3>Sensor-hub AI</h3><p>Low-power classification in always-on sensor hubs where weights stay resident on-chip.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section id="deliverables">
+  <div class="wrap split">
+    <div class="reveal">
+      <div class="section-rule reveal"><span>What you get</span></div>
+      <h2 style="margin:6px 0 24px">A complete deployment toolchain</h2>
+      <ul class="deliv">
+        <li><b>The compiler</b><span>A pip-installable Python package: ONNX in, hardware deploy descriptor out.</span></li>
+        <li><b>Quantization &amp; pruning</b><span>Multi-precision calibration, mixed-precision policy, and structured pruning with prune-aware fine-tuning.</span></li>
+        <li><b>Model frontends</b><span>ONNX and exported-weight frontends, plus a thin-wrapper pattern for adding new models.</span></li>
+        <li><b>Deploy-faithful simulation</b><span>A software model of the hardware datapath to validate accuracy before you touch a board.</span></li>
+        <li><b>Reference model recipes</b><span>Worked examples for keyword spotting, anomaly detection and vision, training to deployment.</span></li>
+        <li><b>Regression &amp; equivalence tests</b><span>Bit-exact pins against the accelerator so updates can't silently change a deployed model.</span></li>
+        <li><b>Integration guide</b><span>Documentation for the compile flow, the deployment ABI, and the host runtime.</span></li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="section-rule reveal"><span>How to engage</span></div>
+      <h2 style="margin:6px 0 24px">From a model to a deployment</h2>
+      <div class="steps">
+        <div class="step"><h3>Scope</h3><p>Share your model, target accuracy and power budget. We confirm fit for the accelerator.</p></div>
+        <div class="step"><h3>Compile</h3><p>Run your ONNX model through the toolchain under NDA: quantize, prune, and explore precision.</p></div>
+        <div class="step"><h3>Validate</h3><p>Check accuracy in the deploy-faithful simulator, then confirm bit-exact behaviour on hardware.</p></div>
+        <div class="step"><h3>Deploy</h3><p>Ship the model on the XIM accelerator with a software path validated against the FPGA.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALIDATION -->
+<section id="performance" class="spec-wrap">
+  <div class="wrap">
+    <div class="section-rule reveal"><span>Validation</span></div>
+    <div class="section-head reveal">
+      <h2>Validated on FPGA, honest about the trade-offs</h2>
+      <p class="lead muted">Deployments are confirmed on the XIM accelerator on a ZCU102 FPGA, board against simulation, not assumed in software.</p>
+    </div>
+    <table class="t reveal">
+      <thead><tr><th>Reference workload</th><th>Precision</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Keyword spotting (DS-CNN-L)</td><td>INT8</td><td class="ok">Board-validated</td><td>Bit-exact, full classifier accuracy</td></tr>
+        <tr><td>Keyword spotting (DS-CNN-L)</td><td>INT4 (mixed)</td><td class="ok">Board-validated</td><td>Multi-precision deployment</td></tr>
+        <tr><td>Keyword spotting (DS-CNN-L)</td><td>INT8, pruned</td><td class="ok">Board-validated</td><td>Structured pruning + fine-tune</td></tr>
+        <tr><td>Anomaly-detection autoencoder</td><td>INT8</td><td class="ok">Board-validated</td><td>Dense / fully-connected model family</td></tr>
+      </tbody>
+    </table>
+    <div class="note reveal">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
+      <p><b>Accuracy is a trade-off, and we say so.</b> Lower precision and pruning trade accuracy for energy, and the right operating point depends on the model and the application. The compiler makes that trade explicit, measured on hardware, per model, rather than promising a single magic number. We share the validation methodology and the per-model results under NDA so your team can judge fit.</p>
     </div>
   </div>
 </section>
