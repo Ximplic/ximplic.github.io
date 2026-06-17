@@ -29,7 +29,7 @@
           <a href="products.html">All products<small>Overview of the platform</small></a>
           <div class="dd-sep"></div>
           <a href="xim-vp-product.html">Virtual Prototype<small>Evaluate in software</small></a>
-          <a href="xim-compiler-product.html">Compiler<small>Map your ONNX model</small></a>
+          <a href="xim-compiler-product.html">Compiler<small>Map a standard ONNX model</small></a>
           <a href="xim-ip-product.html">RTL IP<small>Synthesisable core</small></a>
         </div>
       </div>
@@ -99,7 +99,7 @@
     <a href="#features">Capabilities</a>
     <a href="#specs">Specifications</a>
     <a href="#usecases">Applications</a>
-    <a href="#deliverables">What you get</a>
+    <a href="#deliverables">What's included</a>
     <a href="#performance">Validation</a>
   </div>
 </nav>
@@ -120,12 +120,12 @@
     <div class="section-rule reveal"><span>What it is</span></div>
     <div class="section-head reveal">
       <h2>From a trained model to running on the accelerator</h2>
-      <p class="lead muted">In-memory computing only pays off if you can get your model onto it. The XIM Compiler turns a standard ONNX model into a hardware-ready deployment for the XIM accelerator: it quantizes weights and activations, calibrates the requantization, optionally prunes channels, schedules the work across the compute banks, and emits the descriptor the hardware runs, with the numerical behaviour matched to the hardware.</p>
+      <p class="lead muted">In-memory computing only pays off if a model can be mapped onto it. The XIM Compiler turns a standard ONNX model into a hardware-ready deployment for the XIM accelerator: it quantizes weights and activations, calibrates the requantization, optionally prunes channels, schedules the work across the compute banks, and emits the descriptor the hardware runs, with the numerical behaviour matched to the hardware.</p>
     </div>
     <div class="split">
       <div class="reveal">
         <p style="font-size:16px;color:var(--ink-2)">The compiler is built around a model-agnostic core. A thin frontend reads the ONNX graph and normalizes it; the core handles the hardware-shaping decisions: tiling wide layers, splitting columns, allocating compute banks, and choosing per-layer precision. The same path serves convolutional, depthwise-separable and fully-connected networks, so adding a model means describing it, not hand-writing a deployment.</p>
-        <p style="font-size:16px;color:var(--ink-2)">Quantization is the hard part of edge deployment, and it is where the compiler earns its keep. It supports per-layer mixed precision (keeping sensitive layers at INT8 while the rest run INT4), structured weight pruning with hardware-aware masking, and a requantization path calibrated so that what you measure in software is what the chip computes, confirmed against the FPGA board, not assumed.</p>
+        <p style="font-size:16px;color:var(--ink-2)">Quantization is the hard part of edge deployment, and it is where the compiler earns its keep. It supports per-layer mixed precision (keeping sensitive layers at INT8 while the rest run INT4), structured weight pruning with hardware-aware masking, and a requantization path calibrated so that what is measured in software is what the hardware computes, confirmed against the FPGA board, not assumed.</p>
       </div>
       <div class="panel reveal">
         <h3>Deploy a model in a few lines</h3>
@@ -226,7 +226,7 @@ emit_model_header(model)</div>
 <section id="deliverables">
   <div class="wrap split">
     <div class="reveal">
-      <div class="section-rule reveal"><span>What you get</span></div>
+      <div class="section-rule reveal"><span>What's included</span></div>
       <h2 style="margin:6px 0 24px">A complete deployment toolchain</h2>
       <ul class="deliv">
         <li><b>The compiler</b><span>A pip-installable Python package: ONNX in, deploy descriptor out.</span></li>
@@ -242,8 +242,8 @@ emit_model_header(model)</div>
       <div class="section-rule reveal"><span>How to engage</span></div>
       <h2 style="margin:6px 0 24px">From a model to a deployment</h2>
       <div class="steps">
-        <div class="step"><h3>Scope</h3><p>Share your model, accuracy and power budget. We confirm fit.</p></div>
-        <div class="step"><h3>Compile</h3><p>Run your ONNX model through the toolchain: quantize, prune, explore precision.</p></div>
+        <div class="step"><h3>Scope</h3><p>Share the model, accuracy and power budget. We confirm fit.</p></div>
+        <div class="step"><h3>Compile</h3><p>The ONNX model runs through the toolchain: quantize, prune, explore precision.</p></div>
         <div class="step"><h3>Validate</h3><p>Check accuracy in the simulator, then confirm bit-exact behaviour on hardware.</p></div>
         <div class="step"><h3>Deploy</h3><p>Ship on the XIM accelerator, validated against the FPGA.</p></div>
       </div>
@@ -270,7 +270,7 @@ emit_model_header(model)</div>
     </table>
     <div class="note reveal">
       <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
-      <p><b>Accuracy is a trade-off, and we say so.</b> Lower precision and pruning trade accuracy for energy, and the right operating point depends on the model and the application. The compiler makes that trade explicit, measured on hardware, per model, rather than promising a single magic number. We share the validation methodology and the per-model results under NDA so your team can judge fit.</p>
+      <p><b>Accuracy is a trade-off, and we say so.</b> Lower precision and pruning trade accuracy for energy, and the right operating point depends on the model and the application. The compiler makes that trade explicit, measured on hardware, per model, rather than promising a single magic number. We share the validation methodology and the per-model results under NDA so teams can judge fit.</p>
     </div>
   </div>
 </section>
@@ -280,7 +280,7 @@ emit_model_header(model)</div>
   <div class="wrap cta-in">
     <span class="pill">Partner with Ximplic</span>
     <h2>Have a model to run at the edge?</h2>
-    <p>Ready to deploy a model on the XIM accelerator? Let's set up an evaluation of the compiler against your own workloads.</p>
+    <p>Ready to deploy a model on the XIM accelerator? Let's set up an evaluation of the compiler against target workloads.</p>
     <div class="cta-row">
       <a href="mailto:info@ximplic.com?subject=XIM%20Compiler%20enquiry" class="btn btn-primary">Contact us ↗</a>
       <a href="mailto:info@ximplic.com?subject=XIM%20Compiler%20evaluation%20request" class="btn btn-light">Request an evaluation</a>

@@ -29,7 +29,7 @@
           <a href="products.html">All products<small>Overview of the platform</small></a>
           <div class="dd-sep"></div>
           <a href="xim-vp-product.html">Virtual Prototype<small>Evaluate in software</small></a>
-          <a href="xim-compiler-product.html">Compiler<small>Map your ONNX model</small></a>
+          <a href="xim-compiler-product.html">Compiler<small>Map any ONNX model</small></a>
           <a href="xim-ip-product.html">RTL IP<small>Synthesisable core</small></a>
         </div>
       </div>
@@ -127,7 +127,7 @@
     <div class="split">
       <div class="reveal">
         <p style="font-size:16px;color:var(--ink-2)">A tiled, weight-stationary in-memory engine. Each cluster holds a MAC array; the post-processing (scaling, activation, requantization, residual add, pooling) sits outside the compute macro so the datapath stays flexible across edge models. Precision is configurable at runtime from INT8 down to INT1.</p>
-        <p style="font-size:16px;color:var(--ink-2)">The compute-macro interface is frozen between the FPGA prototype and the ASIC. The same IP runs today on an FPGA, with block RAM standing in for the array, and migrates to a custom low-voltage SRAM macro at silicon, with no change to the surrounding logic. You de-risk on hardware now and carry the validated design into your product.</p>
+        <p style="font-size:16px;color:var(--ink-2)">The compute-macro interface is frozen between the FPGA prototype and the ASIC. The same IP runs today on an FPGA, with block RAM standing in for the array, and migrates to a custom low-voltage SRAM macro at silicon, with no change to the surrounding logic. De-risk on hardware now and carry the validated design into the end product.</p>
       </div>
       <div class="panel reveal">
         <h3>The datapath, per cluster</h3>
@@ -190,7 +190,7 @@
   <div class="wrap">
     <div class="section-rule reveal"><span>Integration</span></div>
     <div class="section-head reveal">
-      <h2>Two ways it integrates into your SoC</h2>
+      <h2>Two ways it integrates into the SoC</h2>
       <p class="lead muted">From a low-risk drop-in accelerator to an in-place memory upgrade. Option A is available and FPGA-tested today. Option B is on the way.</p>
     </div>
     <div class="integ">
@@ -281,14 +281,14 @@
 <section id="deliverables">
   <div class="wrap split">
     <div class="reveal">
-      <div class="section-rule reveal"><span>What you get</span></div>
+      <div class="section-rule reveal"><span>What it includes</span></div>
       <h2 style="margin:6px 0 24px">A validated accelerator IP package</h2>
       <ul class="deliv">
         <li><b>The accelerator RTL</b><span>Synthesisable DIMC core with configurable, multi-cluster array.</span></li>
         <li><b>SoC integration wrapper</b><span>AXI4-Lite control, AXI4 DMA, command/interrupt model for Zynq-class SoCs.</span></li>
         <li><b>FPGA prototype flow</b><span>Packaging, block-design and bitstream flow proven on ZCU102.</span></li>
         <li><b>Verification suite</b><span>Self-checking testbenches with golden-value and board-correlation checks.</span></li>
-        <li><b>XIM Compiler</b><span>ONNX-to-hardware toolchain that deploys your models onto the IP.</span></li>
+        <li><b>XIM Compiler</b><span>ONNX-to-hardware toolchain that deploys any model onto the IP.</span></li>
         <li><b>Virtual Prototype</b><span>SystemC model for early architecture and software work.</span></li>
         <li><b>Docs</b><span>Design spec, ASIC migration contract, and integration guidance.</span></li>
       </ul>
@@ -298,9 +298,9 @@
       <h2 style="margin:6px 0 24px">From evaluation to integration</h2>
       <div class="steps">
         <div class="step"><h3>Scope</h3><p>Share workloads and power budget; we confirm fit and array sizing.</p></div>
-        <div class="step"><h3>Evaluate</h3><p>Measure latency and energy on your models via the Virtual Prototype and FPGA.</p></div>
-        <div class="step"><h3>Integrate</h3><p>Wire the IP into your SoC over AXI and deploy models with the compiler.</p></div>
-        <div class="step"><h3>Tape out</h3><p>License the IP and carry the frozen-interface design into your own ASIC.</p></div>
+        <div class="step"><h3>Evaluate</h3><p>Measure latency and energy on target workloads via the Virtual Prototype and FPGA.</p></div>
+        <div class="step"><h3>Integrate</h3><p>Wires into the SoC over AXI and deploys models with the compiler.</p></div>
+        <div class="step"><h3>Tape out</h3><p>License the IP and carry the frozen-interface design into the target ASIC.</p></div>
       </div>
     </div>
   </div>
@@ -335,7 +335,7 @@
   <div class="wrap cta-in">
     <span class="pill">Partner with Ximplic</span>
     <h2>Designing an always-on AI SoC?</h2>
-    <p>Ready to license the accelerator into your design? Let's set up an evaluation tailored to your workloads and power budget.</p>
+    <p>Ready to license the accelerator into an always-on AI SoC? Let's set up an evaluation tailored to the target workloads and power budget.</p>
     <div class="cta-row">
       <a href="mailto:info@ximplic.com?subject=XIM%20DIMC%20Accelerator%20IP%20enquiry" class="btn btn-primary">Contact us ↗</a>
       <a href="mailto:info@ximplic.com?subject=XIM%20accelerator%20IP%20evaluation%20request" class="btn btn-light">Request an evaluation</a>
