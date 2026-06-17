@@ -154,32 +154,32 @@
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></div>
         <h3>In-memory MAC array</h3>
-        <p>Weight-stationary digital compute inside the SRAM array. Weights are pinned and activations stream in, so inference avoids the weight-movement energy.</p>
+        <p>Weights pinned in the SRAM array; activations stream in, no weight movement.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
         <h3>Multi-precision, runtime</h3>
-        <p>INT8 / INT4 / INT2 / INT1, configurable per layer. Spend bits only where the model needs them; narrower precision means more throughput and less energy.</p>
+        <p>INT8 to INT1, configurable per layer for more throughput, less energy.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5h14v14H5z"/><path d="M9 9h6v6H9z"/></svg></div>
         <h3>Dual sparsity engine</h3>
-        <p>Input and weight sparsity skip work the network doesn't need, turning the natural sparsity of edge models into measured energy savings.</p>
+        <p>Input and weight sparsity skip needless work for measured energy savings.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v6H4zM4 14h16v6H4z"/></svg></div>
         <h3>Flexible post-processing</h3>
-        <p>A 256-entry LUT approximates any activation, plus inline residual add and pooling. All outside the compute macro, so one engine serves many model families.</p>
+        <p>A 256-entry LUT approximates any activation, plus inline residual add and pooling.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
         <h3>Standard SoC interfaces</h3>
-        <p>ARM AMBA AXI4 and AXI4-Lite with a memory-mapped command and interrupt model, plus AXI4 DMA for streaming large layers from DRAM.</p>
+        <p>AMBA AXI4 and AXI4-Lite, memory-mapped control, plus AXI4 DMA from DRAM.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
         <h3>FPGA-to-ASIC contract</h3>
-        <p>The compute-macro interface is frozen across the FPGA prototype and the ASIC. Validate on hardware now, migrate to a custom SRAM macro without reworking the logic.</p>
+        <p>Frozen compute-macro interface: validate on FPGA, migrate to ASIC without logic rework.</p>
       </div>
     </div>
   </div>
@@ -269,10 +269,10 @@
       <p class="lead muted">It wins where models are small and run continuously, the workloads that drain a battery on a conventional NPU.</p>
     </div>
     <div class="uc">
-      <div class="uc-card reveal"><div class="tag">Audio</div><h3>Keyword spotting</h3><p>Wake-word and command detection at sub-mW duty cycles, weights resident on-chip.</p></div>
-      <div class="uc-card reveal"><div class="tag">Sensors</div><h3>Anomaly detection</h3><p>Predictive-maintenance autoencoders on industrial sensor streams, on-device.</p></div>
-      <div class="uc-card reveal"><div class="tag">Vision</div><h3>Compact CNN inference</h3><p>MobileNet-class person, gesture and presence sensing for wearables.</p></div>
-      <div class="uc-card reveal"><div class="tag">Fusion</div><h3>Sensor-hub AI</h3><p>Low-power classification in always-on sensor hubs where compute must sip energy.</p></div>
+      <div class="uc-card reveal"><div class="tag">Audio</div><h3>Keyword spotting</h3><p>Wake-word and command detection at sub-mW duty cycles.</p></div>
+      <div class="uc-card reveal"><div class="tag">Sensors</div><h3>Anomaly detection</h3><p>Predictive-maintenance autoencoders on industrial sensor streams.</p></div>
+      <div class="uc-card reveal"><div class="tag">Vision</div><h3>Compact CNN inference</h3><p>MobileNet-class person, gesture and presence sensing.</p></div>
+      <div class="uc-card reveal"><div class="tag">Fusion</div><h3>Sensor-hub AI</h3><p>Low-power classification in always-on sensor hubs.</p></div>
     </div>
   </div>
 </section>
@@ -284,23 +284,23 @@
       <div class="section-rule reveal"><span>What you get</span></div>
       <h2 style="margin:6px 0 24px">A validated accelerator IP package</h2>
       <ul class="deliv">
-        <li><b>The accelerator RTL</b><span>The synthesisable DIMC core with a configurable array and multi-cluster scaling.</span></li>
-        <li><b>SoC integration wrapper</b><span>AXI4-Lite control, AXI4 DMA, and a command/interrupt model ready for a Zynq-class SoC.</span></li>
-        <li><b>FPGA prototype flow</b><span>A complete packaging, block-design and bitstream flow proven on a ZCU102 board.</span></li>
-        <li><b>Verification suite</b><span>Self-checking testbenches with golden-value regression and board-correlation checks.</span></li>
-        <li><b>XIM Compiler</b><span>The ONNX-to-hardware toolchain so your models deploy onto the IP.</span></li>
-        <li><b>Virtual Prototype</b><span>A SystemC model for early architecture and software work before silicon.</span></li>
-        <li><b>Docs</b><span>The design spec, the ASIC migration contract, and integration guidance.</span></li>
+        <li><b>The accelerator RTL</b><span>Synthesisable DIMC core with configurable, multi-cluster array.</span></li>
+        <li><b>SoC integration wrapper</b><span>AXI4-Lite control, AXI4 DMA, command/interrupt model for Zynq-class SoCs.</span></li>
+        <li><b>FPGA prototype flow</b><span>Packaging, block-design and bitstream flow proven on ZCU102.</span></li>
+        <li><b>Verification suite</b><span>Self-checking testbenches with golden-value and board-correlation checks.</span></li>
+        <li><b>XIM Compiler</b><span>ONNX-to-hardware toolchain that deploys your models onto the IP.</span></li>
+        <li><b>Virtual Prototype</b><span>SystemC model for early architecture and software work.</span></li>
+        <li><b>Docs</b><span>Design spec, ASIC migration contract, and integration guidance.</span></li>
       </ul>
     </div>
     <div class="reveal">
       <div class="section-rule reveal"><span>How to engage</span></div>
       <h2 style="margin:6px 0 24px">From evaluation to integration</h2>
       <div class="steps">
-        <div class="step"><h3>Scope</h3><p>Share your workloads, power budget and process node. We confirm fit and array sizing.</p></div>
-        <div class="step"><h3>Evaluate</h3><p>Run the Virtual Prototype and the FPGA build under NDA. Measure latency and energy on your models.</p></div>
-        <div class="step"><h3>Integrate</h3><p>Wire the IP into your SoC over AXI, deploy models with the compiler, validate on the FPGA.</p></div>
-        <div class="step"><h3>Tape out</h3><p>License the IP and carry the frozen-interface design into your own ASIC with the SRAM compute macro.</p></div>
+        <div class="step"><h3>Scope</h3><p>Share workloads and power budget; we confirm fit and array sizing.</p></div>
+        <div class="step"><h3>Evaluate</h3><p>Measure latency and energy on your models via the Virtual Prototype and FPGA.</p></div>
+        <div class="step"><h3>Integrate</h3><p>Wire the IP into your SoC over AXI and deploy models with the compiler.</p></div>
+        <div class="step"><h3>Tape out</h3><p>License the IP and carry the frozen-interface design into your own ASIC.</p></div>
       </div>
     </div>
   </div>

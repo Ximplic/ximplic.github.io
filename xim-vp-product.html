@@ -193,32 +193,32 @@ xim-&gt;get_compute_tops_per_watt();</div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></div>
         <h3>Configurable compute array</h3>
-        <p>A configurable compute array with INT8 / INT4 / INT2 / INT1 precision. Size it to your power and area budget.</p>
+        <p>INT8 / INT4 / INT2 / INT1, sized to your power and area budget.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div>
         <h3>RTL-correlated timing</h3>
-        <p>The compute-cycle model is correlated to RTL co-simulation (R² = 1.0000 on the INT8/INT4 dense path) and FPGA-board-calibrated end-to-end on DS-CNN-L to within ±5% per layer.</p>
+        <p>R² = 1.0000 vs RTL on the dense path, FPGA-calibrated to ±5% per layer.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
         <h3>Standard SoC interfaces</h3>
-        <p>ARM AMBA AXI4 + AXI4-Lite (TLM-2.0 kit verified), an IEEE 1685-2014 IP-XACT register map as the single source of truth, and a memory-mapped command and interrupt model.</p>
+        <p>ARM AMBA AXI4 + AXI4-Lite with an IEEE 1685-2014 IP-XACT register map.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V7z"/></svg></div>
         <h3>Energy &amp; DVFS modeling</h3>
-        <p>Dynamic and leakage energy with power-gating and DVFS sweeps. Quantify TOPS/W and battery life across operating points.</p>
+        <p>Dynamic and leakage energy with DVFS sweeps for TOPS/W and battery life.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v6H4zM4 14h16v6H4z"/></svg></div>
         <h3>Drop-in integration</h3>
-        <p>A shim template, a RISC-V reference SoC, a benchmarking harness and 8 callback hooks. Wire the IP into your platform in days, not weeks.</p>
+        <p>Shim template, RISC-V reference SoC and 8 hooks. Integrate in days.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-4 4 3 4-6"/></svg></div>
         <h3>Your workloads, measured</h3>
-        <p>A workload runner with 20+ MAC-honest model builders (MLPerf Tiny, MobileNet, ResNet, transformers, LLMs), plus HTML/CSV reports and cross-model comparison.</p>
+        <p>20+ MAC-honest model builders with HTML/CSV reports and comparison.</p>
       </div>
     </div>
   </div>
@@ -253,10 +253,10 @@ xim-&gt;get_compute_tops_per_watt();</div>
       <p class="lead muted">In-memory computing wins when models are small and run all the time, exactly the workloads that flatten a battery on a conventional NPU.</p>
     </div>
     <div class="uc">
-      <div class="uc-card reveal"><div class="tag">Audio</div><h3>Keyword spotting</h3><p>Always-listening wake-word and command detection (DS-CNN / MLPerf Tiny KWS) at sub-mW duty cycles.</p></div>
-      <div class="uc-card reveal"><div class="tag">Sensors</div><h3>Anomaly detection</h3><p>Predictive-maintenance autoencoders on industrial and IoT sensor streams, on-device and continuous.</p></div>
-      <div class="uc-card reveal"><div class="tag">Vision</div><h3>Compact CNN inference</h3><p>MobileNet / EfficientNet-class person detection, gesture and presence sensing for wearables and hearables.</p></div>
-      <div class="uc-card reveal"><div class="tag">Fusion</div><h3>Sensor-hub AI</h3><p>Low-power classification and fusion in always-on sensor hubs where weights stay resident on-chip.</p></div>
+      <div class="uc-card reveal"><div class="tag">Audio</div><h3>Keyword spotting</h3><p>Always-listening wake-word detection (DS-CNN) at sub-mW duty cycles.</p></div>
+      <div class="uc-card reveal"><div class="tag">Sensors</div><h3>Anomaly detection</h3><p>Predictive-maintenance autoencoders on IoT sensor streams, on-device.</p></div>
+      <div class="uc-card reveal"><div class="tag">Vision</div><h3>Compact CNN inference</h3><p>MobileNet-class person, gesture and presence sensing for wearables.</p></div>
+      <div class="uc-card reveal"><div class="tag">Fusion</div><h3>Sensor-hub AI</h3><p>Low-power fusion in always-on hubs with weights resident on-chip.</p></div>
     </div>
   </div>
 </section>
@@ -268,23 +268,23 @@ xim-&gt;get_compute_tops_per_watt();</div>
       <div class="section-rule reveal"><span>What you get</span></div>
       <h2 style="margin:6px 0 24px">A complete integration kit</h2>
       <ul class="deliv">
-        <li><b>The accelerator core</b><span>SystemC IP-block model + a static library to link into your SoC VP.</span></li>
-        <li><b>AMBA reference wrappers</b><span>AXI4 slave/master/memory/monitor verified against the ARM AMBA TLM-2.0 kit.</span></li>
-        <li><b>Integration shim &amp; reference SoC</b><span>Drop-in template plus a RISC-V reference platform showing end-to-end integration.</span></li>
-        <li><b>Workload runner &amp; benchmarks</b><span>20+ model builders, board-faithful streams, HTML/CSV performance reports.</span></li>
-        <li><b>IP-XACT register description</b><span>IEEE 1685-2014 XML, drive your driver and documentation from one source.</span></li>
-        <li><b>Calibration &amp; test suites</b><span>RTL co-sim, bank-macro, AXI-compliance and golden-value regression tests.</span></li>
-        <li><b>Integration guide &amp; onboarding</b><span>Step-by-step docs, an AXI protocol BVI, and a product model description.</span></li>
+        <li><b>The accelerator core</b><span>SystemC IP-block model plus a static library to link in.</span></li>
+        <li><b>AMBA reference wrappers</b><span>AXI4 wrappers verified against the ARM AMBA TLM-2.0 kit.</span></li>
+        <li><b>Integration shim &amp; reference SoC</b><span>Drop-in template plus a RISC-V reference platform.</span></li>
+        <li><b>Workload runner &amp; benchmarks</b><span>20+ model builders with HTML/CSV performance reports.</span></li>
+        <li><b>IP-XACT register description</b><span>IEEE 1685-2014 XML, one source for driver and docs.</span></li>
+        <li><b>Calibration &amp; test suites</b><span>RTL co-sim, AXI-compliance and golden-value regression tests.</span></li>
+        <li><b>Integration guide &amp; onboarding</b><span>Step-by-step docs, AXI protocol BVI and model description.</span></li>
       </ul>
     </div>
     <div class="reveal">
       <div class="section-rule reveal"><span>How to engage</span></div>
       <h2 style="margin:6px 0 24px">From evaluation to design-in</h2>
       <div class="steps">
-        <div class="step"><h3>Scope</h3><p>Tell us your target workloads, power budget, and SoC platform. We confirm fit.</p></div>
-        <div class="step"><h3>Evaluate</h3><p>Receive the VP under NDA. Run your models, measure latency and energy, explore configurations.</p></div>
-        <div class="step"><h3>Integrate</h3><p>Plug the accelerator into your SystemC platform via the shim and AXI sockets, with our support.</p></div>
-        <div class="step"><h3>Design-in</h3><p>License the XIM IP and move toward RTL with a validated software and architecture path.</p></div>
+        <div class="step"><h3>Scope</h3><p>Tell us your workloads, power budget and platform. We confirm fit.</p></div>
+        <div class="step"><h3>Evaluate</h3><p>Run your models under NDA, measuring latency and energy.</p></div>
+        <div class="step"><h3>Integrate</h3><p>Plug into your SystemC platform via the shim and AXI sockets.</p></div>
+        <div class="step"><h3>Design-in</h3><p>License the XIM IP and move to RTL with a validated path.</p></div>
       </div>
     </div>
   </div>
