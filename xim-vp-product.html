@@ -153,7 +153,7 @@
     <div class="split">
       <div class="reveal">
         <p style="font-size:16px;color:var(--ink-2)">The accelerator keeps weights resident in the SRAM array and computes in place. It targets the workloads that run continuously on battery: keyword spotting, anomaly detection, sensor fusion and compact vision.</p>
-        <p style="font-size:16px;color:var(--ink-2)">De-risk the integration today. Measures latency and energy on any model, validates the driver path, and explores operating points, all in software with no FPGA board and no proprietary EDA.</p>
+        <p style="font-size:16px;color:var(--ink-2)">De-risk the integration today. Measures latency and energy on any model, validates the driver path, and explores operating points, all in software with no hardware and no proprietary EDA.</p>
       </div>
       <div class="panel reveal">
         <h3>Probe the accelerator from any testbench</h3>
@@ -228,9 +228,9 @@ xim-&gt;get_compute_tops_per_watt();</div>
       <div class="spec-row"><span class="k">Compute array</span><span class="v">Configurable, in-memory</span></div>
       <div class="spec-row"><span class="k">Precision</span><span class="v">INT8 / INT4 / INT2 / INT1</span></div>
       <div class="spec-row"><span class="k">Register map</span><span class="v">IEEE 1685-2014 IP-XACT XML</span></div>
-      <div class="spec-row"><span class="k">Timing profiles</span><span class="v">FPGA-board + ASIC design-intent</span></div>
+      <div class="spec-row"><span class="k">Timing profiles</span><span class="v">FPGA + ASIC design-intent</span></div>
       <div class="spec-row"><span class="k">Toolchain</span><span class="v">Open SystemC, no proprietary EDA</span></div>
-      <div class="spec-row"><span class="k">Validation</span><span class="v">RTL co-sim + FPGA-board calibration</span></div>
+      <div class="spec-row"><span class="k">Validation</span><span class="v">RTL co-sim + FPGA calibration</span></div>
     </div>
   </div>
 </section>
@@ -287,7 +287,7 @@ xim-&gt;get_compute_tops_per_watt();</div>
     <div class="section-rule reveal"><span>Validation</span></div>
     <div class="section-head reveal">
       <h2>Numbers worth trusting</h2>
-      <p class="lead muted">Validated against RTL co-simulation and FPGA-board measurement.</p>
+      <p class="lead muted">Validated against RTL co-simulation and FPGA measurement.</p>
     </div>
     <table class="t reveal">
       <thead><tr><th>Configuration</th><th>Precision</th><th>VP cycles</th><th>RTL cycles</th><th>Δ</th></tr></thead>
@@ -300,7 +300,7 @@ xim-&gt;get_compute_tops_per_watt();</div>
     </table>
     <div class="note reveal">
       <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
-      <p><b>Modeling transparency.</b> The VP is FPGA-board-calibrated end-to-end for the DS-CNN-L reference workload. Other models (MobileNet, ResNet, transformers, LLMs) are <strong>MAC-honest analytic projections</strong> for relative comparison and architecture exploration, and reports label them as estimates. We share the full calibration methodology and validity envelope under NDA so teams can judge fit for their own use case.</p>
+      <p><b>Modeling transparency.</b> The VP is FPGA-calibrated end-to-end for the DS-CNN-L reference workload. Other models (MobileNet, ResNet, transformers, LLMs) are <strong>MAC-honest analytic projections</strong> for relative comparison and architecture exploration, and reports label them as estimates. We share the full calibration methodology and validity envelope under NDA so teams can judge fit for their own use case.</p>
     </div>
   </div>
 </section>

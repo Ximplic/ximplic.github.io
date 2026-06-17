@@ -242,7 +242,7 @@
       <div class="spec-row"><span class="k">Compute array</span><span class="v">Configurable, multi-cluster</span></div>
       <div class="spec-row"><span class="k">Host interface</span><span class="v">AXI4-Lite control + AXI4 DMA</span></div>
       <div class="spec-row"><span class="k">Precision</span><span class="v">INT8 / INT4 / INT2 / INT1, runtime</span></div>
-      <div class="spec-row"><span class="k">FPGA prototype</span><span class="v">Xilinx Zynq UltraScale+ (ZCU102)</span></div>
+      <div class="spec-row"><span class="k">FPGA prototype</span><span class="v">Proven end to end on FPGA</span></div>
       <div class="spec-row"><span class="k">Sparsity</span><span class="v">Input + weight, row/column masking</span></div>
       <div class="spec-row"><span class="k">ASIC target</span><span class="v">Custom low-voltage SRAM macro</span></div>
       <div class="spec-row"><span class="k">Efficiency target</span><span class="v">20+ TOPS/W INT8 · 50+ TOPS/W INT4 (ASIC)</span></div>
@@ -276,8 +276,8 @@
       <h2 style="margin:6px 0 24px">A validated accelerator IP package</h2>
       <ul class="deliv">
         <li><b>The accelerator RTL</b><span>Synthesisable DIMC core with configurable, multi-cluster array.</span></li>
-        <li><b>SoC integration wrapper</b><span>AXI4-Lite control, AXI4 DMA, command/interrupt model for Zynq-class SoCs.</span></li>
-        <li><b>FPGA prototype flow</b><span>Packaging, block-design and bitstream flow proven on ZCU102.</span></li>
+        <li><b>SoC integration wrapper</b><span>AXI4-Lite control, AXI4 DMA, and a command/interrupt model for the host SoC.</span></li>
+        <li><b>FPGA prototype flow</b><span>Packaging, block-design and bitstream flow proven on FPGA.</span></li>
         <li><b>Verification suite</b><span>Self-checking testbenches with golden-value and board-correlation checks.</span></li>
         <li><b>XIM Compiler</b><span>ONNX-to-hardware toolchain that deploys any model onto the IP.</span></li>
         <li><b>Virtual Prototype</b><span>SystemC model for early architecture and software work.</span></li>
@@ -308,8 +308,8 @@
     <table class="t reveal">
       <thead><tr><th>What</th><th>Status</th><th>Where</th></tr></thead>
       <tbody>
-        <tr><td>End-to-end inference, INT8</td><td class="ok">Measured</td><td>ZCU102 FPGA, board = simulation</td></tr>
-        <tr><td>Multi-precision (INT4) deployment</td><td class="ok">Measured</td><td>ZCU102 FPGA, mixed precision</td></tr>
+        <tr><td>End-to-end inference, INT8</td><td class="ok">Measured</td><td>FPGA, matches simulation</td></tr>
+        <tr><td>Multi-precision (INT4) deployment</td><td class="ok">Measured</td><td>FPGA, mixed precision</td></tr>
         <tr><td>Two model families, one bitstream</td><td class="ok">Measured</td><td>Keyword spotting + anomaly detection</td></tr>
         <tr><td>20+ TOPS/W INT8 efficiency</td><td>Design target</td><td>ASIC, custom SRAM macro</td></tr>
       </tbody>
