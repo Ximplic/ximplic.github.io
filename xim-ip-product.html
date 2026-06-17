@@ -155,16 +155,6 @@
         <p>Input and weight sparsity skip work the network doesn't need, turning the natural sparsity of edge models into measured energy savings.</p>
       </div>
       <div class="card reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v6H4zM4 14h16v6H4z"/></svg></div>
-        <h3>Flexible post-processing</h3>
-        <p>A 256-entry LUT approximates any activation, plus inline residual add and pooling. All outside the compute macro, so one engine serves many model families.</p>
-      </div>
-      <div class="card reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
-        <h3>Standard SoC interfaces</h3>
-        <p>ARM AMBA AXI4 and AXI4-Lite with a memory-mapped command and interrupt model, plus AXI4 DMA for streaming large layers from DRAM.</p>
-      </div>
-      <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
         <h3>FPGA-to-ASIC contract</h3>
         <p>The compute-macro interface is frozen across the FPGA prototype and the ASIC. Validate on hardware now, migrate to a custom SRAM macro without reworking the logic.</p>
@@ -228,92 +218,23 @@
   </div>
 </section>
 
-<!-- 03 · SPECS -->
-<section id="specs">
+<!-- 04 · FULL DETAIL (gated) -->
+<section id="specs" class="spec-wrap">
   <div class="wrap">
-    <div class="section-rule reveal"><span>03 / Specifications</span><span>Technical summary</span></div>
-    <div class="section-head reveal"><h2>Technical summary</h2></div>
+    <div class="section-rule reveal"><span>04 / Full detail</span><span>Shared under NDA</span></div>
+    <div class="section-head reveal">
+      <h2>The headline specs, and where to get the rest</h2>
+      <p class="lead muted">Enough to judge fit. The full IP package and FPGA-measured results follow under NDA.</p>
+    </div>
     <div class="spec reveal">
       <div class="spec-row"><span class="k">Architecture</span><span class="v">Weight-stationary digital in-memory MAC</span></div>
-      <div class="spec-row"><span class="k">Post-processing</span><span class="v">LUT activation · requant · eltwise · pool</span></div>
-      <div class="spec-row"><span class="k">Compute array</span><span class="v">Configurable, multi-cluster</span></div>
-      <div class="spec-row"><span class="k">Host interface</span><span class="v">AXI4-Lite control + AXI4 DMA</span></div>
       <div class="spec-row"><span class="k">Precision</span><span class="v">INT8 / INT4 / INT2 / INT1, runtime</span></div>
-      <div class="spec-row"><span class="k">FPGA prototype</span><span class="v">Xilinx Zynq UltraScale+ (ZCU102)</span></div>
-      <div class="spec-row"><span class="k">Sparsity</span><span class="v">Input + weight, row/column masking</span></div>
-      <div class="spec-row"><span class="k">ASIC target</span><span class="v">Custom low-voltage SRAM macro</span></div>
-      <div class="spec-row"><span class="k">Efficiency target</span><span class="v">20+ TOPS/W INT8 · 50+ TOPS/W INT4</span></div>
-      <div class="spec-row"><span class="k">Toolchain</span><span class="v">XIM Compiler + Virtual Prototype</span></div>
+      <div class="spec-row"><span class="k">Host interface</span><span class="v">ARM AMBA AXI4 + AXI4-Lite, DMA</span></div>
+      <div class="spec-row"><span class="k">Status</span><span class="v">FPGA-proven (ZCU102) · ASIC efficiency target 20+ TOPS/W</span></div>
     </div>
-  </div>
-</section>
-
-<!-- 04 · USE CASES -->
-<section id="usecases" class="spec-wrap">
-  <div class="wrap">
-    <div class="section-rule reveal"><span>04 / Where it fits</span><span>Always-on edge</span></div>
-    <div class="section-head reveal">
-      <h2>Built for always-on edge inference</h2>
-      <p class="lead muted">It wins where models are small and run continuously, the workloads that drain a battery on a conventional NPU.</p>
-    </div>
-    <div class="uc">
-      <div class="uc-card reveal"><div class="tag">Audio</div><h3>Keyword spotting</h3><p>Wake-word and command detection at sub-mW duty cycles, weights resident on-chip.</p></div>
-      <div class="uc-card reveal"><div class="tag">Sensors</div><h3>Anomaly detection</h3><p>Predictive-maintenance autoencoders on industrial sensor streams, on-device.</p></div>
-      <div class="uc-card reveal"><div class="tag">Vision</div><h3>Compact CNN inference</h3><p>MobileNet-class person, gesture and presence sensing for wearables.</p></div>
-      <div class="uc-card reveal"><div class="tag">Fusion</div><h3>Sensor-hub AI</h3><p>Low-power classification in always-on sensor hubs where compute must sip energy.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 05 · DELIVERABLES -->
-<section id="deliverables">
-  <div class="wrap split">
-    <div class="reveal">
-      <div class="section-rule reveal"><span>05 / What you get</span><span>IP package</span></div>
-      <h2 style="margin:6px 0 24px">A validated accelerator IP package</h2>
-      <ul class="deliv">
-        <li><b>The accelerator RTL</b><span>The synthesisable DIMC core with a configurable array and multi-cluster scaling.</span></li>
-        <li><b>SoC integration wrapper</b><span>AXI4-Lite control, AXI4 DMA, and a command/interrupt model ready for a Zynq-class SoC.</span></li>
-        <li><b>FPGA prototype flow</b><span>A complete packaging, block-design and bitstream flow proven on a ZCU102 board.</span></li>
-        <li><b>Verification suite</b><span>Self-checking testbenches with golden-value regression and board-correlation checks.</span></li>
-        <li><b>XIM Compiler</b><span>The ONNX-to-hardware toolchain so your models deploy onto the IP.</span></li>
-        <li><b>Virtual Prototype</b><span>A SystemC model for early architecture and software work before silicon.</span></li>
-        <li><b>Docs</b><span>The design spec, the ASIC migration contract, and integration guidance.</span></li>
-      </ul>
-    </div>
-    <div class="reveal">
-      <div class="section-rule reveal"><span>06 / How to engage</span><span>Evaluation to silicon</span></div>
-      <h2 style="margin:6px 0 24px">From evaluation to silicon</h2>
-      <div class="steps">
-        <div class="step"><h3>Scope</h3><p>Share your workloads, power budget and process node. We confirm fit and array sizing.</p></div>
-        <div class="step"><h3>Evaluate</h3><p>Run the Virtual Prototype and the FPGA build under NDA. Measure latency and energy on your models.</p></div>
-        <div class="step"><h3>Integrate</h3><p>Wire the IP into your SoC over AXI, deploy models with the compiler, validate on hardware.</p></div>
-        <div class="step"><h3>Tape out</h3><p>License the IP and carry the frozen-interface design into your ASIC with the SRAM compute macro.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 07 · VALIDATION -->
-<section id="performance" class="spec-wrap">
-  <div class="wrap">
-    <div class="section-rule reveal"><span>07 / Validation</span><span>Measured vs. target</span></div>
-    <div class="section-head reveal">
-      <h2>Proven on hardware, clear on what's target</h2>
-      <p class="lead muted">The accelerator runs real models end-to-end on an FPGA, bit-exact against simulation. The efficiency figures are ASIC design intent.</p>
-    </div>
-    <table class="t reveal">
-      <thead><tr><th>What</th><th>Status</th><th>Where</th></tr></thead>
-      <tbody>
-        <tr><td>End-to-end inference, INT8</td><td class="ok">Measured</td><td>ZCU102 FPGA, board = simulation</td></tr>
-        <tr><td>Multi-precision (INT4) deployment</td><td class="ok">Measured</td><td>ZCU102 FPGA, mixed precision</td></tr>
-        <tr><td>Two model families, one bitstream</td><td class="ok">Measured</td><td>Keyword spotting + anomaly detection</td></tr>
-        <tr><td>20+ TOPS/W INT8 efficiency</td><td>Design target</td><td>ASIC, custom SRAM macro</td></tr>
-      </tbody>
-    </table>
-    <div class="note reveal">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
-      <p><b>Measured vs. target, stated plainly.</b> Functional correctness and per-layer timing are measured on the FPGA prototype, where block RAM stands in for the in-memory array. The headline TOPS/W figures are ASIC design intent: they depend on the custom low-voltage SRAM macro and process node, not the FPGA. We share the methodology, the FPGA results and the ASIC modeling under NDA.</p>
+    <div class="note reveal" style="margin-top:24px">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg></div>
+      <p><b>Full specs, IP package and validation data on request.</b> The synthesisable RTL, integration wrapper, FPGA prototype flow, verification suite and the measured-vs-target methodology (FPGA results plus ASIC modeling) are shared under NDA. <a href="#contact" style="color:var(--accent-ink);font-weight:700">Request access</a>.</p>
     </div>
   </div>
 </section>
