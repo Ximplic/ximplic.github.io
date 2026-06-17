@@ -651,13 +651,14 @@ section:not(.hero):not(.cta):not(.adopt){padding:100px 0}
   border-radius:12px;overflow:hidden}
 .eseg{display:flex;align-items:center;padding:0 14px;font-size:11px;font-weight:700;letter-spacing:.05em;
   text-transform:uppercase;white-space:nowrap;min-width:0;overflow:hidden}
-.eseg.move{background:repeating-linear-gradient(45deg,#E6EAF2,#E6EAF2 7px,#eef1f7 7px,#eef1f7 14px);color:var(--muted)}
+.eseg.move{background:#EF5A60;color:#fff}
 .eseg.comp{background:var(--accent);color:#063b2d}
-.etrack .etot{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:700;color:var(--muted)}
-.elegend{display:flex;gap:22px;justify-content:center;margin-top:26px;font-size:12px;color:var(--muted)}
-.elegend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:7px;vertical-align:-1px}
-.elegend .k-move{background:repeating-linear-gradient(45deg,#E6EAF2,#E6EAF2 4px,#eef1f7 4px,#eef1f7 8px);border:1px solid var(--line)}
-.elegend .k-comp{background:var(--accent);border:1px solid var(--accent-ink)}
+.esave{position:absolute;left:0;right:0;text-align:center;top:50%;transform:translateY(-50%);
+  font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);pointer-events:none}
+.elegend{display:flex;gap:26px;justify-content:center;margin-top:26px;font-size:12.5px;color:var(--muted)}
+.elegend i{display:inline-block;width:13px;height:13px;border-radius:3px;margin-right:8px;vertical-align:-2px}
+.elegend .k-move{background:#EF5A60}
+.elegend .k-comp{background:var(--accent)}
 
 /* ===== static figures — no motion (elegant, not animated) ===== */
 .hero::before,.cta::before,.adopt::before,
