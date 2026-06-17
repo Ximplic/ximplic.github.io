@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>XIM DIMC Accelerator IP · Ximplic</title>
-  <meta name="description" content="The XIM Digital In-Memory Computing accelerator IP: weights resident in SRAM, multi-precision compute, AMBA AXI interfaces, FPGA-proven on a path to ASIC.">
+  <title>Core · RTL IP | Ximplic</title>
+  <meta name="description" content="Ximplic Core, the Digital In-Memory Computing RTL IP: weights resident in SRAM, multi-precision compute, AMBA AXI interfaces, FPGA-proven on a path to ASIC.">
   <link rel="icon" href="XIM_Logo/favicon.svg" type="image/svg+xml"/>
   <link rel="icon" type="image/png" sizes="32x32" href="XIM_Logo/favicon/favicon-32.png"/>
   <link rel="apple-touch-icon" href="XIM_Logo/favicon/apple-touch-icon.png"/>
@@ -28,9 +28,9 @@
         <div class="nav-dd-menu">
           <a href="products.html">All products<small>Overview of the platform</small></a>
           <div class="dd-sep"></div>
-          <a href="xim-vp-product.html">Virtual Prototype<small>Evaluate in software</small></a>
-          <a href="xim-compiler-product.html">Compiler<small>Map any ONNX model</small></a>
-          <a href="xim-ip-product.html">RTL IP<small>Synthesisable core</small></a>
+          <a href="xim-vp-product.html">Sim<small>Virtual Prototype</small></a>
+          <a href="xim-compiler-product.html">Forge<small>Compiler</small></a>
+          <a href="xim-ip-product.html">Core<small>RTL IP</small></a>
         </div>
       </div>
       <a href="about.html">About</a>
@@ -45,9 +45,9 @@
     <a href="technology.html">Technology</a>
     <div class="mm-group">Products</div>
     <a class="mm-sub" href="products.html">All products</a>
-    <a class="mm-sub" href="xim-vp-product.html">Virtual Prototype</a>
-    <a class="mm-sub" href="xim-compiler-product.html">Compiler</a>
-    <a class="mm-sub" href="xim-ip-product.html">RTL IP</a>
+    <a class="mm-sub" href="xim-vp-product.html">Sim</a>
+    <a class="mm-sub" href="xim-compiler-product.html">Forge</a>
+    <a class="mm-sub" href="xim-ip-product.html">Core</a>
     <a href="about.html">About</a>
     <a href="news.html">News</a>
     <a href="#contact">Request access</a>
@@ -59,10 +59,10 @@
   <div class="wrap hero-grid">
     <div>
       <div class="eyebrow">RTL IP · Edge AI · In-Memory Computing</div>
-      <h1>XIM DIMC Accelerator<br><span class="accent">In-memory compute IP</span></h1>
+      <h1>Core<br><span class="accent">the in-memory RTL IP</span></h1>
       <p class="lead">A Digital In-Memory Computing neural accelerator that keeps weights resident in the SRAM array and computes in place, cutting the weight-movement energy that dominates conventional NPUs. FPGA-proven today, on a path to ASIC.</p>
       <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">License the IP ↗</a>
+        <a href="#contact" class="btn btn-primary">License Core ↗</a>
         <a href="#overview" class="btn btn-light">How it works</a>
       </div>
       <div class="hero-meta">
@@ -113,12 +113,12 @@
     <div class="section-rule reveal"><span>What it is</span></div>
     <div class="section-head reveal">
       <h2>Compute where the data already lives</h2>
-      <p class="lead muted">Conventional accelerators burn most of their energy moving weights between memory and compute. The XIM accelerator keeps weights pinned inside the SRAM array and does the multiply-accumulate in place. On always-on models, weight movement stops being the dominant cost.</p>
+      <p class="lead muted">Conventional accelerators burn most of their energy moving weights between memory and compute. Ximplic Core keeps weights pinned inside the SRAM array and does the multiply-accumulate in place. On always-on models, weight movement stops being the dominant cost.</p>
     </div>
     <div class="split">
       <div class="reveal">
         <p style="font-size:16px;color:var(--ink-2)">A tiled, weight-stationary in-memory engine. Each cluster holds a MAC array; the post-processing (scaling, activation, requantization, residual add, pooling) sits outside the compute macro so the datapath stays flexible across edge models. Precision is configurable at runtime from INT8 down to INT1.</p>
-        <p style="font-size:16px;color:var(--ink-2)">The compute-macro interface is frozen between the FPGA prototype and the ASIC. The same IP runs today on an FPGA, with block RAM standing in for the array, and migrates to a custom low-voltage SRAM macro at silicon, with no change to the surrounding logic. De-risk on hardware now and carry the validated design into the end product.</p>
+        <p style="font-size:16px;color:var(--ink-2)">The compute-macro interface is frozen between the FPGA prototype and the ASIC. Ximplic Core runs today on an FPGA, with block RAM standing in for the array, and migrates to a custom low-voltage SRAM macro at silicon, with no change to the surrounding logic. De-risk on hardware now and carry the validated design into the end product.</p>
       </div>
       <div class="panel reveal">
         <h3>The datapath, per cluster</h3>
@@ -182,18 +182,18 @@
     <div class="section-rule reveal"><span>Integration</span></div>
     <div class="section-head reveal">
       <h2>Two ways it integrates into the SoC</h2>
-      <p class="lead muted">From a low-risk drop-in accelerator to an in-place memory upgrade. Option A is available and FPGA-tested today. Option B is on the way.</p>
+      <p class="lead muted">From a low-risk drop-in to an in-place memory upgrade. Option A is available and FPGA-tested today. Option B is on the way.</p>
     </div>
     <div class="integ">
       <div class="ic available reveal">
         <div class="ic-top"><span class="ic-opt">Option A</span><span class="ic-status live">Available · tested</span></div>
         <h3>External Accelerator</h3>
-        <svg class="idia" viewBox="0 0 460 190" role="img" aria-label="XIM IP connected to a host SoC over an AXI bus">
+        <svg class="idia" viewBox="0 0 460 190" role="img" aria-label="Core connected to a host SoC over an AXI bus">
           <rect class="ibox" x="34" y="58" width="160" height="74" rx="12"/>
           <text class="il" x="114" y="92">Host SoC</text>
           <text class="is" x="114" y="112">unchanged</text>
           <rect class="ibox x" x="266" y="58" width="160" height="74" rx="12"/>
-          <text class="il x" x="346" y="92">XIM IP</text>
+          <text class="il x" x="346" y="92">Core</text>
           <text class="is" x="346" y="112">drop-in block</text>
           <path class="iwire" d="M194 95 H256"/>
           <polygon class="iarr" points="266,95 253,88 253,102"/>
@@ -245,7 +245,7 @@
       <div class="spec-row"><span class="k">FPGA prototype</span><span class="v">Proven end to end on FPGA</span></div>
       <div class="spec-row"><span class="k">Sparsity</span><span class="v">Input + weight, row/column masking</span></div>
       <div class="spec-row"><span class="k">ASIC target</span><span class="v">Custom low-voltage SRAM macro</span></div>
-      <div class="spec-row"><span class="k">Toolchain</span><span class="v">XIM Compiler + Virtual Prototype</span></div>
+      <div class="spec-row"><span class="k">Toolchain</span><span class="v">Forge + Sim</span></div>
     </div>
   </div>
 </section>
@@ -272,14 +272,14 @@
   <div class="wrap split">
     <div class="reveal">
       <div class="section-rule reveal"><span>What it includes</span></div>
-      <h2 style="margin:6px 0 24px">A validated accelerator IP package</h2>
+      <h2 style="margin:6px 0 24px">A validated Core IP package</h2>
       <ul class="deliv">
-        <li><b>The accelerator RTL</b><span>Synthesisable DIMC core with configurable, multi-cluster array.</span></li>
+        <li><b>Core RTL</b><span>Synthesisable DIMC core with configurable, multi-cluster array.</span></li>
         <li><b>SoC integration wrapper</b><span>AXI4-Lite control, AXI4 DMA, and a command/interrupt model for the host SoC.</span></li>
         <li><b>FPGA prototype flow</b><span>Packaging, block-design and bitstream flow proven on FPGA.</span></li>
         <li><b>Verification suite</b><span>Self-checking testbenches with golden-value and board-correlation checks.</span></li>
-        <li><b>XIM Compiler</b><span>ONNX-to-hardware toolchain that deploys any model onto the IP.</span></li>
-        <li><b>Virtual Prototype</b><span>SystemC model for early architecture and software work.</span></li>
+        <li><b>Forge</b><span>The Compiler: ONNX-to-hardware toolchain that deploys any model onto Core.</span></li>
+        <li><b>Sim</b><span>The Virtual Prototype: SystemC model for early architecture and software work.</span></li>
         <li><b>Docs</b><span>Design spec, ASIC migration contract, and integration guidance.</span></li>
       </ul>
     </div>
@@ -290,7 +290,7 @@
         <div class="step"><h3>Scope</h3><p>Share workloads and power budget; we confirm fit and array sizing.</p></div>
         <div class="step"><h3>Evaluate</h3><p>Measure latency and energy on target workloads via the Virtual Prototype and FPGA.</p></div>
         <div class="step"><h3>Integrate</h3><p>Wires into the SoC over AXI and deploys models with the compiler.</p></div>
-        <div class="step"><h3>Tape out</h3><p>License the IP and carry the frozen-interface design into the target ASIC.</p></div>
+        <div class="step"><h3>Tape out</h3><p>License Ximplic Core and carry the frozen-interface design into the target ASIC.</p></div>
       </div>
     </div>
   </div>
@@ -302,7 +302,7 @@
     <div class="section-rule reveal"><span>Validation</span></div>
     <div class="section-head reveal">
       <h2>Proven on FPGA</h2>
-      <p class="lead muted">The accelerator runs real models end-to-end on an FPGA, bit-exact against simulation.</p>
+      <p class="lead muted">Ximplic Core runs real models end-to-end on an FPGA, bit-exact against simulation.</p>
     </div>
     <table class="t reveal">
       <thead><tr><th>What</th><th>Status</th><th>Where</th></tr></thead>
@@ -324,10 +324,10 @@
   <div class="wrap cta-in">
     <span class="pill">Partner with Ximplic</span>
     <h2>Designing an always-on AI SoC?</h2>
-    <p>Ready to license the accelerator into an always-on AI SoC? Let's set up an evaluation tailored to the target workloads and power budget.</p>
+    <p>Ready to license Ximplic Core into an always-on AI SoC? Let's set up an evaluation tailored to the target workloads and power budget.</p>
     <div class="cta-row">
-      <a href="mailto:info@ximplic.com?subject=XIM%20DIMC%20Accelerator%20IP%20enquiry" class="btn btn-primary">Contact us ↗</a>
-      <a href="mailto:info@ximplic.com?subject=XIM%20accelerator%20IP%20evaluation%20request" class="btn btn-light">Request an evaluation</a>
+      <a href="mailto:info@ximplic.com?subject=Core%20RTL%20IP%20enquiry" class="btn btn-primary">Contact us ↗</a>
+      <a href="mailto:info@ximplic.com?subject=Core%20RTL%20IP%20evaluation%20request" class="btn btn-light">Request an evaluation</a>
     </div>
     <div class="contact-meta">Email <a href="mailto:info@ximplic.com">info@ximplic.com</a> &nbsp;·&nbsp; Groningen, The Netherlands</div>
   </div>
@@ -344,9 +344,9 @@
       <div class="foot-col">
         <h4>Products</h4>
         <a href="products.html">All products</a>
-        <a href="xim-vp-product.html">Virtual Prototype</a>
-        <a href="xim-compiler-product.html">Compiler</a>
-        <a href="xim-ip-product.html">RTL IP</a>
+        <a href="xim-vp-product.html">Sim</a>
+        <a href="xim-compiler-product.html">Forge</a>
+        <a href="xim-ip-product.html">Core</a>
       </div>
       <div class="foot-col">
         <h4>Company</h4>
