@@ -33,8 +33,17 @@
           <a href="xim-ip-product.html">Xengra<small>RTL IP</small></a>
         </div>
       </div>
-      <a href="about.html">About</a>
-      <a href="news.html">News</a>
+      <div class="nav-dd">
+        <button class="nav-dd-btn" data-dd="about" aria-expanded="false" aria-haspopup="true">About
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dd-menu">
+          <a href="about.html">Company<small>Team &amp; story</small></a>
+          <a href="about.html#partners">Partners<small>Backers &amp; institutions</small></a>
+          <a href="news.html">News<small>Latest updates</small></a>
+          <a href="events.html">Event<small>Talks &amp; meetups</small></a>
+        </div>
+      </div>
     </nav>
     <div class="nav-actions">
       <a href="#contact" class="btn btn-primary">Request evaluation</a>
@@ -48,8 +57,11 @@
     <a class="mm-sub" href="xim-vp-product.html">Vyzora</a>
     <a class="mm-sub" href="xim-compiler-product.html">Vextyl</a>
     <a class="mm-sub" href="xim-ip-product.html">Xengra</a>
-    <a href="about.html">About</a>
-    <a href="news.html">News</a>
+    <div class="mm-group">About</div>
+    <a class="mm-sub" href="about.html">Company</a>
+    <a class="mm-sub" href="about.html#partners">Partners</a>
+    <a class="mm-sub" href="news.html">News</a>
+    <a class="mm-sub" href="events.html">Event</a>
     <a href="#contact">Request evaluation</a>
   </div>
 </header>
@@ -138,6 +150,7 @@
     <a href="#usecases">Applications</a>
     <a href="#deliverables">What's included</a>
     <a href="#performance">Validation</a>
+    <a href="#faq">FAQ</a>
   </div>
 </nav>
 
@@ -305,6 +318,39 @@ xim-&gt;get_compute_tops_per_watt();</div>
   </div>
 </section>
 
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-rule reveal"><span>Questions</span></div>
+    <div class="section-head reveal">
+      <h2>Frequently asked</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-row open">
+        <div class="faq-q">What exactly is available to evaluate?<span class="acc-pm">+</span></div>
+        <div class="faq-a"><p>Ximplic Vyzora: a SystemC TLM-2.0 model of the accelerator. Plug it into the SoC over AXI, run any model, and measure latency and energy. No hardware, no proprietary EDA, zero licence cost.</p></div>
+      </div>
+      <div class="faq-row">
+        <div class="faq-q">Is special hardware or a toolchain required?<span class="acc-pm">+</span></div>
+        <div class="faq-a"><p>No. Ximplic Vyzora runs in pure software on open SystemC. Evaluation happens entirely on standard machines before committing to any hardware.</p></div>
+      </div>
+      <div class="faq-row">
+        <div class="faq-q">Which models can it run?<span class="acc-pm">+</span></div>
+        <div class="faq-a"><p>Any standard model. Ximplic Vextyl maps an ONNX or framework model onto the accelerator and targets both Ximplic Vyzora and the RTL, so what is measured in software matches what runs on the RTL.</p></div>
+      </div>
+      <div class="faq-row">
+        <div class="faq-q">How is the performance validated?<span class="acc-pm">+</span></div>
+        <div class="faq-a"><p>The model is correlated to RTL co-simulation and calibrated against FPGA measurement. We're transparent about what's measured versus projected, and share the full methodology under NDA. The IP is FPGA-proven; it has not yet been taped out to silicon.</p></div>
+      </div>
+      <div class="faq-row">
+        <div class="faq-q">How do we move from evaluation to integration?<span class="acc-pm">+</span></div>
+        <div class="faq-a"><p>Evaluate with Ximplic Vyzora, then license Ximplic Xengra and integrate it into the SoC with our support. The same validated design carries from software to RTL, into the target silicon.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- CTA / CONTACT -->
 <section id="contact" class="cta">
   <div class="wrap cta-in">
@@ -340,6 +386,7 @@ xim-&gt;get_compute_tops_per_watt();</div>
         <h4>Company</h4>
         <a href="about.html">About</a>
         <a href="news.html">News</a>
+        <a href="events.html">Events</a>
         <a href="index.html#contact">Contact</a>
       </div>
       <div class="foot-col">
