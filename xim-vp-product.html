@@ -134,8 +134,10 @@
   <div class="wrap subnav-in">
     <a href="#overview">Overview</a>
     <a href="#features">Capabilities</a>
-    <a href="#specs">Details</a>
-    <a href="#contact">Contact</a>
+    <a href="#specs">Specifications</a>
+    <a href="#usecases">Applications</a>
+    <a href="#deliverables">What you get</a>
+    <a href="#performance">Validation</a>
   </div>
 </nav>
 
@@ -199,9 +201,19 @@ xim-&gt;get_compute_tops_per_watt();</div>
         <p>The compute-cycle model is correlated to RTL co-simulation (R² = 1.0000 on the INT8/INT4 dense path) and FPGA-board-calibrated end-to-end on DS-CNN-L to within ±5% per layer.</p>
       </div>
       <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
+        <h3>Standard SoC interfaces</h3>
+        <p>ARM AMBA AXI4 + AXI4-Lite (TLM-2.0 kit verified), an IEEE 1685-2014 IP-XACT register map as the single source of truth, and a memory-mapped command and interrupt model.</p>
+      </div>
+      <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V7z"/></svg></div>
         <h3>Energy &amp; DVFS modeling</h3>
         <p>Dynamic and leakage energy with power-gating and DVFS sweeps. Quantify TOPS/W and battery life across operating points.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v6H4zM4 14h16v6H4z"/></svg></div>
+        <h3>Drop-in integration</h3>
+        <p>A shim template, a RISC-V reference SoC, a benchmarking harness and 8 callback hooks. Wire the IP into your platform in days, not weeks.</p>
       </div>
       <div class="card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-4 4 3 4-6"/></svg></div>
@@ -212,23 +224,92 @@ xim-&gt;get_compute_tops_per_watt();</div>
   </div>
 </section>
 
-<!-- 03 · FULL DETAIL (gated) -->
-<section id="specs" class="spec-wrap">
+<!-- SPECS -->
+<section id="specs">
   <div class="wrap">
-    <div class="section-rule reveal"><span>Full detail</span></div>
-    <div class="section-head reveal">
-      <h2>The headline specs, and where to get the rest</h2>
-      <p class="lead muted">Enough to judge fit. Full specifications, the integration kit and FPGA-validated data follow under NDA.</p>
-    </div>
+    <div class="section-rule reveal"><span>Specifications</span></div>
+    <div class="section-head reveal"><h2>Technical summary</h2></div>
     <div class="spec reveal">
       <div class="spec-row"><span class="k">Model type</span><span class="v">Cycle-approximate SystemC TLM-2.0</span></div>
+      <div class="spec-row"><span class="k">Scaling</span><span class="v">Configurable, parallel</span></div>
+      <div class="spec-row"><span class="k">Host interface</span><span class="v">AXI4-Lite control + AXI4 DMA</span></div>
+      <div class="spec-row"><span class="k">Integrator API</span><span class="v">8 callback hooks + probe getters</span></div>
+      <div class="spec-row"><span class="k">Compute array</span><span class="v">Configurable, in-memory</span></div>
       <div class="spec-row"><span class="k">Precision</span><span class="v">INT8 / INT4 / INT2 / INT1</span></div>
-      <div class="spec-row"><span class="k">Host interface</span><span class="v">ARM AMBA AXI4 + AXI4-Lite</span></div>
-      <div class="spec-row"><span class="k">Validation</span><span class="v">RTL-correlated, FPGA-board calibrated (ZCU102)</span></div>
+      <div class="spec-row"><span class="k">Register map</span><span class="v">IEEE 1685-2014 IP-XACT XML</span></div>
+      <div class="spec-row"><span class="k">Timing profiles</span><span class="v">FPGA-board + ASIC design-intent</span></div>
+      <div class="spec-row"><span class="k">Toolchain</span><span class="v">Open SystemC, no proprietary EDA</span></div>
+      <div class="spec-row"><span class="k">Validation</span><span class="v">RTL co-sim + FPGA-board calibration</span></div>
     </div>
-    <div class="note reveal" style="margin-top:24px">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg></div>
-      <p><b>Specs, integration kit and validation data on request.</b> The full register map, the integration kit (reference SoC, AXI wrappers, workload runner, test suites) and the FPGA-calibration methodology with its validity envelope are shared under NDA. <a href="#contact" style="color:var(--accent-ink);font-weight:700">Request access</a>.</p>
+  </div>
+</section>
+
+<!-- APPLICATIONS -->
+<section id="usecases" class="spec-wrap">
+  <div class="wrap">
+    <div class="section-rule reveal"><span>Where it fits</span></div>
+    <div class="section-head reveal">
+      <h2>Built for always-on edge inference</h2>
+      <p class="lead muted">In-memory computing wins when models are small and run all the time, exactly the workloads that flatten a battery on a conventional NPU.</p>
+    </div>
+    <div class="uc">
+      <div class="uc-card reveal"><div class="tag">Audio</div><h3>Keyword spotting</h3><p>Always-listening wake-word and command detection (DS-CNN / MLPerf Tiny KWS) at sub-mW duty cycles.</p></div>
+      <div class="uc-card reveal"><div class="tag">Sensors</div><h3>Anomaly detection</h3><p>Predictive-maintenance autoencoders on industrial and IoT sensor streams, on-device and continuous.</p></div>
+      <div class="uc-card reveal"><div class="tag">Vision</div><h3>Compact CNN inference</h3><p>MobileNet / EfficientNet-class person detection, gesture and presence sensing for wearables and hearables.</p></div>
+      <div class="uc-card reveal"><div class="tag">Fusion</div><h3>Sensor-hub AI</h3><p>Low-power classification and fusion in always-on sensor hubs where weights stay resident on-chip.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section id="deliverables">
+  <div class="wrap split">
+    <div class="reveal">
+      <div class="section-rule reveal"><span>What you get</span></div>
+      <h2 style="margin:6px 0 24px">A complete integration kit</h2>
+      <ul class="deliv">
+        <li><b>The accelerator core</b><span>SystemC IP-block model + a static library to link into your SoC VP.</span></li>
+        <li><b>AMBA reference wrappers</b><span>AXI4 slave/master/memory/monitor verified against the ARM AMBA TLM-2.0 kit.</span></li>
+        <li><b>Integration shim &amp; reference SoC</b><span>Drop-in template plus a RISC-V reference platform showing end-to-end integration.</span></li>
+        <li><b>Workload runner &amp; benchmarks</b><span>20+ model builders, board-faithful streams, HTML/CSV performance reports.</span></li>
+        <li><b>IP-XACT register description</b><span>IEEE 1685-2014 XML, drive your driver and documentation from one source.</span></li>
+        <li><b>Calibration &amp; test suites</b><span>RTL co-sim, bank-macro, AXI-compliance and golden-value regression tests.</span></li>
+        <li><b>Integration guide &amp; onboarding</b><span>Step-by-step docs, an AXI protocol BVI, and a product model description.</span></li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="section-rule reveal"><span>How to engage</span></div>
+      <h2 style="margin:6px 0 24px">From evaluation to design-in</h2>
+      <div class="steps">
+        <div class="step"><h3>Scope</h3><p>Tell us your target workloads, power budget, and SoC platform. We confirm fit.</p></div>
+        <div class="step"><h3>Evaluate</h3><p>Receive the VP under NDA. Run your models, measure latency and energy, explore configurations.</p></div>
+        <div class="step"><h3>Integrate</h3><p>Plug the accelerator into your SystemC platform via the shim and AXI sockets, with our support.</p></div>
+        <div class="step"><h3>Design-in</h3><p>License the XIM IP and move toward RTL with a validated software and architecture path.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALIDATION -->
+<section id="performance" class="spec-wrap">
+  <div class="wrap">
+    <div class="section-rule reveal"><span>Validation</span></div>
+    <div class="section-head reveal">
+      <h2>Numbers you can trust</h2>
+      <p class="lead muted">Validated against RTL co-simulation and FPGA-board measurement.</p>
+    </div>
+    <table class="t reveal">
+      <thead><tr><th>Configuration</th><th>Precision</th><th>VP cycles</th><th>RTL cycles</th><th>Δ</th></tr></thead>
+      <tbody>
+        <tr><td>256×256 dense</td><td>INT8</td><td class="num">2,574</td><td class="num">2,573</td><td class="ok">+0.0%</td></tr>
+        <tr><td>256×256 dense</td><td>INT4</td><td class="num">1,542</td><td class="num">1,545</td><td class="ok">−0.2%</td></tr>
+        <tr><td>128×128 dense</td><td>INT8</td><td class="num">1,294</td><td class="num">1,293</td><td class="ok">+0.1%</td></tr>
+        <tr><td>64×64 · 50% sparse</td><td>INT8</td><td class="num">398</td><td class="num">397</td><td class="ok">+0.3%</td></tr>
+      </tbody>
+    </table>
+    <div class="note reveal">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
+      <p><b>Modeling transparency.</b> The VP is FPGA-board-calibrated end-to-end for the DS-CNN-L reference workload. Other models (MobileNet, ResNet, transformers, LLMs) are <strong>MAC-honest analytic projections</strong> for relative comparison and architecture exploration, and reports label them as estimates. We share the full calibration methodology and validity envelope under NDA so your team can judge fit for its own use case.</p>
     </div>
   </div>
 </section>
