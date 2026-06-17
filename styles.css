@@ -641,22 +641,23 @@ section:not(.hero):not(.cta):not(.adopt){padding:100px 0}
 /* ===== technology page figures ===== */
 .fig{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:34px}
 .figcap{font-size:12.5px;color:var(--muted);margin-top:16px;text-align:center;letter-spacing:.02em}
-.ebars{display:flex;gap:56px;justify-content:center;align-items:flex-end;padding:8px 0 4px}
-.ebar{width:120px;text-align:center}
-.ebar .col{display:flex;flex-direction:column;border-radius:8px 8px 0 0;overflow:hidden;border:1px solid var(--line);border-bottom:0}
-.ebar .seg{display:grid;place-items:center;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
-.ebar .move{background:repeating-linear-gradient(45deg,#E6EAF2,#E6EAF2 6px,#eef1f7 6px,#eef1f7 12px);color:var(--muted)}
-.ebar .comp{background:var(--accent-soft);color:var(--accent-ink)}
-.ebar .lbl{margin-top:12px;font-weight:700;font-size:13px;color:var(--ink)}
-.ebar .sub{font-size:11px;color:var(--muted)}
-.ebar.conv .move{height:188px}
-.ebar.conv .comp{height:46px}
-.ebar.xim .move{height:26px}
-.ebar.xim .comp{height:46px}
-.elegend{display:flex;gap:22px;justify-content:center;margin-top:22px;font-size:12px;color:var(--muted)}
+/* horizontal energy comparison */
+.energy{display:flex;flex-direction:column;gap:30px;max-width:760px;margin:0 auto}
+.erow{}
+.etop{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:11px}
+.ename{font-weight:700;font-size:15.5px;color:var(--ink)}
+.etag{font-size:13px;color:var(--muted)}
+.etrack{position:relative;display:flex;height:52px;width:100%;background:#fff;border:1px solid var(--line);
+  border-radius:12px;overflow:hidden}
+.eseg{display:flex;align-items:center;padding:0 14px;font-size:11px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;white-space:nowrap;min-width:0;overflow:hidden}
+.eseg.move{background:repeating-linear-gradient(45deg,#E6EAF2,#E6EAF2 7px,#eef1f7 7px,#eef1f7 14px);color:var(--muted)}
+.eseg.comp{background:var(--accent);color:#063b2d}
+.etrack .etot{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:700;color:var(--muted)}
+.elegend{display:flex;gap:22px;justify-content:center;margin-top:26px;font-size:12px;color:var(--muted)}
 .elegend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:7px;vertical-align:-1px}
 .elegend .k-move{background:repeating-linear-gradient(45deg,#E6EAF2,#E6EAF2 4px,#eef1f7 4px,#eef1f7 8px);border:1px solid var(--line)}
-.elegend .k-comp{background:var(--accent-soft);border:1px solid rgba(19,211,163,.4)}
+.elegend .k-comp{background:var(--accent);border:1px solid var(--accent-ink)}
 
 /* ===== static figures — no motion (elegant, not animated) ===== */
 .hero::before,.cta::before,.adopt::before,

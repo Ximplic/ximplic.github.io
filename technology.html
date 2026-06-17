@@ -141,19 +141,17 @@
     <div class="section-rule reveal"><span>The payoff</span></div>
     <div class="section-head reveal">
       <h2>Where the energy goes</h2>
-      <p class="lead muted">The computation costs about the same in either design. The difference is the movement around it, which computing in memory largely removes.</p>
+      <p class="lead muted">The computation itself costs about the same either way. The difference is the data movement around it. Remove the movement and the total energy drops sharply.</p>
     </div>
     <div class="fig reveal">
-      <div class="ebars">
-        <div class="ebar conv">
-          <div class="col"><div class="seg move">Moving data</div><div class="seg comp">Compute</div></div>
-          <div class="lbl">Conventional</div>
-          <div class="sub">energy dominated by movement</div>
+      <div class="energy">
+        <div class="erow">
+          <div class="etop"><span class="ename">Conventional</span><span class="etag">most of the energy moves data</span></div>
+          <div class="etrack"><div class="eseg move" style="width:82%">Moving data</div><div class="eseg comp" style="width:18%">Compute</div></div>
         </div>
-        <div class="ebar xim">
-          <div class="col"><div class="seg move">Movement</div><div class="seg comp">Compute</div></div>
-          <div class="lbl">Ximplic</div>
-          <div class="sub">energy tracks useful work</div>
+        <div class="erow">
+          <div class="etop"><span class="ename">Ximplic</span><span class="etag">energy goes to useful work</span></div>
+          <div class="etrack"><div class="eseg move" style="width:5%"></div><div class="eseg comp" style="width:18%">Compute</div></div>
         </div>
       </div>
       <div class="elegend"><span><i class="k-comp"></i>Compute</span><span><i class="k-move"></i>Moving data</span></div>
