@@ -966,3 +966,15 @@ html{background:#06080C}
   border-color:rgba(255,255,255,.18);
   box-shadow:0 26px 60px -28px rgba(0,0,0,.75)}
 .v2 .hero-meta .dot{background:rgba(255,255,255,.32)}
+
+/* restore hero chip to a visible (muted-teal) hero object */
+.v2 .hero-visual{opacity:1}
+.v2 .hero-fig .fig-ring{stroke:rgba(92,179,161,.18)}
+.v2 .hero-fig .fig-glow{fill:rgba(92,179,161,.40)}
+.v2 .hero-fig .cell{fill:rgba(255,255,255,.10)!important}
+.v2 .hero-fig .cell.on{fill:rgba(92,179,161,.72)!important}
+.v2 .hero-fig .cell.core{fill:#5CB3A1!important}
+.v2 .hero-fig .chip-body{stroke:rgba(255,255,255,.20)}
+.v2 .hero-fig .chip-inner{stroke:rgba(255,255,255,.10)}
+.v2 .hero-fig .pin{stroke:rgba(255,255,255,.24)}
+.v2 .hero-fig .pad{fill:#5CB3A1}
