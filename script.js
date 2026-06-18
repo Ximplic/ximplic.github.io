@@ -171,4 +171,14 @@
     moveBg();
   }
 
+
+  /* product subnav: glassy when pinned */
+  var subBar=document.querySelector('.subnav');
+  if(subBar){
+    var subTick=false;
+    var chkStuck=function(){ subBar.classList.toggle('stuck', subBar.getBoundingClientRect().top<=80); subTick=false; };
+    window.addEventListener('scroll',function(){ if(!subTick){requestAnimationFrame(chkStuck);subTick=true;} },{passive:true});
+    chkStuck();
+  }
+
 })();

@@ -931,3 +931,10 @@ html{background:#06080C}
 .v2 .adopt{background:#080B12}          /* solid band */
 .v2 .cta{background:#070A0F}            /* solid band */
 .v2 footer.site{background:#06080C}     /* solid ground */
+
+/* product subnav: seamless at rest, glassy when pinned */
+.v2 .subnav{background:transparent;border-top-color:transparent;border-bottom-color:transparent;
+  transition:background .3s ease,backdrop-filter .3s ease,border-color .3s ease,box-shadow .3s ease}
+.v2 .subnav.stuck{background:rgba(10,14,22,.62);
+  backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 12px 32px -20px rgba(0,0,0,.7)}
