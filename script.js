@@ -197,34 +197,40 @@
   }
 
 
-  /* animated aurora backdrop (canvas) */
+  /* animated backdrop (canvas): soft glow + flowing dotted particle waves */
   var fx=document.querySelector('.bg-fx');
   if(fx && fx.getContext && !reduce){
     var ctx=fx.getContext('2d');
     var DPR=Math.min(window.devicePixelRatio||1,1.5), W=0, H=0;
     var sizeFx=function(){ W=fx.clientWidth; H=fx.clientHeight; fx.width=Math.max(1,W*DPR); fx.height=Math.max(1,H*DPR); ctx.setTransform(DPR,0,0,DPR,0,0); };
     sizeFx(); window.addEventListener('resize',sizeFx,{passive:true});
-    var blobs=[
-      {x:.80,y:.10,r:.46,c:'92,179,161',a:.11,sx:0.7,sy:0.5,p:0.0},
-      {x:.18,y:.66,r:.52,c:'92,179,161',a:.07,sx:0.5,sy:0.8,p:2.1},
-      {x:.52,y:1.04,r:.58,c:'74,150,150',a:.06,sx:0.6,sy:0.4,p:4.2}
-    ];
-    var last=0;
+    var LINES=5, last=0;
     var frame=function(ts){
       requestAnimationFrame(frame);
       if(document.hidden || ts-last<33) return; last=ts;
       var s=ts/1000;
       ctx.clearRect(0,0,W,H);
-      ctx.globalCompositeOperation='lighter';
-      for(var i=0;i<blobs.length;i++){
-        var b=blobs[i];
-        var cx=(b.x+Math.sin(s*0.05*b.sx+b.p)*0.07)*W;
-        var cy=(b.y+Math.cos(s*0.05*b.sy+b.p)*0.07)*H;
-        var rad=b.r*Math.max(W,H)*0.9;
-        var g=ctx.createRadialGradient(cx,cy,0,cx,cy,rad);
-        g.addColorStop(0,'rgba('+b.c+','+b.a+')');
-        g.addColorStop(1,'rgba('+b.c+',0)');
-        ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,rad,0,6.2832); ctx.fill();
+      /* one soft glow for depth */
+      var gx=W*0.7, gy=H*0.18, gr=Math.max(W,H)*0.5;
+      var g=ctx.createRadialGradient(gx,gy,0,gx,gy,gr);
+      g.addColorStop(0,'rgba(92,179,161,.07)'); g.addColorStop(1,'rgba(92,179,161,0)');
+      ctx.globalCompositeOperation='lighter'; ctx.fillStyle=g;
+      ctx.beginPath(); ctx.arc(gx,gy,gr,0,6.2832); ctx.fill();
+      /* flowing dotted waves, centered band, fading at edges */
+      var step=Math.max(13, W/120), baseY=H*0.6;
+      for(var l=0;l<LINES;l++){
+        var amp=H*0.045*(1+l*0.18);
+        var by=baseY+(l-(LINES-1)/2)*H*0.022;
+        var freq=(1.1+l*0.18)/W*6.2832;
+        var ph=s*0.22+l*0.7;
+        for(var x=0;x<=W;x+=step){
+          var y=by+Math.sin(x*freq+ph)*amp+Math.sin(x*freq*0.5-ph*0.7)*amp*0.45;
+          var d=Math.abs(x-W*0.5)/(W*0.5);
+          var a=(1-d)*(1-d)*0.55*(0.6+0.4*Math.sin(s*0.6+l));
+          if(a<0.02) continue;
+          ctx.beginPath(); ctx.arc(x,y,1.4,0,6.2832);
+          ctx.fillStyle='rgba(92,179,161,'+a.toFixed(3)+')'; ctx.fill();
+        }
       }
     };
     requestAnimationFrame(frame);
