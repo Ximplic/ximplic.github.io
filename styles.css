@@ -978,3 +978,10 @@ html{background:#06080C}
 .v2 .hero-fig .chip-inner{stroke:rgba(255,255,255,.10)}
 .v2 .hero-fig .pin{stroke:rgba(255,255,255,.24)}
 .v2 .hero-fig .pad{fill:#5CB3A1}
+
+/* fix: LinkedIn icon was white-on-white under v2; partner logos (Cognigron jpeg) broke under invert */
+.v2 .linkedin-link{background:rgba(255,255,255,.06);color:#9FD8C8;border:1px solid rgba(255,255,255,.14)}
+.v2 .linkedin-link:hover{background:var(--accent);color:#06241c;border-color:transparent}
+.v2 .partner-card{background:#EEF2F7;border-color:rgba(255,255,255,.08)}
+.v2 .partner-logo{filter:grayscale(1);opacity:.8}
+.v2 .partner-card:hover .partner-logo{filter:grayscale(0);opacity:1}
