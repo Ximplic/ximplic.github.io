@@ -925,3 +925,9 @@ html{background:#06080C}
 .v2 .cta,.v2 .adopt{background:rgba(9,12,18,.55)}
 .v2 .spec-wrap{background:rgba(255,255,255,.012)}
 .v2 footer.site{background:rgba(6,8,12,.86)}
+
+/* alternate: solid focus sections vs backdrop sections */
+.v2 .spec-wrap{background:#070A0F}      /* solid: cards/specs get full focus */
+.v2 .adopt{background:#080B12}          /* solid band */
+.v2 .cta{background:#070A0F}            /* solid band */
+.v2 footer.site{background:#06080C}     /* solid ground */
