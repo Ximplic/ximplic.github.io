@@ -86,7 +86,58 @@
     </div>
 
     <div class="hero-visual su">
-      <canvas class="hero-core" role="img" aria-label="In-memory compute core refracting a beam of energy into efficient inference"></canvas>
+      <svg class="hero-fig" viewBox="0 0 480 440" role="img" aria-label="Abstract in-memory AI compute chip">
+        <defs>
+          <radialGradient id="fglow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#2BE8A5" stop-opacity=".55"/>
+            <stop offset="100%" stop-color="#2BE8A5" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- floor glow -->
+        <ellipse class="fig-glow" cx="240" cy="346" rx="150" ry="26" fill="url(#fglow)"/>
+        <!-- brand rings -->
+        <circle class="fig-ring" cx="240" cy="190" r="158"/>
+        <circle class="fig-ring" cx="240" cy="190" r="208" opacity=".6"/>
+        <!-- floating chip -->
+        <g class="fig-chip">
+          <!-- pins -->
+          <path class="pin" d="M240 90 V64"/><circle class="pad" cx="240" cy="60" r="4"/>
+          <path class="pin" d="M240 290 V316"/><circle class="pad" cx="240" cy="320" r="4"/>
+          <path class="pin" d="M140 190 H114"/><circle class="pad" cx="110" cy="190" r="4"/>
+          <path class="pin" d="M340 190 H366"/><circle class="pad" cx="370" cy="190" r="4"/>
+          <!-- body -->
+          <rect class="chip-body" x="140" y="90" width="200" height="200" rx="22"/>
+          <rect class="chip-inner" x="152" y="102" width="176" height="176" rx="16"/>
+          <!-- compute array (abstract) -->
+          <g>
+            <rect class="cell on" x="165" y="115" width="24" height="24" rx="5"/>
+            <rect class="cell"    x="195" y="115" width="24" height="24" rx="5"/>
+            <rect class="cell on" x="225" y="115" width="24" height="24" rx="5"/>
+            <rect class="cell"    x="255" y="115" width="24" height="24" rx="5"/>
+            <rect class="cell on" x="285" y="115" width="24" height="24" rx="5"/>
+            <rect class="cell"    x="165" y="145" width="24" height="24" rx="5"/>
+            <rect class="cell on" x="195" y="145" width="24" height="24" rx="5"/>
+            <rect class="cell"    x="225" y="145" width="24" height="24" rx="5"/>
+            <rect class="cell on" x="255" y="145" width="24" height="24" rx="5"/>
+            <rect class="cell"    x="285" y="145" width="24" height="24" rx="5"/>
+            <rect class="cell on" x="165" y="175" width="24" height="24" rx="5"/>
+            <rect class="cell"    x="195" y="175" width="24" height="24" rx="5"/>
+            <rect class="cell core" x="225" y="175" width="24" height="24" rx="5"/>
+            <rect class="cell"    x="255" y="175" width="24" height="24" rx="5"/>
+            <rect class="cell on" x="285" y="175" width="24" height="24" rx="5"/>
+            <rect class="cell"    x="165" y="205" width="24" height="24" rx="5"/>
+            <rect class="cell on" x="195" y="205" width="24" height="24" rx="5"/>
+            <rect class="cell"    x="225" y="205" width="24" height="24" rx="5"/>
+            <rect class="cell on" x="255" y="205" width="24" height="24" rx="5"/>
+            <rect class="cell"    x="285" y="205" width="24" height="24" rx="5"/>
+            <rect class="cell on" x="165" y="235" width="24" height="24" rx="5"/>
+            <rect class="cell"    x="195" y="235" width="24" height="24" rx="5"/>
+            <rect class="cell on" x="225" y="235" width="24" height="24" rx="5"/>
+            <rect class="cell"    x="255" y="235" width="24" height="24" rx="5"/>
+            <rect class="cell on" x="285" y="235" width="24" height="24" rx="5"/>
+          </g>
+        </g>
+      </svg>
       <div class="hero-fig-tag">Simplifying AI for everyday devices</div>
     </div>
   </div>
