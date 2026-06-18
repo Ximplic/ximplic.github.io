@@ -852,3 +852,13 @@ body.v2::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none
 /* figure cards rounding + soft frame */
 .v2 .chip,.v2 .panel{border:1px solid rgba(255,255,255,.08);box-shadow:0 30px 70px -40px rgba(0,0,0,.8)}
 @media(prefers-reduced-motion:reduce){.v2 .reveal{transition:none}}
+
+/* nav hover: growing underline + white -> teal */
+.v2 .nav-links a,.v2 .nav-dd-btn{position:relative;transition:color .2s ease}
+.v2 .nav-links a::after,.v2 .nav-dd-btn::after{content:"";position:absolute;left:0;right:0;bottom:-6px;
+  height:2px;border-radius:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;
+  transition:transform .26s cubic-bezier(.22,.61,.36,1)}
+.v2 .nav-links a:hover,.v2 .nav-dd-btn:hover,
+.v2 .nav-links a.active,.v2 .nav-dd-btn.active,.v2 .nav-dd-btn[aria-expanded="true"]{color:var(--accent)}
+.v2 .nav-links a:hover::after,.v2 .nav-dd-btn:hover::after,
+.v2 .nav-links a.active::after,.v2 .nav-dd-btn.active::after{transform:scaleX(1)}
