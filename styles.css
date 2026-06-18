@@ -862,3 +862,32 @@ body.v2::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none
 .v2 .nav-links a.active,.v2 .nav-dd-btn.active,.v2 .nav-dd-btn[aria-expanded="true"]{color:var(--accent)}
 .v2 .nav-links a:hover::after,.v2 .nav-dd-btn:hover::after,
 .v2 .nav-links a.active::after,.v2 .nav-dd-btn.active::after{transform:scaleX(1)}
+
+/* ===== v2 calmer: neutral background, recede figure, teal only where needed ===== */
+/* near-neutral deep background (was teal-green) */
+.v2 .hero,.v2 .page-head{background:linear-gradient(165deg,#0A0C12 0%,#0B0E15 56%,#0C1017 100%)}
+.v2 .hero::before,.v2 .page-head::before{opacity:.3}
+/* ambient glow: one faint whisper, not all-over teal */
+body.v2::before{background:radial-gradient(46% 36% at 74% 2%,rgba(60,194,164,.05),transparent 62%)}
+.v2 .spec-wrap{background:rgba(255,255,255,.015)}
+
+/* embed homepage chip into the background (recede, desaturate) */
+.v2 .hero-visual{opacity:.6}
+.v2 .hero-fig .fig-ring{stroke:rgba(255,255,255,.05)}
+.v2 .hero-fig .fig-glow{fill:rgba(60,194,164,.16)}
+.v2 .hero-fig .cell{fill:rgba(255,255,255,.05)!important}
+.v2 .hero-fig .cell.on{fill:rgba(60,194,164,.15)!important;animation:none!important}
+.v2 .hero-fig .cell.core{fill:rgba(60,194,164,.32)!important;animation:none!important}
+.v2 .hero-fig .chip-body{stroke:rgba(255,255,255,.10)}
+.v2 .hero-fig .chip-inner{stroke:rgba(255,255,255,.06)}
+.v2 .hero-fig .pin{stroke:rgba(255,255,255,.12)}.v2 .hero-fig .pad{fill:rgba(255,255,255,.2)}
+
+/* mute the secondary teal so the headline + CTA lead */
+.v2 .hero-fig-tag{color:rgba(170,200,192,.5)}
+.v2 .hero-meta .dot{background:rgba(60,194,164,.55)}
+.v2 .section-rule,.v2 .section-rule span:first-child{color:#6FB7A6}
+
+/* calm the product-page datapath figure too */
+.v2 .soc .accel{animation:none!important}
+.v2 .soc .scell.on{animation:none!important;fill:rgba(60,194,164,.55)}
+.v2 .soc .flow{animation:none!important;opacity:.5}
