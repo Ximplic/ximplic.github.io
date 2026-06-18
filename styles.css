@@ -1070,3 +1070,11 @@ html{background:#0C0C0C}
 .v2 .cta,.v2 .adopt{background:#080808}
 .v2 footer.site{background:#080808;border-top:1px solid #20272F}
 .v2 .spec-row,.v2 .deliv li,.v2 table.t th,.v2 table.t td,.v2 .faq-row,.v2 .faq-q{border-color:#20272F}
+
+/* ── hero cinematic core (canvas refraction) ───────────────── */
+.v2 .hero-visual{position:relative}
+.v2 .hero-core{
+  display:block;width:100%;height:clamp(360px,42vw,480px);
+  /* static fallback glow so something shows pre-JS / reduced-motion */
+  background:radial-gradient(closest-side at 60% 50%,rgba(43,232,165,.10),rgba(43,232,165,0) 70%);
+}
