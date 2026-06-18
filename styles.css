@@ -680,50 +680,100 @@ section:not(.hero):not(.cta):not(.adopt){padding:100px 0}
 /* datum rule on dark bands */
 .adopt .section-rule,.adopt .section-rule span:first-child{color:var(--accent)}
 
-/* ============================================================
-   v2 — Taskora-style design (homepage proof, scoped to body.v2)
-   Dark hero, glassmorphism pill nav, Instrument Serif accent,
-   staggered entrance. Teal kept as brand accent.
-   ============================================================ */
-.v2{font-family:'Manrope',-apple-system,system-ui,sans-serif}
-.v2 .serif{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400}
 
-/* floating glass pill nav */
+/* ===================================================================
+   v2 — QUANTANGO DARK PULSE  (single consolidated dark theme)
+   Scoped to body.v2. Replaces all prior stacked v2 override eras.
+   Tokens → backdrop → nav → hero → layout → surfaces → buttons
+   → text/labels → inputs → tables → figures → people/partners → motion
+   =================================================================== */
+
+/* ---- tokens ---- */
+.v2{
+  font-family:'Manrope',-apple-system,system-ui,sans-serif;
+  --ink:#F4F5F7;        /* headings / primary */
+  --ink-2:#C2C7CF;      /* body */
+  --muted:#8A93A0;      /* secondary / labels (true mid-gray, distinct from body) */
+  --line:#20272F;
+  --bg:#0C0C0C; --bg-soft:#080808; --bg-deep:#080808;
+  --accent:#2BE8A5; --accent-ink:#2BE8A5; --accent-2:#7CF7C7;
+  --shadow:0 24px 60px -28px rgba(0,0,0,.7);
+  --shadow-sm:0 10px 30px -18px rgba(0,0,0,.65);
+  background:#0C0C0C; color:var(--ink-2);
+}
+html{background:#0C0C0C}
+.v2 .serif{font-family:'Manrope',sans-serif;font-style:normal;font-weight:500}
+
+/* ---- fixed backdrop (solid near-black + faint dot field + drifting orb + canvas) ---- */
+.site-bg{position:fixed;inset:-12vh -5vw;z-index:-2;pointer-events:none;will-change:transform;background:#0C0C0C}
+.v2 .site-bg{background:#0C0C0C}
+.site-bg::after{content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.035) 1px,transparent 1.5px);background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(125% 90% at 50% 28%,#000 38%,transparent 82%);
+          mask-image:radial-gradient(125% 90% at 50% 28%,#000 38%,transparent 82%);opacity:.55}
+.site-bg .orb{position:absolute;left:50%;top:78%;width:92vmax;height:92vmax;border-radius:50%;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle at 50% 50%,rgba(43,232,165,.12),rgba(43,232,165,.04) 36%,transparent 58%);
+  box-shadow:inset 0 0 0 1px rgba(43,232,165,.06);animation:orbDrift 26s ease-in-out infinite}
+.site-bg .orb::before{content:"";position:absolute;inset:8%;border-radius:50%;border:1px solid rgba(255,255,255,.04);
+  background:repeating-linear-gradient(90deg,transparent 0 58px,rgba(255,255,255,.025) 58px 59px)}
+.site-bg .bg-fx{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:.95}
+@keyframes orbDrift{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-53%) scale(1.04)}}
+@media(prefers-reduced-motion:reduce){.site-bg .orb{animation:none}}
+.v2{background:transparent}
+
+/* ---- nav (minimal bar, solidifies on scroll) ---- */
 .v2 header.nav{position:fixed;top:0;left:0;right:0;width:100%;background:transparent;border-bottom:0;
   backdrop-filter:none;-webkit-backdrop-filter:none;z-index:100}
-.v2 .subnav{top:78px}
-.v2 .nav-in{max-width:1180px;margin:16px auto 0;height:60px;padding:0 14px 0 20px;
-  background:rgba(10,16,30,.6);border:1px solid rgba(255,255,255,.10);border-radius:999px;
-  backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);
-  box-shadow:0 10px 34px rgba(0,0,0,.22)}
+.v2 .nav-in{max-width:1240px;margin:0 auto;height:var(--nav-h);padding:0 14px 0 20px;
+  background:transparent;border:0;border-radius:0;box-shadow:none;
+  transition:background .3s ease,box-shadow .3s ease,border-color .3s ease,height .25s ease}
+.v2 header.nav.scrolled .nav-in{height:60px;background:rgba(8,8,8,.7);
+  backdrop-filter:saturate(150%) blur(12px);-webkit-backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid var(--line)}
 .v2 header.nav .brand img{filter:brightness(0) invert(1)}
 .v2 .brand .bn{color:#fff}
 .v2 .brand .btag{color:rgba(255,255,255,.55)}
-.v2 .nav-links a,.v2 .nav-dd-btn{color:rgba(255,255,255,.82);font-family:'Manrope',sans-serif}
-.v2 .nav-links a:hover,.v2 .nav-dd-btn:hover,.v2 .nav-links a.active,.v2 .nav-dd-btn.active{color:#fff}
-.v2 .nav-links a.active::after{background:var(--accent)}
+.v2 .nav-links a,.v2 .nav-dd-btn{position:relative;color:rgba(255,255,255,.82);
+  font-family:'Manrope',sans-serif;transition:color .2s ease}
+.v2 .nav-links a::after,.v2 .nav-dd-btn::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;
+  border-radius:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;
+  transition:transform .26s cubic-bezier(.22,.61,.36,1)}
+.v2 .nav-links a:hover,.v2 .nav-dd-btn:hover,
+.v2 .nav-links a.active,.v2 .nav-dd-btn.active,.v2 .nav-dd-btn[aria-expanded="true"]{color:var(--accent)}
+.v2 .nav-links a:hover::after,.v2 .nav-dd-btn:hover::after,
+.v2 .nav-links a.active::after,.v2 .nav-dd-btn.active::after{transform:scaleX(1)}
 .v2 .nav-dd-menu{background:#0d1426;border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 50px rgba(0,0,0,.5)}
 .v2 .nav-dd-menu a{color:rgba(255,255,255,.88)}
 .v2 .nav-dd-menu a small{color:rgba(255,255,255,.5)}
-.v2 .nav-dd-menu a:hover{background:rgba(255,255,255,.06)}
+.v2 .nav-dd-menu a:hover{background:rgba(255,255,255,.06);color:var(--accent)}
 .v2 .nav-dd-menu .dd-sep{background:rgba(255,255,255,.1)}
 .v2 .nav-toggle span{background:#fff}
 .v2 .mobile-menu{background:rgba(10,16,30,.97);color:#fff}
 .v2 .mobile-menu a,.v2 .mobile-menu .mm-group{color:#fff;border-color:rgba(255,255,255,.08)}
+.v2 .subnav{top:78px;background:transparent;border-top-color:transparent;border-bottom-color:transparent;
+  transition:background .3s ease,backdrop-filter .3s ease,border-color .3s ease,box-shadow .3s ease}
+.v2 .subnav.stuck{background:rgba(10,14,22,.62);
+  backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 12px 32px -20px rgba(0,0,0,.7)}
+.v2 .subnav a.active{color:var(--accent)}
+.v2 .subnav a.active::after{background:var(--accent)}
 
-/* hero */
-.v2 .hero{padding:118px 0 104px}
-.v2 .hero-copy .badge{display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border-radius:999px;
-  background:rgba(43,232,165,.12);border:1px solid rgba(43,232,165,.38);color:var(--accent);
-  font:700 12.5px/1 'Manrope',sans-serif;letter-spacing:.05em;text-transform:uppercase;margin-bottom:24px}
-.v2 .hero-copy .badge svg{width:14px;height:14px}
-.v2 .hero h1{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(42px,6.6vw,84px);
-  line-height:1.0;letter-spacing:-.03em;margin:0 0 22px}
-.v2 .hero h1 .serif{color:var(--accent);font-size:1.04em;letter-spacing:0}
-.v2 .hero .lead{font-family:'Manrope',sans-serif;color:#C3CEE6;font-size:19px;font-weight:400;max-width:560px}
+/* ---- hero (transparent over backdrop) ---- */
+.v2 .hero,.v2 .page-head{background:transparent;padding:118px 0 104px}
+.v2 .hero::before,.v2 .page-head::before{display:none}
+.v2 .hero h1{font-family:'Manrope',sans-serif;font-weight:500;
+  font-size:clamp(40px,5.2vw,58px);line-height:1.12;letter-spacing:-.015em;margin:0 0 22px}
+.v2 .hero h1 .serif,.v2 .hero h1 .accent,.v2 h2 .accent{
+  font-family:'Manrope',sans-serif;font-style:normal;font-weight:500;
+  color:var(--accent);-webkit-text-fill-color:var(--accent);background:none}
+.v2 .hero .lead{font-family:'Manrope',sans-serif;color:var(--ink-2);font-weight:400;font-size:20px;line-height:1.5;max-width:560px}
 .v2 .hero-meta{font-family:'Manrope',sans-serif;font-weight:600}
-
-/* staggered entrance */
+.v2 .hero-copy .badge{display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border-radius:999px;
+  background:transparent;border:1px solid var(--line);color:var(--muted);box-shadow:none;
+  font:500 12.5px/1 'Manrope',sans-serif;letter-spacing:.10em;text-transform:uppercase;margin-bottom:24px}
+.v2 .hero-copy .badge svg{width:14px;height:14px;color:var(--ink-2)}
+/* hero entrance */
 @keyframes suUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .v2 .hero .su{opacity:0;animation:suUp .62s cubic-bezier(.22,.61,.36,1) forwards}
 .v2 .hero-copy .su:nth-child(1){animation-delay:.06s}
@@ -732,224 +782,10 @@ section:not(.hero):not(.cta):not(.adopt){padding:100px 0}
 .v2 .hero-copy .su:nth-child(4){animation-delay:.36s}
 .v2 .hero-copy .su:nth-child(5){animation-delay:.46s}
 .v2 .hero-visual.su{animation-delay:.30s}
-@media(prefers-reduced-motion:reduce){.v2 .hero .su{animation:none;opacity:1}}
-@media(max-width:820px){.v2 .nav-in{margin-top:10px;border-radius:18px}}
-
-/* ===== v2 full dark theme (site-wide, teal accent) ===== */
-.v2{
-  --ink:#FFFFFF; --ink-2:#C3CEE6; --muted:#9BA8BF;
-  --line:rgba(255,255,255,.10);
-  --bg:#050505; --bg-soft:#0C1322; --bg-deep:#0A1530;
-  --accent-ink:#7CF7C7;            /* brighter teal for links/text on dark */
-  --shadow:0 24px 60px -28px rgba(0,0,0,.7);
-  --shadow-sm:0 10px 30px -18px rgba(0,0,0,.65);
-  background:#050505; color:var(--ink-2);
-}
-.v2 h1,.v2 h2,.v2 h3,.v2 h4{font-family:'Manrope',sans-serif;color:#fff}
-.v2 .lead{color:var(--ink-2)}
-.v2 .section-rule,.v2 .section-rule span:first-child{color:var(--accent)}
-
-/* dark surfaces (was white) */
-.v2 .card,.v2 .pillar,.v2 .uc-card,.v2 .spec,.v2 .ic,.v2 .news-item,.v2 .person,
-.v2 form.contact,.v2 .ccol{background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.10)}
-.v2 .card:hover,.v2 .pillar:hover,.v2 .uc-card:hover{border-color:rgba(255,255,255,.22);box-shadow:var(--shadow)}
-.v2 .pillar.soon{background:rgba(255,255,255,.015);border-color:rgba(255,255,255,.10)}
-.v2 .spec-wrap{background:rgba(255,255,255,.02)}
-.v2 .btn-ghost{background:transparent;border-color:rgba(255,255,255,.24);color:#fff}
-.v2 .btn-ghost:hover{border-color:var(--accent);color:#fff;background:rgba(255,255,255,.04)}
-
-/* inputs */
-.v2 input,.v2 textarea,.v2 select,.v2 form.contact input,.v2 form.contact textarea,.v2 form.contact select{
-  background:rgba(255,255,255,.05);color:#fff;border-color:rgba(255,255,255,.16)}
-.v2 ::placeholder{color:#7E8BA3}
-
-/* tables / lists / faq dividers */
-.v2 .spec-row,.v2 .deliv li,.v2 table.t th,.v2 table.t td,.v2 .faq-row,
-.v2 .faq-q{border-color:rgba(255,255,255,.10)}
-.v2 .spec-row .v{color:#fff}
-.v2 table.t td{color:var(--ink-2)}
-
-/* compare */
-.v2 .ccol.lose .cbadge{background:rgba(255,255,255,.08);color:var(--muted)}
-
-/* partner logos → whiten on dark */
-.v2 .partner-card{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.10)}
-.v2 .partner-logo{filter:brightness(0) invert(1);opacity:.78}
-
-/* figures: idia node diagram + energy + generic fig */
-.v2 .fig{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
-.v2 .idia{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
-.v2 .idia .ibox{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.18)}
-.v2 .idia .il{fill:#fff}
-.v2 .idia .is{fill:#9FB0D0}
-.v2 .idia .idash{stroke:rgba(255,255,255,.22)}
-.v2 .idia .icap{fill:#9FB0D0}
-.v2 .etrack{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)}
-
-/* misc text on dark */
-.v2 .news-item .date{color:var(--accent)}
-.v2 .role{color:var(--muted)}
-.v2 .contact-meta{color:var(--muted)}
-
-/* ===== v2 — pro-Framer polish ===== */
-/* ambient depth behind content */
-body.v2::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(58% 44% at 50% -8%,rgba(43,232,165,.10),transparent 62%),
-             radial-gradient(40% 38% at 102% 18%,rgba(43,232,165,.06),transparent 60%),
-             radial-gradient(46% 40% at -6% 82%,rgba(43,232,165,.05),transparent 62%)}
-
-/* breathing room */
-.v2 section{padding:104px 0}
-.v2 .section-head{margin-bottom:52px}
-
-/* smoother, longer reveal */
-.v2 .reveal{transform:translateY(26px);transition:opacity .75s cubic-bezier(.22,.61,.36,1),transform .75s cubic-bezier(.22,.61,.36,1)}
-
-/* gradient accent text */
-.v2 .hero h1 .serif,.v2 .hero h1 .accent{
-  background:linear-gradient(118deg,#6FBEAD 0%,#2BE8A5 60%);-webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent}
-
-/* card lift + teal glow on hover */
-.v2 .card,.v2 .pillar,.v2 .uc-card,.v2 .ic,.v2 .news-item{
-  transition:transform .28s cubic-bezier(.22,.61,.36,1),box-shadow .28s,border-color .28s,background .28s}
-.v2 .card:hover,.v2 .pillar:not(.soon):hover,.v2 .uc-card:hover,.v2 .ic:hover,.v2 .news-item:hover{
-  transform:translateY(-5px);border-color:rgba(43,232,165,.42);
-  box-shadow:0 26px 60px -26px rgba(0,0,0,.7),0 0 0 1px rgba(43,232,165,.14),0 0 40px -16px rgba(43,232,165,.25)}
-
-/* icon chips legible on dark */
-.v2 .ico{background:rgba(43,232,165,.14);color:#7CF7C7}
-
-/* buttons: gradient + glow */
-.v2 .btn-primary{background:linear-gradient(180deg,#6BBCAB,#2BE8A5);color:#04241c;
-  box-shadow:0 12px 32px -12px rgba(43,232,165,.55)}
-.v2 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 46px -12px rgba(43,232,165,.7)}
-.v2 .btn-light{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16);color:#fff}
-.v2 .btn-light:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
-
-/* badge subtle glow */
-.v2 .hero-copy .badge{box-shadow:0 0 0 1px rgba(43,232,165,.12),0 8px 28px -14px rgba(43,232,165,.4)}
-
-/* nav pill + CTA micro-interaction */
-.v2 .nav-actions .btn{transition:transform .2s,box-shadow .2s}
-.v2 .nav-links a::after{background:var(--accent)}
-
-/* spec/table row hover */
-.v2 .spec-row:hover .v{color:#93CCC0}
-.v2 table.t tbody tr{transition:background .2s}
-.v2 table.t tbody tr:hover{background:rgba(255,255,255,.03)}
-
-/* animated underline on inline links */
-.v2 .product-path a{background-image:linear-gradient(var(--accent),var(--accent));background-size:0% 1.5px;
-  background-position:0 100%;background-repeat:no-repeat;transition:background-size .3s ease;padding-bottom:2px}
-.v2 .product-path a:hover{background-size:100% 1.5px}
-
-/* selection + focus */
-.v2 ::selection{background:rgba(43,232,165,.32);color:#fff}
-.v2 a:focus-visible,.v2 button:focus-visible,.v2 input:focus-visible,.v2 textarea:focus-visible,.v2 select:focus-visible{
-  outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
-
-/* figure cards rounding + soft frame */
-.v2 .chip,.v2 .panel{border:1px solid rgba(255,255,255,.08);box-shadow:0 30px 70px -40px rgba(0,0,0,.8)}
-@media(prefers-reduced-motion:reduce){.v2 .reveal{transition:none}}
-
-/* nav hover: growing underline + white -> teal */
-.v2 .nav-links a,.v2 .nav-dd-btn{position:relative;transition:color .2s ease}
-.v2 .nav-links a::after,.v2 .nav-dd-btn::after{content:"";position:absolute;left:0;right:0;bottom:-6px;
-  height:2px;border-radius:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;
-  transition:transform .26s cubic-bezier(.22,.61,.36,1)}
-.v2 .nav-links a:hover,.v2 .nav-dd-btn:hover,
-.v2 .nav-links a.active,.v2 .nav-dd-btn.active,.v2 .nav-dd-btn[aria-expanded="true"]{color:var(--accent)}
-.v2 .nav-links a:hover::after,.v2 .nav-dd-btn:hover::after,
-.v2 .nav-links a.active::after,.v2 .nav-dd-btn.active::after{transform:scaleX(1)}
-
-/* ===== v2 calmer: neutral background, recede figure, teal only where needed ===== */
-/* near-neutral deep background (was teal-green) */
-.v2 .hero,.v2 .page-head{background:linear-gradient(165deg,#0A0C12 0%,#0B0E15 56%,#0C1017 100%)}
-.v2 .hero::before,.v2 .page-head::before{opacity:.3}
-/* ambient glow: one faint whisper, not all-over teal */
-body.v2::before{background:radial-gradient(46% 36% at 74% 2%,rgba(43,232,165,.05),transparent 62%)}
-.v2 .spec-wrap{background:rgba(255,255,255,.015)}
-
-/* embed homepage chip into the background (recede, desaturate) */
-.v2 .hero-visual{opacity:.6}
-.v2 .hero-fig .fig-ring{stroke:rgba(255,255,255,.05)}
-.v2 .hero-fig .fig-glow{fill:rgba(43,232,165,.16)}
-.v2 .hero-fig .cell{fill:rgba(255,255,255,.05)!important}
-.v2 .hero-fig .cell.on{fill:rgba(43,232,165,.15)!important;animation:none!important}
-.v2 .hero-fig .cell.core{fill:rgba(43,232,165,.32)!important;animation:none!important}
-.v2 .hero-fig .chip-body{stroke:rgba(255,255,255,.10)}
-.v2 .hero-fig .chip-inner{stroke:rgba(255,255,255,.06)}
-.v2 .hero-fig .pin{stroke:rgba(255,255,255,.12)}.v2 .hero-fig .pad{fill:rgba(255,255,255,.2)}
-
-/* mute the secondary teal so the headline + CTA lead */
-.v2 .hero-fig-tag{color:rgba(170,200,192,.5)}
-.v2 .hero-meta .dot{background:rgba(43,232,165,.55)}
-.v2 .section-rule,.v2 .section-rule span:first-child{color:#2BE8A5}
-
-/* calm the product-page datapath figure too */
-.v2 .soc .accel{animation:none!important}
-.v2 .soc .scell.on{animation:none!important;fill:rgba(43,232,165,.55)}
-.v2 .soc .flow{animation:none!important;opacity:.5}
-
-/* ===== v2 parallax backdrop — site floats over a moving scene ===== */
-body.v2::before{display:none}              /* retire old static glow */
-.v2 .hero,.v2 .page-head{background:transparent}
-.v2 .hero::before,.v2 .page-head::before{display:none}
-
-.site-bg{position:fixed;inset:-12vh -5vw;z-index:-2;pointer-events:none;will-change:transform;
-  background:
-    radial-gradient(42% 30% at 80% 6%, rgba(43,232,165,.10), transparent 60%),
-    radial-gradient(120% 95% at 50% -8%, #0E1824 0%, #0A0E15 52%, #06080C 100%)}
-.site-bg::after{content:"";position:absolute;inset:0;
-  background-image:radial-gradient(rgba(255,255,255,.035) 1px, transparent 1.5px);
-  background-size:44px 44px;
-  -webkit-mask-image:radial-gradient(125% 90% at 50% 28%, #000 38%, transparent 82%);
-          mask-image:radial-gradient(125% 90% at 50% 28%, #000 38%, transparent 82%);
-  opacity:.55}
-.site-bg .orb{position:absolute;left:50%;top:78%;width:92vmax;height:92vmax;border-radius:50%;
-  transform:translate(-50%,-50%);
-  background:
-    radial-gradient(circle at 50% 50%, rgba(43,232,165,.12), rgba(43,232,165,.04) 36%, transparent 58%);
-  box-shadow:inset 0 0 0 1px rgba(43,232,165,.06);
-  animation:orbDrift 26s ease-in-out infinite}
-.site-bg .orb::before{content:"";position:absolute;inset:8%;border-radius:50%;
-  border:1px solid rgba(255,255,255,.04);
-  background:repeating-linear-gradient(90deg,transparent 0 58px,rgba(255,255,255,.025) 58px 59px)}
-@keyframes orbDrift{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-53%) scale(1.04)}}
-@media(prefers-reduced-motion:reduce){.site-bg .orb{animation:none}}
-
-/* let the fixed backdrop show through the page */
-html{background:#06080C}
-.v2{background:transparent}
-.v2 .cta,.v2 .adopt{background:rgba(9,12,18,.55)}
-.v2 .spec-wrap{background:rgba(255,255,255,.012)}
-.v2 footer.site{background:rgba(6,8,12,.86)}
-
-/* alternate: solid focus sections vs backdrop sections */
-.v2 .spec-wrap{background:#070A0F}      /* solid: cards/specs get full focus */
-.v2 .adopt{background:#080B12}          /* solid band */
-.v2 .cta{background:#070A0F}            /* solid band */
-.v2 footer.site{background:#06080C}     /* solid ground */
-
-/* product subnav: seamless at rest, glassy when pinned */
-.v2 .subnav{background:transparent;border-top-color:transparent;border-bottom-color:transparent;
-  transition:background .3s ease,backdrop-filter .3s ease,border-color .3s ease,box-shadow .3s ease}
-.v2 .subnav.stuck{background:rgba(10,14,22,.62);
-  backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);
-  border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 12px 32px -20px rgba(0,0,0,.7)}
-
-/* ===== senior-Framer polish pass (council) ===== */
-/* 1. nav reacts to scroll: pill solidifies + lifts */
-.v2 .nav-in{transition:background .3s ease,box-shadow .3s ease,border-color .3s ease,height .25s ease}
-.v2 header.nav.scrolled .nav-in{height:54px;background:rgba(8,11,17,.82);
-  border-color:rgba(255,255,255,.12);box-shadow:0 14px 36px -20px rgba(0,0,0,.75)}
-
-/* 2. product-page hero gets a staggered entrance (homepage already has .su) */
 .v2 .hero .eyebrow,.v2 .hero .chip{opacity:0;animation:suUp .62s cubic-bezier(.22,.61,.36,1) forwards}
-.v2 .hero .chip{animation-delay:.28s}
 .v2 .hero .eyebrow{animation-delay:.05s}
-.v2 .hero section,.v2 .hero .hero-grid>div:first-child>h1,
+.v2 .hero .chip{animation-delay:.28s}
+.v2 .hero .hero-grid>div:first-child>h1,
 .v2 .hero .hero-grid>div:first-child>.lead,
 .v2 .hero .hero-grid>div:first-child>.hero-cta,
 .v2 .hero .hero-grid>div:first-child>.hero-meta{opacity:0;animation:suUp .62s cubic-bezier(.22,.61,.36,1) forwards}
@@ -958,198 +794,157 @@ html{background:#06080C}
 .v2 .hero .hero-grid>div:first-child>.hero-cta{animation-delay:.34s}
 .v2 .hero .hero-grid>div:first-child>.hero-meta{animation-delay:.44s}
 @media(prefers-reduced-motion:reduce){
-  .v2 .hero .eyebrow,.v2 .hero .chip,.v2 .hero .hero-grid>div:first-child>*{animation:none;opacity:1}
+  .v2 .hero .su,.v2 .hero .eyebrow,.v2 .hero .chip,.v2 .hero .hero-grid>div:first-child>*{animation:none;opacity:1}
 }
+@media(max-width:820px){.v2 .nav-in{margin-top:10px}}
 
-/* 3. dial teal back to focal-only: drop the teal glow on card hover, neutral meta dots */
-.v2 .card:hover,.v2 .pillar:not(.soon):hover,.v2 .uc-card:hover,.v2 .ic:hover,.v2 .news-item:hover{
-  border-color:rgba(255,255,255,.18);
-  box-shadow:0 26px 60px -28px rgba(0,0,0,.75)}
-.v2 .hero-meta .dot{background:rgba(255,255,255,.32)}
-
-/* restore hero chip to a visible (muted-teal) hero object */
+/* hero chip figure — neutral white tones, static */
 .v2 .hero-visual{opacity:1}
-.v2 .hero-fig .fig-ring{stroke:rgba(43,232,165,.18)}
-.v2 .hero-fig .fig-glow{fill:rgba(43,232,165,.40)}
-.v2 .hero-fig .cell{fill:rgba(255,255,255,.10)!important}
-.v2 .hero-fig .cell.on{fill:rgba(43,232,165,.72)!important}
-.v2 .hero-fig .cell.core{fill:#2BE8A5!important}
+.v2 .hero-fig .fig-ring{stroke:rgba(255,255,255,.12)}
+.v2 .hero-fig .fig-glow{fill:rgba(255,255,255,.10)}
+.v2 .hero-fig .cell{fill:rgba(255,255,255,.07)}
+.v2 .hero-fig .cell.on{fill:rgba(244,245,247,.55);animation:none}
+.v2 .hero-fig .cell.core{fill:rgba(244,245,247,.9);animation:none}
 .v2 .hero-fig .chip-body{stroke:rgba(255,255,255,.20)}
 .v2 .hero-fig .chip-inner{stroke:rgba(255,255,255,.10)}
 .v2 .hero-fig .pin{stroke:rgba(255,255,255,.24)}
-.v2 .hero-fig .pad{fill:#2BE8A5}
+.v2 .hero-fig .pad{fill:rgba(255,255,255,.35)}
+.v2 .hero-fig-tag{color:rgba(170,200,192,.5)}
 
-/* fix: LinkedIn icon was white-on-white under v2; partner logos (Cognigron jpeg) broke under invert */
-.v2 .linkedin-link{background:rgba(255,255,255,.06);color:#7CF7C7;border:1px solid rgba(255,255,255,.14)}
+/* ---- layout rhythm ---- */
+.v2 section{padding:120px 0}
+.v2 .section-head{margin-bottom:56px}
+.v2 .wrap{max-width:1200px}
+.v2 .reveal{transform:translateY(26px);
+  transition:opacity .75s cubic-bezier(.22,.61,.36,1),transform .75s cubic-bezier(.22,.61,.36,1)}
+@media(prefers-reduced-motion:reduce){.v2 .reveal{transition:none}}
+
+/* bands */
+.v2 .spec-wrap{background:#0C0C0C}
+.v2 .cta,.v2 .adopt{background:#080808}
+.v2 footer.site{background:#080808;border-top:1px solid var(--line)}
+
+/* ---- type ---- */
+.v2 h1,.v2 h2,.v2 h3,.v2 h4{font-family:'Manrope',sans-serif;font-weight:500;color:var(--ink);letter-spacing:-.012em}
+.v2 h2{font-size:clamp(30px,3.6vw,43px);font-weight:500;line-height:1.14}
+.v2 h3{font-size:22px;font-weight:500}
+.v2 .lead{color:var(--ink-2)}
+.v2 p{color:var(--ink-2)}
+
+/* ---- eyebrows / section rules → teal ---- */
+.v2 .eyebrow,.v2 .page-head .eyebrow,.v2 .hero .eyebrow,.v2 .adopt .eyebrow,
+.v2 .section-rule,.v2 .section-rule span:first-child{
+  color:var(--accent);font-weight:500;font-size:12px;letter-spacing:.10em;text-transform:uppercase}
+
+/* ---- surfaces / cards ---- */
+.v2 .card,.v2 .pillar,.v2 .uc-card,.v2 .ic,.v2 .news-item,.v2 .person,.v2 .spec,
+.v2 form.contact,.v2 .ccol,.v2 .etrack,.v2 .panel{
+  background:#080808;border:1px solid var(--line);border-radius:24px;box-shadow:none}
+.v2 .card,.v2 .pillar,.v2 .uc-card,.v2 .ic{position:relative;overflow:hidden}
+.v2 .pillar>*,.v2 .card>*,.v2 .uc-card>*{position:relative;z-index:1}
+.v2 .pillar.soon{background:#060606;border:1px dashed var(--line)}
+.v2 .ico{background:rgba(255,255,255,.05);color:var(--ink);border:1px solid var(--line);border-radius:14px}
+/* dotted texture, corner-faded, alternating */
+.v2 .pillar::after,.v2 .card::after,.v2 .uc-card::after{content:"";position:absolute;inset:0;display:block;
+  pointer-events:none;z-index:0;background-image:radial-gradient(rgba(255,255,255,.10) 1px,transparent 1.4px);
+  background-size:13px 13px;opacity:.6;
+  -webkit-mask-image:radial-gradient(130% 95% at 82% 122%,#000 0%,transparent 58%);
+          mask-image:radial-gradient(130% 95% at 82% 122%,#000 0%,transparent 58%)}
+.v2 .pillar:nth-child(2n)::after,.v2 .card:nth-child(2n)::after,.v2 .uc-card:nth-child(2n)::after{
+  -webkit-mask-image:radial-gradient(130% 95% at 18% -22%,#000 0%,transparent 58%);
+          mask-image:radial-gradient(130% 95% at 18% -22%,#000 0%,transparent 58%)}
+.v2 .pillar.soon::after{display:none}
+/* highlight on hover: lighter surface + teal title/label/arrow */
+.v2 .pillar:not(.soon):hover,.v2 .card:hover,.v2 .uc-card:hover,.v2 .jstep:hover{
+  transform:none;background:rgba(255,255,255,.035);border-color:rgba(43,232,165,.35);box-shadow:none}
+.v2 .ic:hover,.v2 .news-item:hover{transform:none;border-color:#34404C;box-shadow:none}
+.v2 .pillar:not(.soon):hover h3,.v2 .card:hover h3,.v2 .uc-card:hover h3,.v2 .jstep:hover h3{color:var(--accent)}
+.v2 .pillar:not(.soon):hover .tag,.v2 .uc-card:hover .tag,.v2 .jstep:hover .jtag,
+.v2 .pillar:not(.soon):hover .more,.v2 .card:hover .more{color:var(--accent)}
+.v2 .pillar:not(.soon):hover::after,.v2 .card:hover::after,.v2 .uc-card:hover::after{opacity:.9}
+
+/* ---- buttons ---- */
+.v2 .btn{border-radius:9999px;font-family:'Manrope',sans-serif;font-weight:500}
+.v2 .btn-primary{background:#FFFFFF;color:#11161C;border:0;box-shadow:none;padding:13px 26px}
+.v2 .btn-primary:hover{background:var(--accent);color:#06120D;transform:translateY(-1px);
+  box-shadow:0 8px 26px -10px rgba(43,232,165,.6)}
+.v2 .btn-light,.v2 .btn-ghost{background:transparent;border:1px solid #2B3640;color:var(--ink)}
+.v2 .btn-light:hover,.v2 .btn-ghost:hover{border-color:var(--accent);color:var(--accent);background:rgba(43,232,165,.06)}
+
+/* ---- labels / small text (neutral by default; teal only on hover/active) ---- */
+.v2 .pillar .tag,.v2 .uc-card .tag,.v2 .card .more,.v2 .pillar .more,
+.v2 .news-item .date,.v2 .acc-num,.v2 .ok,.v2 .stat b,.v2 .jstep .jtag,
+.v2 .ic-opt,.v2 .ic-link{color:var(--ink)}
+.v2 .dot,.v2 .deliv li::before,.v2 .acc-list li::before,.v2 .ic-list li::before,
+.v2 .mq-item::before,.v2 .hero-meta .dot{background:#5B6470}
+.v2 .jstep .jnum{background:rgba(255,255,255,.06);color:var(--ink);border:1px solid var(--line)}
+.v2 .jarrow{color:#5B6470}
+.v2 .jstep:hover .jnum{border-color:rgba(43,232,165,.4);color:var(--accent)}
+.v2 .role,.v2 .contact-meta{color:var(--muted)}
+.v2 .card .more:hover,.v2 .pillar .more:hover,.v2 .foot-col a:hover,.v2 .ic-link:hover{color:var(--accent)}
+.v2 ::selection{background:rgba(43,232,165,.28);color:var(--ink)}
+
+/* ---- inputs ---- */
+.v2 input,.v2 textarea,.v2 select,
+.v2 form.contact input,.v2 form.contact textarea,.v2 form.contact select{
+  background:rgba(255,255,255,.05);color:#fff;border-color:rgba(255,255,255,.16)}
+.v2 ::placeholder{color:#7E8BA3}
+.v2 a:focus-visible,.v2 button:focus-visible,.v2 input:focus-visible,
+.v2 textarea:focus-visible,.v2 select:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.v2 .field .req{color:var(--accent)}
+.v2 .form-status{color:var(--accent)}
+
+/* ---- tables / lists / faq ---- */
+.v2 .spec-row,.v2 .deliv li,.v2 table.t th,.v2 table.t td,.v2 .faq-row,.v2 .faq-q{border-color:var(--line)}
+.v2 .spec-row .v{color:#fff}
+.v2 table.t td{color:var(--ink-2)}
+.v2 table.t tbody tr{transition:background .2s}
+.v2 table.t tbody tr:hover{background:rgba(255,255,255,.03)}
+
+/* ---- compare ---- */
+.v2 .ccol.lose .cbadge{background:rgba(255,255,255,.08);color:var(--muted)}
+.v2 .ccol.win .cbadge{background:rgba(255,255,255,.06);color:var(--ink)}
+.v2 .ccol.win .cmark{color:var(--ink)}
+
+/* ---- figures: chip badge, soc datapath, idia, integration nodes (neutral; energy chart keeps green) ---- */
+.v2 .chip,.v2 .panel{border:1px solid rgba(255,255,255,.08);box-shadow:0 30px 70px -40px rgba(0,0,0,.8)}
+.v2 .chip-badge{background:rgba(255,255,255,.06);color:var(--ink-2);border:1px solid var(--line)}
+.v2 .fig{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+.v2 .soc .accel{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.45);animation:none}
+.v2 .soc .axi-l{fill:var(--ink-2)}
+.v2 .soc .scell{fill:rgba(255,255,255,.10)}
+.v2 .soc .scell.on{fill:rgba(255,255,255,.55);animation:none}
+.v2 .soc .arrow{fill:#5B6470}
+.v2 .soc .flow{stroke:rgba(255,255,255,.4);animation:none;opacity:.5}
+.v2 .idia{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+.v2 .idia .ibox{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.18)}
+.v2 .idia .il{fill:#fff}
+.v2 .idia .il.x{fill:var(--ink)}
+.v2 .idia .is{fill:#9FB0D0}
+.v2 .idia .idash{stroke:rgba(255,255,255,.22)}
+.v2 .idia .icap{fill:#9FB0D0}
+.v2 .idia .iwire,.v2 .idia .arow{stroke:rgba(255,255,255,.4)}
+.v2 .idia .iarr{fill:#5B6470}
+.v2 .dnode.xim{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3);color:var(--ink)}
+.v2 .dwire i{border-top-color:rgba(255,255,255,.4)}
+.v2 .dwire i::after{border-left-color:rgba(255,255,255,.4)}
+.v2 .dgrid i.x{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3);color:var(--ink)}
+.v2 .ic-status.live{background:rgba(255,255,255,.06);color:var(--ink-2)}
+.v2 .codeblk .k{color:var(--ink-2)}
+.v2 .etrack{background:#080808;border-color:var(--line)}
+
+/* ---- product-path inline link (animated underline) ---- */
+.v2 .product-path a{border-bottom:0;background-image:linear-gradient(var(--accent),var(--accent));
+  background-size:0% 1.5px;background-position:0 100%;background-repeat:no-repeat;
+  transition:background-size .3s ease;padding-bottom:2px}
+.v2 .product-path a:hover{background-size:100% 1.5px}
+
+/* ---- team / partners ---- */
+.v2 .linkedin-link{background:rgba(255,255,255,.06);color:var(--accent-2);border:1px solid rgba(255,255,255,.14)}
 .v2 .linkedin-link:hover{background:var(--accent);color:#06241c;border-color:transparent}
 .v2 .partner-card{background:#EEF2F7;border-color:rgba(255,255,255,.08)}
 .v2 .partner-logo{filter:grayscale(1);opacity:.8}
 .v2 .partner-card:hover .partner-logo{filter:grayscale(0);opacity:1}
 
-/* animated aurora canvas behind everything */
-.site-bg .bg-fx{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:.95}
-
-/* ===== Quantango-grade: near-black + bento cards ===== */
-html{background:#040506}
-.v2 .site-bg{background:radial-gradient(120% 95% at 50% -6%, #0A0F16 0%, #06080C 48%, #040506 100%)}
-.v2 .spec-wrap{background:#06080B}
-.v2 .cta,.v2 .adopt{background:rgba(6,8,11,.55)}
-.v2 footer.site{background:#040506}
-
-/* bento cards: larger radius + soft always-on corner glow */
-.v2 .card,.v2 .pillar,.v2 .uc-card,.v2 .ic{border-radius:20px;position:relative;overflow:hidden}
-.v2 .pillar::after,.v2 .card::after{content:"";position:absolute;width:260px;height:260px;left:-90px;bottom:-130px;
-  background:radial-gradient(circle, rgba(43,232,165,.10), transparent 68%);pointer-events:none;
-  opacity:.6;transition:opacity .3s ease}
-.v2 .pillar:not(.soon):hover::after,.v2 .card:hover::after{opacity:1}
-.v2 .pillar>*,.v2 .card>*{position:relative;z-index:1}
-
-/* ===================================================================
-   QUANTANGO DARK PULSE — full re-skin (overrides all prior v2 blocks)
-   =================================================================== */
-.v2{
-  --ink:#F4F5F7; --ink-2:#C2C7CF; --muted:#C2C7CF;
-  --line:#20272F;
-  --bg:#0C0C0C; --bg-soft:#080808; --bg-deep:#080808;
-  --accent:#2BE8A5; --accent-ink:#2BE8A5; --accent-2:#7CF7C7;
-  background:#0C0C0C; color:#C2C7CF;
-}
-html{background:#0C0C0C}
-.v2 .site-bg{background:#0C0C0C}
-
-/* type — Manrope as Cera substitute, medium weight, restrained scale */
-.v2 h1,.v2 h2,.v2 h3,.v2 h4{font-family:'Manrope',sans-serif;font-weight:500;color:#F4F5F7;letter-spacing:-.012em}
-.v2 .hero h1{font-weight:500;font-size:clamp(40px,5.2vw,58px);line-height:1.12;letter-spacing:-.015em}
-.v2 h2{font-size:clamp(30px,3.6vw,43px);font-weight:500;line-height:1.14}
-.v2 h3{font-size:22px;font-weight:500}
-.v2 .lead{color:#C2C7CF;font-weight:400;font-size:20px;line-height:1.5}
-.v2 p{color:#C2C7CF}
-/* headline accent word: electric green, same font (no serif/gradient) */
-.v2 .hero h1 .serif{font-family:'Manrope',sans-serif;font-style:normal;font-weight:500;
-  color:var(--accent);-webkit-text-fill-color:var(--accent);background:none}
-/* overline kicker — muted uppercase, not green */
-.v2 .section-rule,.v2 .section-rule span:first-child,.v2 .eyebrow{
-  color:#8A93A0;font-weight:500;font-size:12px;letter-spacing:.10em;text-transform:uppercase}
-
-/* surfaces — flat near-black + thin border, no shadow/lift/glow */
-.v2 .card,.v2 .pillar,.v2 .uc-card,.v2 .ic,.v2 .news-item,.v2 .person,.v2 .spec,
-.v2 form.contact,.v2 .ccol,.v2 .etrack,.v2 .panel{
-  background:#080808;border:1px solid #20272F;border-radius:24px;box-shadow:none}
-.v2 .card::after,.v2 .pillar::after{display:none}
-.v2 .card:hover,.v2 .pillar:not(.soon):hover,.v2 .uc-card:hover,.v2 .ic:hover,.v2 .news-item:hover{
-  transform:none;border-color:#34404C;box-shadow:none}
-.v2 .pillar.soon{background:#060606;border:1px dashed #20272F}
-.v2 .ico{background:rgba(43,232,165,.12);color:#2BE8A5;border-radius:14px}
-
-/* buttons — white pill primary, ghost-bordered secondary */
-.v2 .btn{border-radius:9999px;font-family:'Manrope',sans-serif;font-weight:500}
-.v2 .btn-primary{background:#FFFFFF;color:#11161C;border:0;box-shadow:none;padding:13px 26px}
-.v2 .btn-primary:hover{background:#2BE8A5;color:#06120D;transform:translateY(-1px);
-  box-shadow:0 8px 26px -10px rgba(43,232,165,.6)}
-.v2 .btn-light,.v2 .btn-ghost{background:transparent;border:1px solid #2B3640;color:#F4F5F7}
-.v2 .btn-light:hover,.v2 .btn-ghost:hover{border-color:#2BE8A5;color:#2BE8A5;background:rgba(43,232,165,.06)}
-
-/* badge → slim outline kicker */
-.v2 .hero-copy .badge{background:transparent;border:1px solid #20272F;color:#8A93A0;
-  box-shadow:none;text-transform:uppercase;letter-spacing:.10em}
-.v2 .hero-copy .badge svg{color:#2BE8A5}
-
-/* nav — minimal, drop the glass pill at top */
-.v2 .nav-in{background:transparent;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
-  border-radius:0;margin:0 auto;max-width:1240px;height:var(--nav-h)}
-.v2 header.nav.scrolled .nav-in{height:60px;background:rgba(8,8,8,.7);
-  backdrop-filter:saturate(150%) blur(12px);-webkit-backdrop-filter:saturate(150%) blur(12px);
-  border-bottom:1px solid #20272F}
-
-/* spacing — generous editorial rhythm */
-.v2 section{padding:120px 0}
-.v2 .section-head{margin-bottom:56px}
-.v2 .wrap{max-width:1200px}
-
-/* bands + borders */
-.v2 .spec-wrap{background:#0C0C0C}
-.v2 .cta,.v2 .adopt{background:#080808}
-.v2 footer.site{background:#080808;border-top:1px solid #20272F}
-.v2 .spec-row,.v2 .deliv li,.v2 table.t th,.v2 table.t td,.v2 .faq-row,.v2 .faq-q{border-color:#20272F}
-
-/* ===================================================================
-   TEAL RESTRAINT — accent only on hover/selection; default black/white
-   + Quantango-style dotted texture inside cards
-   =================================================================== */
-/* heading accent word stays electric green (brand highlight) */
-.v2 .hero h1 .serif,.v2 .hero h1 .accent,.v2 h2 .accent{
-  color:#2BE8A5!important;-webkit-text-fill-color:#2BE8A5!important;background:none!important}
-.v2 .pillar .tag,.v2 .uc-card .tag,.v2 .card .more,.v2 .pillar .more,
-.v2 .news-item .date,.v2 .acc-num,.v2 .ok,.v2 .stat b,.v2 .jstep .jtag,
-.v2 .ic-opt,.v2 .ic-link,.v2 .acc-grid .ccol .cmark{color:#F4F5F7}
-.v2 .eyebrow,.v2 .page-head .eyebrow,.v2 .hero .eyebrow,.v2 .adopt .eyebrow,
-.v2 .section-rule,.v2 .section-rule span:first-child{color:#2BE8A5}
-/* neutral dots/markers */
-.v2 .dot,.v2 .deliv li::before,.v2 .acc-list li::before,.v2 .ic-list li::before,
-.v2 .mq-item::before{background:#5B6470}
-/* icon tiles → neutral, not green wash */
-.v2 .ico{background:rgba(255,255,255,.05);color:#F4F5F7;border:1px solid #20272F}
-/* badge star → white */
-.v2 .hero-copy .badge svg{color:#C2C7CF}
-/* chip figure cells → neutral white tones */
-.v2 .hero-fig .cell{fill:rgba(255,255,255,.07)!important}
-.v2 .hero-fig .cell.on{fill:rgba(244,245,247,.55)!important;animation:none!important}
-.v2 .hero-fig .cell.core{fill:rgba(244,245,247,.9)!important;animation:none!important}
-.v2 .hero-fig .fig-glow{fill:rgba(255,255,255,.10)!important}
-.v2 .hero-fig .pad{fill:rgba(255,255,255,.35)!important}
-.v2 .hero-fig .fig-ring{stroke:rgba(255,255,255,.12)}
-
-/* journey step badge/arrow → neutral */
-.v2 .jstep .jnum{background:rgba(255,255,255,.06);color:#F4F5F7;border:1px solid #20272F}
-.v2 .jarrow{color:#5B6470}
-
-/* accent RETURNS only on hover / active / selection */
-.v2 .card .more:hover,.v2 .pillar .more:hover,.v2 .nav-links a:hover,
-.v2 .nav-dd-menu a:hover,.v2 .foot-col a:hover,.v2 .ic-link:hover{color:#2BE8A5}
-.v2 .nav-links a.active,.v2 .nav-dd-btn[aria-expanded="true"],
-.v2 .subnav a.active{color:#2BE8A5}
-.v2 .nav-links a.active::after,.v2 .subnav a.active::after{background:#2BE8A5}
-.v2 ::selection{background:rgba(43,232,165,.28);color:#F4F5F7}
-
-/* dotted wave texture in cards (faint, corner-faded) */
-.v2 .pillar::after,.v2 .card::after,.v2 .uc-card::after{
-  content:"";position:absolute;inset:0;display:block;pointer-events:none;z-index:0;
-  background-image:radial-gradient(rgba(255,255,255,.10) 1px,transparent 1.4px);
-  background-size:13px 13px;opacity:.6;
-  -webkit-mask-image:radial-gradient(130% 95% at 82% 122%,#000 0%,transparent 58%);
-  mask-image:radial-gradient(130% 95% at 82% 122%,#000 0%,transparent 58%)}
-.v2 .pillar:nth-child(2n)::after,.v2 .card:nth-child(2n)::after,.v2 .uc-card:nth-child(2n)::after{
-  -webkit-mask-image:radial-gradient(130% 95% at 18% -22%,#000 0%,transparent 58%);
-  mask-image:radial-gradient(130% 95% at 18% -22%,#000 0%,transparent 58%)}
-.v2 .pillar.soon::after{display:none}
-
-/* diagrams → neutral white tones (energy chart keeps its green data-viz) */
-.v2 .chip-badge{background:rgba(255,255,255,.06);color:#C2C7CF;border:1px solid #20272F}
-.v2 .soc .accel{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.45);animation:none}
-.v2 .soc .axi-l{fill:#C2C7CF}
-.v2 .soc .scell{fill:rgba(255,255,255,.10)!important}
-.v2 .soc .scell.on{fill:rgba(255,255,255,.55)!important;animation:none!important}
-.v2 .soc .arrow{fill:#5B6470}
-.v2 .soc .flow{stroke:rgba(255,255,255,.4)}
-.v2 .idia .il.x{fill:#F4F5F7}
-.v2 .idia .iwire,.v2 .idia .arow{stroke:rgba(255,255,255,.4)}
-.v2 .idia .iarr{fill:#5B6470}
-.v2 .dnode.xim{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3);color:#F4F5F7}
-.v2 .dwire i{border-top-color:rgba(255,255,255,.4)}
-.v2 .dwire i::after{border-left-color:rgba(255,255,255,.4)}
-.v2 .dgrid i.x{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3);color:#F4F5F7}
-.v2 .ic-status.live{background:rgba(255,255,255,.06);color:#C2C7CF}
-.v2 .ccol.win .cbadge{background:rgba(255,255,255,.06);color:#F4F5F7}
-.v2 .ccol.win .cmark{color:#F4F5F7}
-.v2 .codeblk .k{color:#C2C7CF}
-.v2 .product-path a{border-bottom-color:#34404C}
-
-/* ── card highlight on hover/focus (Quantango "active card") ───── */
-.v2 .pillar:not(.soon):hover,.v2 .card:hover,.v2 .uc-card:hover,.v2 .jstep:hover{
-  background:rgba(255,255,255,.035);border-color:rgba(43,232,165,.35);box-shadow:none}
-.v2 .pillar:not(.soon):hover h3,.v2 .card:hover h3,.v2 .uc-card:hover h3,.v2 .jstep:hover h3{color:#2BE8A5}
-.v2 .pillar:not(.soon):hover .tag,.v2 .uc-card:hover .tag,.v2 .jstep:hover .jtag,
-.v2 .pillar:not(.soon):hover .more,.v2 .card:hover .more{color:#2BE8A5}
-.v2 .jstep:hover .jnum{border-color:rgba(43,232,165,.4);color:#2BE8A5}
-/* texture brightens slightly under the cursor */
-.v2 .pillar:not(.soon):hover::after,.v2 .card:hover::after,.v2 .uc-card:hover::after{opacity:.9}
+/* ---- motion off for decorative SVG/keyframes ---- */
+.v2 .hero-fig .fig-chip,.v2 .hero-fig .fig-glow{animation:none}
