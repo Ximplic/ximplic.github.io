@@ -140,9 +140,11 @@
       import('https://cdn.jsdelivr.net/npm/motion@11/+esm').then(function (motion) {
         clearTimeout(fallback);
         var animate = motion.animate, inView = motion.inView;
+
+        /* scroll reveal: spring + sibling stagger (slow-in/out, run once) */
         reveals.forEach(function (el) {
           inView(el, function () {
-            if (el.classList.contains('in')) return;            /* run once */
+            if (el.classList.contains('in')) return;
             var sibs = [].slice.call(el.parentElement.children)
               .filter(function (n) { return n.classList.contains('reveal'); });
             var i = Math.max(0, sibs.indexOf(el));
@@ -153,6 +155,25 @@
             );
           }, { margin: '0px 0px -8% 0px', amount: 0.12 });
         });
+
+        /* gesture polish (Disney principles → tactile spring motion) */
+        var spr = function (s, d) { return { type: 'spring', stiffness: s, damping: d }; };
+        /* buttons — appeal (hover lift) + anticipation/squash (press) */
+        document.querySelectorAll('.btn').forEach(function (b) {
+          b.addEventListener('pointerenter', function () { animate(b, { scale: 1.04 }, spr(380, 16)); });
+          b.addEventListener('pointerleave', function () { animate(b, { scale: 1 }, spr(380, 20)); });
+          b.addEventListener('pointerdown', function () { animate(b, { scale: 0.95 }, { duration: 0.12 }); });
+          b.addEventListener('pointerup', function () { animate(b, { scale: 1.04 }, spr(500, 14)); });
+        });
+        /* cards — appeal (subtle hover lift, secondary to the CSS color shift) */
+        document.querySelectorAll('.pillar:not(.soon),.uc-card,.ic,.news-item,.jstep,.person').forEach(function (c) {
+          c.addEventListener('pointerenter', function () { animate(c, { transform: 'translateY(-5px)' }, spr(210, 20)); });
+          c.addEventListener('pointerleave', function () { animate(c, { transform: 'translateY(0px)' }, spr(210, 24)); });
+        });
+        /* hero chip — gentle continuous float (idle appeal) */
+        var fig = document.querySelector('.hero-fig .fig-chip');
+        if (fig) animate(fig, { transform: ['translateY(0px)', 'translateY(-10px)', 'translateY(0px)'] },
+          { duration: 6, repeat: Infinity, ease: 'easeInOut' });
       }).catch(revealAll);
     }
   }
