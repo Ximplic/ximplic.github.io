@@ -213,7 +213,7 @@
       /* one soft glow for depth */
       var gx=W*0.7, gy=H*0.18, gr=Math.max(W,H)*0.5;
       var g=ctx.createRadialGradient(gx,gy,0,gx,gy,gr);
-      g.addColorStop(0,'rgba(92,179,161,.07)'); g.addColorStop(1,'rgba(92,179,161,0)');
+      g.addColorStop(0,'rgba(43,232,165,.07)'); g.addColorStop(1,'rgba(43,232,165,0)');
       ctx.globalCompositeOperation='lighter'; ctx.fillStyle=g;
       ctx.beginPath(); ctx.arc(gx,gy,gr,0,6.2832); ctx.fill();
       /* flowing dotted waves, centered band, fading at edges */
@@ -229,7 +229,7 @@
           var a=(1-d)*(1-d)*0.55*(0.6+0.4*Math.sin(s*0.6+l));
           if(a<0.02) continue;
           ctx.beginPath(); ctx.arc(x,y,1.4,0,6.2832);
-          ctx.fillStyle='rgba(92,179,161,'+a.toFixed(3)+')'; ctx.fill();
+          ctx.fillStyle='rgba(43,232,165,'+a.toFixed(3)+')'; ctx.fill();
         }
       }
     };
