@@ -1044,9 +1044,10 @@ html{background:#0C0C0C}
 /* buttons — white pill primary, ghost-bordered secondary */
 .v2 .btn{border-radius:9999px;font-family:'Manrope',sans-serif;font-weight:500}
 .v2 .btn-primary{background:#FFFFFF;color:#11161C;border:0;box-shadow:none;padding:13px 26px}
-.v2 .btn-primary:hover{background:#E9F8F1;transform:translateY(-1px);box-shadow:none}
+.v2 .btn-primary:hover{background:#2BE8A5;color:#06120D;transform:translateY(-1px);
+  box-shadow:0 8px 26px -10px rgba(43,232,165,.6)}
 .v2 .btn-light,.v2 .btn-ghost{background:transparent;border:1px solid #2B3640;color:#F4F5F7}
-.v2 .btn-light:hover,.v2 .btn-ghost:hover{border-color:#2BE8A5;color:#F4F5F7;background:transparent}
+.v2 .btn-light:hover,.v2 .btn-ghost:hover{border-color:#2BE8A5;color:#2BE8A5;background:rgba(43,232,165,.06)}
 
 /* badge → slim outline kicker */
 .v2 .hero-copy .badge{background:transparent;border:1px solid #20272F;color:#8A93A0;
