@@ -938,3 +938,31 @@ html{background:#06080C}
 .v2 .subnav.stuck{background:rgba(10,14,22,.62);
   backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);
   border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 12px 32px -20px rgba(0,0,0,.7)}
+
+/* ===== senior-Framer polish pass (council) ===== */
+/* 1. nav reacts to scroll: pill solidifies + lifts */
+.v2 .nav-in{transition:background .3s ease,box-shadow .3s ease,border-color .3s ease,height .25s ease}
+.v2 header.nav.scrolled .nav-in{height:54px;background:rgba(8,11,17,.82);
+  border-color:rgba(255,255,255,.12);box-shadow:0 14px 36px -20px rgba(0,0,0,.75)}
+
+/* 2. product-page hero gets a staggered entrance (homepage already has .su) */
+.v2 .hero .eyebrow,.v2 .hero .chip{opacity:0;animation:suUp .62s cubic-bezier(.22,.61,.36,1) forwards}
+.v2 .hero .chip{animation-delay:.28s}
+.v2 .hero .eyebrow{animation-delay:.05s}
+.v2 .hero section,.v2 .hero .hero-grid>div:first-child>h1,
+.v2 .hero .hero-grid>div:first-child>.lead,
+.v2 .hero .hero-grid>div:first-child>.hero-cta,
+.v2 .hero .hero-grid>div:first-child>.hero-meta{opacity:0;animation:suUp .62s cubic-bezier(.22,.61,.36,1) forwards}
+.v2 .hero .hero-grid>div:first-child>h1{animation-delay:.14s}
+.v2 .hero .hero-grid>div:first-child>.lead{animation-delay:.24s}
+.v2 .hero .hero-grid>div:first-child>.hero-cta{animation-delay:.34s}
+.v2 .hero .hero-grid>div:first-child>.hero-meta{animation-delay:.44s}
+@media(prefers-reduced-motion:reduce){
+  .v2 .hero .eyebrow,.v2 .hero .chip,.v2 .hero .hero-grid>div:first-child>*{animation:none;opacity:1}
+}
+
+/* 3. dial teal back to focal-only: drop the teal glow on card hover, neutral meta dots */
+.v2 .card:hover,.v2 .pillar:not(.soon):hover,.v2 .uc-card:hover,.v2 .ic:hover,.v2 .news-item:hover{
+  border-color:rgba(255,255,255,.18);
+  box-shadow:0 26px 60px -28px rgba(0,0,0,.75)}
+.v2 .hero-meta .dot{background:rgba(255,255,255,.32)}

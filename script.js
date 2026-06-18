@@ -133,8 +133,13 @@
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
           if (en.isIntersecting) {
-            en.target.classList.add('in');
-            io.unobserve(en.target);
+            var el = en.target;
+            var sibs = [].slice.call(el.parentElement.children)
+              .filter(function (n) { return n.classList.contains('reveal'); });
+            var i = sibs.indexOf(el);
+            if (i > 0) el.style.transitionDelay = Math.min(i, 6) * 0.07 + 's';
+            el.classList.add('in');
+            io.unobserve(el);
           }
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
@@ -179,6 +184,16 @@
     var chkStuck=function(){ subBar.classList.toggle('stuck', subBar.getBoundingClientRect().top<=80); subTick=false; };
     window.addEventListener('scroll',function(){ if(!subTick){requestAnimationFrame(chkStuck);subTick=true;} },{passive:true});
     chkStuck();
+  }
+
+
+  /* nav reacts to scroll */
+  var navEl=document.querySelector('header.nav');
+  if(navEl){
+    var navTick=false;
+    var chkNav=function(){ navEl.classList.toggle('scrolled', window.scrollY>56); navTick=false; };
+    window.addEventListener('scroll',function(){ if(!navTick){requestAnimationFrame(chkNav);navTick=true;} },{passive:true});
+    chkNav();
   }
 
 })();
