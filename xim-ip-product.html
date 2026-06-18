@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="v2">
-<div class="site-bg" aria-hidden="true"><div class="orb"></div></div>
+<div class="site-bg" aria-hidden="true"><canvas class="bg-fx"></canvas><div class="orb"></div></div>
 
 <!-- NAV -->
 <header class="nav">
@@ -186,6 +186,11 @@
         <h3>FPGA-to-ASIC contract</h3>
         <p>Frozen compute-macro interface: validate on FPGA, migrate to ASIC without logic rework.</p>
       </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h3l2-6 3 12 2-8 2 5h6"/></svg></div>
+        <h3>Spiking networks, too</h3>
+        <p>Runs rate-coded spiking neural networks (integrate-and-fire / LIF) in a single pass — board-validated, on the same array as CNNs and transformers.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -258,6 +263,7 @@
       <div class="spec-row"><span class="k">Precision</span><span class="v">INT8 / INT4 / INT2 / INT1, runtime</span></div>
       <div class="spec-row"><span class="k">FPGA prototype</span><span class="v">Proven end to end on FPGA</span></div>
       <div class="spec-row"><span class="k">Sparsity</span><span class="v">Input + weight, row/column masking</span></div>
+      <div class="spec-row"><span class="k">Model classes</span><span class="v">CNN · transformer-class · rate-coded SNN</span></div>
       <div class="spec-row"><span class="k">ASIC target</span><span class="v">Custom low-voltage SRAM macro</span></div>
       <div class="spec-row"><span class="k">Toolchain</span><span class="v">Vextyl + Vyzora</span></div>
     </div>
@@ -324,6 +330,7 @@
         <tr><td>End-to-end inference, INT8</td><td class="ok">Measured</td><td>FPGA, matches simulation</td></tr>
         <tr><td>Multi-precision (INT4) deployment</td><td class="ok">Measured</td><td>FPGA, mixed precision</td></tr>
         <tr><td>Two model families, one bitstream</td><td class="ok">Measured</td><td>Keyword spotting + anomaly detection</td></tr>
+        <tr><td>Rate-coded spiking network (SNN)</td><td class="ok">Measured</td><td>FPGA, bit-exact vs simulation</td></tr>
       </tbody>
     </table>
     <div class="note reveal">

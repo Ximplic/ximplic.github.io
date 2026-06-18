@@ -196,4 +196,38 @@
     chkNav();
   }
 
+
+  /* animated aurora backdrop (canvas) */
+  var fx=document.querySelector('.bg-fx');
+  if(fx && fx.getContext && !reduce){
+    var ctx=fx.getContext('2d');
+    var DPR=Math.min(window.devicePixelRatio||1,1.5), W=0, H=0;
+    var sizeFx=function(){ W=fx.clientWidth; H=fx.clientHeight; fx.width=Math.max(1,W*DPR); fx.height=Math.max(1,H*DPR); ctx.setTransform(DPR,0,0,DPR,0,0); };
+    sizeFx(); window.addEventListener('resize',sizeFx,{passive:true});
+    var blobs=[
+      {x:.80,y:.10,r:.46,c:'92,179,161',a:.11,sx:0.7,sy:0.5,p:0.0},
+      {x:.18,y:.66,r:.52,c:'92,179,161',a:.07,sx:0.5,sy:0.8,p:2.1},
+      {x:.52,y:1.04,r:.58,c:'74,150,150',a:.06,sx:0.6,sy:0.4,p:4.2}
+    ];
+    var last=0;
+    var frame=function(ts){
+      requestAnimationFrame(frame);
+      if(document.hidden || ts-last<33) return; last=ts;
+      var s=ts/1000;
+      ctx.clearRect(0,0,W,H);
+      ctx.globalCompositeOperation='lighter';
+      for(var i=0;i<blobs.length;i++){
+        var b=blobs[i];
+        var cx=(b.x+Math.sin(s*0.05*b.sx+b.p)*0.07)*W;
+        var cy=(b.y+Math.cos(s*0.05*b.sy+b.p)*0.07)*H;
+        var rad=b.r*Math.max(W,H)*0.9;
+        var g=ctx.createRadialGradient(cx,cy,0,cx,cy,rad);
+        g.addColorStop(0,'rgba('+b.c+','+b.a+')');
+        g.addColorStop(1,'rgba('+b.c+',0)');
+        ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,rad,0,6.2832); ctx.fill();
+      }
+    };
+    requestAnimationFrame(frame);
+  }
+
 })();
