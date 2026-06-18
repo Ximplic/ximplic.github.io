@@ -124,26 +124,36 @@
     t.innerHTML += t.innerHTML;
   });
 
-  /* subtle scroll reveal */
+  /* scroll reveal — Motion (motion.dev), Framer-style spring + sibling stagger */
   var reveals = document.querySelectorAll('.reveal');
   if (reveals.length) {
-    if (reduce || !('IntersectionObserver' in window)) {
+    var revealAll = function () {
+      document.documentElement.classList.remove('anim');
       reveals.forEach(function (el) { el.classList.add('in'); });
+    };
+    if (reduce) {
+      revealAll();
     } else {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting) {
-            var el = en.target;
+      /* arm hidden initial state (CSS `.anim .reveal`), then animate in */
+      document.documentElement.classList.add('anim');
+      var fallback = setTimeout(revealAll, 1600); /* CDN blocked/slow → never leave content hidden */
+      import('https://cdn.jsdelivr.net/npm/motion@11/+esm').then(function (motion) {
+        clearTimeout(fallback);
+        var animate = motion.animate, inView = motion.inView;
+        reveals.forEach(function (el) {
+          inView(el, function () {
+            if (el.classList.contains('in')) return;            /* run once */
             var sibs = [].slice.call(el.parentElement.children)
               .filter(function (n) { return n.classList.contains('reveal'); });
-            var i = sibs.indexOf(el);
-            if (i > 0) el.style.transitionDelay = Math.min(i, 6) * 0.07 + 's';
+            var i = Math.max(0, sibs.indexOf(el));
             el.classList.add('in');
-            io.unobserve(el);
-          }
+            animate(el,
+              { opacity: [0, 1], transform: ['translateY(24px)', 'translateY(0px)'] },
+              { duration: 0.6, delay: Math.min(i, 6) * 0.06, type: 'spring', stiffness: 90, damping: 18, mass: 0.9 }
+            );
+          }, { margin: '0px 0px -8% 0px', amount: 0.12 });
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-      reveals.forEach(function (el) { io.observe(el); });
+      }).catch(revealAll);
     }
   }
 
