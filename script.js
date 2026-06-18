@@ -161,4 +161,14 @@
       targets.forEach(function (t) { spy.observe(t); });
     }
   }
+
+  /* parallax backdrop — moves slower than content */
+  var siteBg=document.querySelector('.site-bg');
+  if(siteBg && !reduce){
+    var bgTick=false;
+    var moveBg=function(){ siteBg.style.transform='translate3d(0,'+(window.scrollY*0.14)+'px,0)'; bgTick=false; };
+    window.addEventListener('scroll',function(){ if(!bgTick){requestAnimationFrame(moveBg);bgTick=true;} },{passive:true});
+    moveBg();
+  }
+
 })();

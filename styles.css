@@ -891,3 +891,37 @@ body.v2::before{background:radial-gradient(46% 36% at 74% 2%,rgba(92,179,161,.05
 .v2 .soc .accel{animation:none!important}
 .v2 .soc .scell.on{animation:none!important;fill:rgba(92,179,161,.55)}
 .v2 .soc .flow{animation:none!important;opacity:.5}
+
+/* ===== v2 parallax backdrop — site floats over a moving scene ===== */
+body.v2::before{display:none}              /* retire old static glow */
+.v2 .hero,.v2 .page-head{background:transparent}
+.v2 .hero::before,.v2 .page-head::before{display:none}
+
+.site-bg{position:fixed;inset:-12vh -5vw;z-index:-2;pointer-events:none;will-change:transform;
+  background:
+    radial-gradient(42% 30% at 80% 6%, rgba(92,179,161,.10), transparent 60%),
+    radial-gradient(120% 95% at 50% -8%, #0E1824 0%, #0A0E15 52%, #06080C 100%)}
+.site-bg::after{content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.035) 1px, transparent 1.5px);
+  background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(125% 90% at 50% 28%, #000 38%, transparent 82%);
+          mask-image:radial-gradient(125% 90% at 50% 28%, #000 38%, transparent 82%);
+  opacity:.55}
+.site-bg .orb{position:absolute;left:50%;top:78%;width:92vmax;height:92vmax;border-radius:50%;
+  transform:translate(-50%,-50%);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(92,179,161,.12), rgba(92,179,161,.04) 36%, transparent 58%);
+  box-shadow:inset 0 0 0 1px rgba(92,179,161,.06);
+  animation:orbDrift 26s ease-in-out infinite}
+.site-bg .orb::before{content:"";position:absolute;inset:8%;border-radius:50%;
+  border:1px solid rgba(255,255,255,.04);
+  background:repeating-linear-gradient(90deg,transparent 0 58px,rgba(255,255,255,.025) 58px 59px)}
+@keyframes orbDrift{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-53%) scale(1.04)}}
+@media(prefers-reduced-motion:reduce){.site-bg .orb{animation:none}}
+
+/* let the fixed backdrop show through the page */
+html{background:#06080C}
+.v2{background:transparent}
+.v2 .cta,.v2 .adopt{background:rgba(9,12,18,.55)}
+.v2 .spec-wrap{background:rgba(255,255,255,.012)}
+.v2 footer.site{background:rgba(6,8,12,.86)}
