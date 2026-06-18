@@ -789,3 +789,65 @@ section:not(.hero):not(.cta):not(.adopt){padding:100px 0}
 .v2 .news-item .date{color:var(--accent)}
 .v2 .role{color:var(--muted)}
 .v2 .contact-meta{color:var(--muted)}
+
+/* ===== v2 — pro-Framer polish ===== */
+/* ambient depth behind content */
+body.v2::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(58% 44% at 50% -8%,rgba(19,211,163,.10),transparent 62%),
+             radial-gradient(40% 38% at 102% 18%,rgba(19,211,163,.06),transparent 60%),
+             radial-gradient(46% 40% at -6% 82%,rgba(19,211,163,.05),transparent 62%)}
+
+/* breathing room */
+.v2 section{padding:104px 0}
+.v2 .section-head{margin-bottom:52px}
+
+/* smoother, longer reveal */
+.v2 .reveal{transform:translateY(26px);transition:opacity .75s cubic-bezier(.22,.61,.36,1),transform .75s cubic-bezier(.22,.61,.36,1)}
+
+/* gradient accent text */
+.v2 .hero h1 .serif,.v2 .hero h1 .accent{
+  background:linear-gradient(118deg,#3FE9BE 0%,#13D3A3 60%);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent}
+
+/* card lift + teal glow on hover */
+.v2 .card,.v2 .pillar,.v2 .uc-card,.v2 .ic,.v2 .news-item{
+  transition:transform .28s cubic-bezier(.22,.61,.36,1),box-shadow .28s,border-color .28s,background .28s}
+.v2 .card:hover,.v2 .pillar:not(.soon):hover,.v2 .uc-card:hover,.v2 .ic:hover,.v2 .news-item:hover{
+  transform:translateY(-5px);border-color:rgba(19,211,163,.42);
+  box-shadow:0 26px 60px -26px rgba(0,0,0,.7),0 0 0 1px rgba(19,211,163,.14),0 0 40px -16px rgba(19,211,163,.25)}
+
+/* icon chips legible on dark */
+.v2 .ico{background:rgba(19,211,163,.14);color:#37E0B6}
+
+/* buttons: gradient + glow */
+.v2 .btn-primary{background:linear-gradient(180deg,#2EE9B9,#13D3A3);color:#04241c;
+  box-shadow:0 12px 32px -12px rgba(19,211,163,.55)}
+.v2 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 46px -12px rgba(19,211,163,.7)}
+.v2 .btn-light{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16);color:#fff}
+.v2 .btn-light:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+
+/* badge subtle glow */
+.v2 .hero-copy .badge{box-shadow:0 0 0 1px rgba(19,211,163,.12),0 8px 28px -14px rgba(19,211,163,.4)}
+
+/* nav pill + CTA micro-interaction */
+.v2 .nav-actions .btn{transition:transform .2s,box-shadow .2s}
+.v2 .nav-links a::after{background:var(--accent)}
+
+/* spec/table row hover */
+.v2 .spec-row:hover .v{color:#5FF0CE}
+.v2 table.t tbody tr{transition:background .2s}
+.v2 table.t tbody tr:hover{background:rgba(255,255,255,.03)}
+
+/* animated underline on inline links */
+.v2 .product-path a{background-image:linear-gradient(var(--accent),var(--accent));background-size:0% 1.5px;
+  background-position:0 100%;background-repeat:no-repeat;transition:background-size .3s ease;padding-bottom:2px}
+.v2 .product-path a:hover{background-size:100% 1.5px}
+
+/* selection + focus */
+.v2 ::selection{background:rgba(19,211,163,.32);color:#fff}
+.v2 a:focus-visible,.v2 button:focus-visible,.v2 input:focus-visible,.v2 textarea:focus-visible,.v2 select:focus-visible{
+  outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+/* figure cards rounding + soft frame */
+.v2 .chip,.v2 .panel{border:1px solid rgba(255,255,255,.08);box-shadow:0 30px 70px -40px rgba(0,0,0,.8)}
+@media(prefers-reduced-motion:reduce){.v2 .reveal{transition:none}}
