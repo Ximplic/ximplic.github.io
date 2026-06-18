@@ -1082,7 +1082,8 @@ html{background:#0C0C0C}
 .v2 .pillar .tag,.v2 .uc-card .tag,.v2 .card .more,.v2 .pillar .more,
 .v2 .news-item .date,.v2 .acc-num,.v2 .ok,.v2 .stat b,.v2 .jstep .jtag,
 .v2 .ic-opt,.v2 .ic-link,.v2 .acc-grid .ccol .cmark{color:#F4F5F7}
-.v2 .eyebrow,.v2 .page-head .eyebrow,.v2 .hero .eyebrow,.v2 .adopt .eyebrow{color:#8A93A0}
+.v2 .eyebrow,.v2 .page-head .eyebrow,.v2 .hero .eyebrow,.v2 .adopt .eyebrow,
+.v2 .section-rule,.v2 .section-rule span:first-child{color:#2BE8A5}
 /* neutral dots/markers */
 .v2 .dot,.v2 .deliv li::before,.v2 .acc-list li::before,.v2 .ic-list li::before,
 .v2 .mq-item::before{background:#5B6470}
