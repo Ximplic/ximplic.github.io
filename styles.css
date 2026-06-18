@@ -1075,8 +1075,9 @@ html{background:#0C0C0C}
    TEAL RESTRAINT — accent only on hover/selection; default black/white
    + Quantango-style dotted texture inside cards
    =================================================================== */
-/* static accent text → neutral (white/muted) */
-.v2 .hero h1 .serif,.v2 .hero h1 .accent{color:#F4F5F7!important;-webkit-text-fill-color:#F4F5F7!important;background:none!important}
+/* heading accent word stays electric green (brand highlight) */
+.v2 .hero h1 .serif,.v2 .hero h1 .accent,.v2 h2 .accent{
+  color:#2BE8A5!important;-webkit-text-fill-color:#2BE8A5!important;background:none!important}
 .v2 .pillar .tag,.v2 .uc-card .tag,.v2 .card .more,.v2 .pillar .more,
 .v2 .news-item .date,.v2 .acc-num,.v2 .ok,.v2 .stat b,.v2 .jstep .jtag,
 .v2 .ic-opt,.v2 .ic-link,.v2 .acc-grid .ccol .cmark{color:#F4F5F7}
@@ -1140,3 +1141,13 @@ html{background:#0C0C0C}
 .v2 .ccol.win .cmark{color:#F4F5F7}
 .v2 .codeblk .k{color:#C2C7CF}
 .v2 .product-path a{border-bottom-color:#34404C}
+
+/* ── card highlight on hover/focus (Quantango "active card") ───── */
+.v2 .pillar:not(.soon):hover,.v2 .card:hover,.v2 .uc-card:hover,.v2 .jstep:hover{
+  background:rgba(255,255,255,.035);border-color:rgba(43,232,165,.35);box-shadow:none}
+.v2 .pillar:not(.soon):hover h3,.v2 .card:hover h3,.v2 .uc-card:hover h3,.v2 .jstep:hover h3{color:#2BE8A5}
+.v2 .pillar:not(.soon):hover .tag,.v2 .uc-card:hover .tag,.v2 .jstep:hover .jtag,
+.v2 .pillar:not(.soon):hover .more,.v2 .card:hover .more{color:#2BE8A5}
+.v2 .jstep:hover .jnum{border-color:rgba(43,232,165,.4);color:#2BE8A5}
+/* texture brightens slightly under the cursor */
+.v2 .pillar:not(.soon):hover::after,.v2 .card:hover::after,.v2 .uc-card:hover::after{opacity:.9}
