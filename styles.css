@@ -1070,3 +1070,73 @@ html{background:#0C0C0C}
 .v2 .cta,.v2 .adopt{background:#080808}
 .v2 footer.site{background:#080808;border-top:1px solid #20272F}
 .v2 .spec-row,.v2 .deliv li,.v2 table.t th,.v2 table.t td,.v2 .faq-row,.v2 .faq-q{border-color:#20272F}
+
+/* ===================================================================
+   TEAL RESTRAINT — accent only on hover/selection; default black/white
+   + Quantango-style dotted texture inside cards
+   =================================================================== */
+/* static accent text → neutral (white/muted) */
+.v2 .hero h1 .serif,.v2 .hero h1 .accent{color:#F4F5F7!important;-webkit-text-fill-color:#F4F5F7!important;background:none!important}
+.v2 .pillar .tag,.v2 .uc-card .tag,.v2 .card .more,.v2 .pillar .more,
+.v2 .news-item .date,.v2 .acc-num,.v2 .ok,.v2 .stat b,.v2 .jstep .jtag,
+.v2 .ic-opt,.v2 .ic-link,.v2 .acc-grid .ccol .cmark{color:#F4F5F7}
+.v2 .eyebrow,.v2 .page-head .eyebrow,.v2 .hero .eyebrow,.v2 .adopt .eyebrow{color:#8A93A0}
+/* neutral dots/markers */
+.v2 .dot,.v2 .deliv li::before,.v2 .acc-list li::before,.v2 .ic-list li::before,
+.v2 .mq-item::before{background:#5B6470}
+/* icon tiles → neutral, not green wash */
+.v2 .ico{background:rgba(255,255,255,.05);color:#F4F5F7;border:1px solid #20272F}
+/* badge star → white */
+.v2 .hero-copy .badge svg{color:#C2C7CF}
+/* chip figure cells → neutral white tones */
+.v2 .hero-fig .cell{fill:rgba(255,255,255,.07)!important}
+.v2 .hero-fig .cell.on{fill:rgba(244,245,247,.55)!important;animation:none!important}
+.v2 .hero-fig .cell.core{fill:rgba(244,245,247,.9)!important;animation:none!important}
+.v2 .hero-fig .fig-glow{fill:rgba(255,255,255,.10)!important}
+.v2 .hero-fig .pad{fill:rgba(255,255,255,.35)!important}
+.v2 .hero-fig .fig-ring{stroke:rgba(255,255,255,.12)}
+
+/* journey step badge/arrow → neutral */
+.v2 .jstep .jnum{background:rgba(255,255,255,.06);color:#F4F5F7;border:1px solid #20272F}
+.v2 .jarrow{color:#5B6470}
+
+/* accent RETURNS only on hover / active / selection */
+.v2 .card .more:hover,.v2 .pillar .more:hover,.v2 .nav-links a:hover,
+.v2 .nav-dd-menu a:hover,.v2 .foot-col a:hover,.v2 .ic-link:hover{color:#2BE8A5}
+.v2 .nav-links a.active,.v2 .nav-dd-btn[aria-expanded="true"],
+.v2 .subnav a.active{color:#2BE8A5}
+.v2 .nav-links a.active::after,.v2 .subnav a.active::after{background:#2BE8A5}
+.v2 ::selection{background:rgba(43,232,165,.28);color:#F4F5F7}
+
+/* dotted wave texture in cards (faint, corner-faded) */
+.v2 .pillar::after,.v2 .card::after,.v2 .uc-card::after{
+  content:"";position:absolute;inset:0;display:block;pointer-events:none;z-index:0;
+  background-image:radial-gradient(rgba(255,255,255,.10) 1px,transparent 1.4px);
+  background-size:13px 13px;opacity:.6;
+  -webkit-mask-image:radial-gradient(130% 95% at 82% 122%,#000 0%,transparent 58%);
+  mask-image:radial-gradient(130% 95% at 82% 122%,#000 0%,transparent 58%)}
+.v2 .pillar:nth-child(2n)::after,.v2 .card:nth-child(2n)::after,.v2 .uc-card:nth-child(2n)::after{
+  -webkit-mask-image:radial-gradient(130% 95% at 18% -22%,#000 0%,transparent 58%);
+  mask-image:radial-gradient(130% 95% at 18% -22%,#000 0%,transparent 58%)}
+.v2 .pillar.soon::after{display:none}
+
+/* diagrams → neutral white tones (energy chart keeps its green data-viz) */
+.v2 .chip-badge{background:rgba(255,255,255,.06);color:#C2C7CF;border:1px solid #20272F}
+.v2 .soc .accel{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.45);animation:none}
+.v2 .soc .axi-l{fill:#C2C7CF}
+.v2 .soc .scell{fill:rgba(255,255,255,.10)!important}
+.v2 .soc .scell.on{fill:rgba(255,255,255,.55)!important;animation:none!important}
+.v2 .soc .arrow{fill:#5B6470}
+.v2 .soc .flow{stroke:rgba(255,255,255,.4)}
+.v2 .idia .il.x{fill:#F4F5F7}
+.v2 .idia .iwire,.v2 .idia .arow{stroke:rgba(255,255,255,.4)}
+.v2 .idia .iarr{fill:#5B6470}
+.v2 .dnode.xim{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3);color:#F4F5F7}
+.v2 .dwire i{border-top-color:rgba(255,255,255,.4)}
+.v2 .dwire i::after{border-left-color:rgba(255,255,255,.4)}
+.v2 .dgrid i.x{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3);color:#F4F5F7}
+.v2 .ic-status.live{background:rgba(255,255,255,.06);color:#C2C7CF}
+.v2 .ccol.win .cbadge{background:rgba(255,255,255,.06);color:#F4F5F7}
+.v2 .ccol.win .cmark{color:#F4F5F7}
+.v2 .codeblk .k{color:#C2C7CF}
+.v2 .product-path a{border-bottom-color:#34404C}
