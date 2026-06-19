@@ -1,0 +1,7 @@
+node_modules/
+dist/
+dist-ssr/
+.DS_Store
+*.local
+ximplic-app/node_modules/
+ximplic-app/dist/
