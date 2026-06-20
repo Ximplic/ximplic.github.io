@@ -16,10 +16,17 @@
 
 /* v2 scroll-reveal — progressive enhancement: content is visible by default, and only
    hidden-then-revealed once JS adds .rv-ready (so no-JS / crawlers / failed-observer show content). */
-.rv { transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
-.rv-ready .rv { opacity: 0; transform: translateY(16px); }
-.rv.in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .rv-ready .rv { opacity: 1; transform: none; transition: none; } }
+.rv, .rv-l, .rv-r {
+  transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1), filter .7s cubic-bezier(.16,1,.3,1);
+  will-change: opacity, transform;
+}
+.rv-ready .rv   { opacity: 0; transform: translateY(22px) scale(.985); filter: blur(6px); }
+.rv-ready .rv-l { opacity: 0; transform: translateX(-30px); filter: blur(4px); }
+.rv-ready .rv-r { opacity: 0; transform: translateX(30px); filter: blur(4px); }
+.rv.in, .rv-l.in, .rv-r.in { opacity: 1; transform: none; filter: none; }
+@media (prefers-reduced-motion: reduce) {
+  .rv-ready .rv, .rv-ready .rv-l, .rv-ready .rv-r { opacity: 1; transform: none; filter: none; transition: none; }
+}
 
 /* staggered child reveal — guides the eye across a grid instead of popping as one block */
 @keyframes riseIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }

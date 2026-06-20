@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import SiteNav from "./SiteNav";
 import FooterV2 from "./FooterV2";
+import ScrollProgress from "./ScrollProgress";
 
 /* themed shell: dark base + Poppins, shared nav/footer, scroll-reveal.
    Dark<->light banding is solid sections + CSS gradient strips (no JS background).
@@ -13,7 +14,7 @@ export default function LayoutV2() {
   // scroll-reveal + hash scroll
   useEffect(() => {
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    const els = Array.from(document.querySelectorAll<HTMLElement>(".rv, .rvs"));
+    const els = Array.from(document.querySelectorAll<HTMLElement>(".rv, .rvs, .rv-l, .rv-r"));
     if (reduce || !("IntersectionObserver" in window)) {
       els.forEach((el) => el.classList.add("in"));
     } else {
@@ -45,6 +46,8 @@ export default function LayoutV2() {
           style={{ background: "radial-gradient(ellipse at center, rgba(43,232,165,0.13), transparent 68%)" }}
         />
       </div>
+
+      <ScrollProgress />
 
       <div className="relative z-10">
         <SiteNav />

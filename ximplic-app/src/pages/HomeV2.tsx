@@ -102,7 +102,7 @@ export default function HomeV2() {
 
       {/* ENERGY */}
       <section id="why" className="px-6 py-24 border-t border-white/[0.06]">
-        <div className="max-w-5xl mx-auto rv">
+        <div className="max-w-5xl mx-auto rv-l">
           <p className="text-xs font-medium tracking-widest uppercase mb-3 text-white/50">Where the energy goes</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">Most of the energy moves data, not uses it</h2>
           <p className="text-white/55 max-w-2xl mb-12">On small models that run all the time, the computation is cheap. The cost is shuttling weights between memory and logic. We compute inside the memory, so that movement mostly disappears.</p>
@@ -112,7 +112,7 @@ export default function HomeV2() {
 
       {/* PROOF SIGNALS */}
       <section id="proof" className="px-6 py-24 border-t border-white/[0.06]">
-        <div className="max-w-7xl mx-auto rv">
+        <div className="max-w-7xl mx-auto rv-r">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Measured, not promised</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-12 max-w-2xl">Proven on real hardware</h2>
           <div className="rvs grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px rounded-xl overflow-hidden border border-white/10 bg-white/10">
