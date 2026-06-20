@@ -2,6 +2,7 @@ import { ArrowRight, Square, Activity, Grid, Rows, ShieldCheck, TrendingUp, Aler
 import RequestAccessButton from "@/components/RequestAccessButton";
 import Faq from "@/components/Faq";
 import SpecTable from "@/components/SpecTable";
+import SectionSeam from "@/components/SectionSeam";
 
 const TEAL = "#2BE8A5";
 const gradText = {
@@ -179,10 +180,11 @@ export default function ProductVextyl() {
       </section>
 
       {/* DELIVERABLES */}
-      <section id="deliverables" className="px-6 py-24 border-t border-white/[0.06]">
+      <SectionSeam to="light" align="right" />
+      <section id="deliverables" className="px-6 py-24 bg-white text-black">
         <div className="max-w-7xl mx-auto rv grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div>
-            <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>What's included</p>
+            <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: "#0a8f63" }}>What's included</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-8">A complete deployment toolchain</h2>
             <ul className="space-y-4">
               {[
@@ -194,15 +196,15 @@ export default function ProductVextyl() {
                 ["Regression & equivalence tests", "Bit-exact pins so updates can't silently change a deployed model."],
                 ["Integration guide", "Docs for the compile flow, deployment ABI, and host runtime."],
               ].map(([b, s]) => (
-                <li key={b} className="rounded-xl border border-white/10 bg-white/[0.02] p-4 hover:border-white/20 transition-colors">
+                <li key={b} className="rounded-xl border border-black/10 bg-black/[0.03] p-4 hover:border-black/20 transition-colors">
                   <b className="block text-sm font-semibold mb-1">{b}</b>
-                  <span className="text-sm text-white/55 leading-relaxed">{s}</span>
+                  <span className="text-sm text-black/60 leading-relaxed">{s}</span>
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>How to engage</p>
+            <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: "#0a8f63" }}>How to engage</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-8">From a model to a deployment</h2>
             <div className="space-y-4">
               {[
@@ -211,11 +213,11 @@ export default function ProductVextyl() {
                 ["Validate", "Check accuracy in the simulator, then confirm bit-exact behaviour on hardware."],
                 ["Deploy", "Ship on the XIM accelerator, validated against the FPGA."],
               ].map(([h, p], i) => (
-                <div key={h} className="rounded-xl border border-white/10 bg-white/[0.02] p-5 hover:border-white/20 transition-colors flex gap-4">
-                  <span className="text-sm font-semibold w-7 h-7 rounded-lg border border-white/10 flex items-center justify-center shrink-0" style={{ color: TEAL }}>{i + 1}</span>
+                <div key={h} className="rounded-xl border border-black/10 bg-black/[0.03] p-5 hover:border-black/20 transition-colors flex gap-4">
+                  <span className="text-sm font-semibold w-7 h-7 rounded-lg border border-black/10 flex items-center justify-center shrink-0" style={{ color: "#0a8f63" }}>{i + 1}</span>
                   <div>
                     <h3 className="text-base font-semibold mb-1">{h}</h3>
-                    <p className="text-sm text-white/55 leading-relaxed">{p}</p>
+                    <p className="text-sm text-black/60 leading-relaxed">{p}</p>
                   </div>
                 </div>
               ))}
@@ -223,6 +225,7 @@ export default function ProductVextyl() {
           </div>
         </div>
       </section>
+      <SectionSeam to="dark" align="left" />
 
       {/* VALIDATION */}
       <section id="performance" className="px-6 py-24 border-t border-white/[0.06]">

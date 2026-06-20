@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import RequestAccessButton from "@/components/RequestAccessButton";
 import Faq from "@/components/Faq";
 import SpecTable from "@/components/SpecTable";
+import SectionSeam from "@/components/SectionSeam";
 
 const TEAL = "#2BE8A5";
 const gradText = {
@@ -201,11 +202,12 @@ export default function ProductVyzora() {
       </section>
 
       {/* APPLICATIONS */}
-      <section id="usecases" className="px-6 py-24 border-t border-white/[0.06]">
+      <SectionSeam to="light" align="right" />
+      <section id="usecases" className="px-6 py-24 bg-white text-black">
         <div className="max-w-7xl mx-auto rv">
-          <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Where it fits</p>
+          <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: "#0a8f63" }}>Where it fits</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">Built for always-on edge inference</h2>
-          <p className="text-white/55 max-w-3xl mb-12">In-memory computing wins when models are small and run all the time, exactly the workloads that flatten a battery on a conventional NPU.</p>
+          <p className="text-black/60 max-w-3xl mb-12">In-memory computing wins when models are small and run all the time, exactly the workloads that flatten a battery on a conventional NPU.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { tag: "Audio", title: "Keyword spotting", desc: "Always-listening wake-word detection (DS-CNN) at sub-mW duty cycles." },
@@ -213,15 +215,16 @@ export default function ProductVyzora() {
               { tag: "Vision", title: "Compact CNN inference", desc: "MobileNet-class person, gesture and presence sensing for wearables." },
               { tag: "Fusion", title: "Sensor-hub AI", desc: "Low-power fusion in always-on hubs with weights resident on-chip." },
             ].map((u) => (
-              <div key={u.title} className="rounded-xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-white/20">
-                <span className="text-[10px] font-medium tracking-widest uppercase mb-4 inline-block" style={{ color: TEAL }}>{u.tag}</span>
+              <div key={u.title} className="rounded-xl border border-black/10 bg-black/[0.03] p-6 transition-colors hover:border-black/20">
+                <span className="text-[10px] font-medium tracking-widest uppercase mb-4 inline-block" style={{ color: "#0a8f63" }}>{u.tag}</span>
                 <h3 className="text-base font-semibold mb-1.5">{u.title}</h3>
-                <p className="text-sm text-white/55 leading-relaxed">{u.desc}</p>
+                <p className="text-sm text-black/60 leading-relaxed">{u.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
+      <SectionSeam to="dark" align="left" />
 
       {/* DELIVERABLES */}
       <section id="deliverables" className="px-6 py-24 border-t border-white/[0.06]">

@@ -4,6 +4,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import RequestAccessButton from "@/components/RequestAccessButton";
 import EnergyBars from "@/components/EnergyBars";
+import SectionSeam from "@/components/SectionSeam";
 
 const TEAL = "#2BE8A5";
 const gradText = {
@@ -125,18 +126,24 @@ export default function HomeV2() {
         </div>
       </section>
 
-      {/* CONTACT */}
-      <section id="contact" className="px-6 py-28 border-t border-white/[0.06]">
+      {/* SEAM: dark proof → light contact */}
+      <SectionSeam to="light" align="right" />
+
+      {/* CONTACT — light band */}
+      <section id="contact" className="bg-white text-black px-6 py-28">
         <div className="max-w-2xl mx-auto text-center rv">
-          <span className="inline-block text-xs font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border mb-6" style={{ color: TEAL, borderColor: `${TEAL}40`, background: `${TEAL}14` }}>Request access</span>
+          <span className="inline-block text-xs font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border mb-6" style={{ color: "#0a8f63", borderColor: "#2BE8A555", background: "#2BE8A51f" }}>Request access</span>
           <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.015em] mb-5" style={{ letterSpacing: "-0.03em" }}>Get Ximplic Vyzora</h2>
-          <p className="text-white/55 mb-9">Share the target workloads and platform and we'll set up an evaluation under NDA. Or reach out about licensing the IP, a partnership, or a role.</p>
+          <p className="text-black/60 mb-9">Share the target workloads and platform and we'll set up an evaluation under NDA. Or reach out about licensing the IP, a partnership, or a role.</p>
           <div className="flex items-center justify-center">
             <RequestAccessButton subject="Ximplic Vyzora evaluation" className="inline-flex items-center gap-2 text-sm md:text-base font-medium px-7 h-12 rounded-lg text-black transition-transform hover:scale-[1.04] active:scale-95" style={{ background: TEAL }}>Request evaluation <ArrowRight size={16} /></RequestAccessButton>
           </div>
-          <p className="text-xs text-white/55 mt-7">Email <a href="mailto:info@ximplic.com" style={{ color: TEAL }}>info@ximplic.com</a> · Groningen, The Netherlands</p>
+          <p className="text-xs text-black/55 mt-7">Email <a href="mailto:info@ximplic.com" style={{ color: "#0a8f63" }}>info@ximplic.com</a> · Groningen, The Netherlands</p>
         </div>
       </section>
+
+      {/* SEAM: light contact → dark footer */}
+      <SectionSeam to="dark" align="left" />
     </>
   );
 }

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SectionSeam from "@/components/SectionSeam";
 
 const TEAL = "#2BE8A5";
 
@@ -15,16 +16,18 @@ export default function Events() {
       </section>
 
       {/* EVENTS */}
-      <section className="px-6 pt-12 pb-24 border-t border-white/[0.06]">
+      <SectionSeam to="light" align="right" />
+      <section className="px-6 pt-12 pb-24 bg-white text-black">
         <div className="max-w-3xl mx-auto rv">
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6 text-center transition-colors hover:border-white/20">
+          <div className="rounded-xl border border-black/10 bg-black/[0.03] p-6 text-center transition-colors hover:border-black/10">
             <h3 className="text-xl font-semibold mb-2">Events coming soon</h3>
-            <p className="text-sm text-white/55 leading-relaxed">
-              Upcoming talks and appearances will be listed here. To arrange a meeting or invite us to speak, <Link to="/#contact" className="font-medium" style={{ color: TEAL }}>get in touch</Link>.
+            <p className="text-sm text-black/60 leading-relaxed">
+              Upcoming talks and appearances will be listed here. To arrange a meeting or invite us to speak, <Link to="/#contact" className="font-medium" style={{ color: "#0a8f63" }}>get in touch</Link>.
             </p>
           </div>
         </div>
       </section>
+      <SectionSeam to="dark" align="left" />
     </>
   );
 }

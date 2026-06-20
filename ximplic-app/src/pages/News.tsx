@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import SectionSeam from "@/components/SectionSeam";
 
 const TEAL = "#2BE8A5";
 
@@ -63,21 +64,22 @@ export default function News() {
       </section>
 
       {/* NEWS LIST */}
-      <section className="px-6 pt-12 pb-24 border-t border-white/[0.06]">
+      <SectionSeam to="light" align="right" />
+      <section className="px-6 pt-12 pb-24 bg-white text-black">
         <div className="max-w-3xl mx-auto rv">
           <div className="flex flex-col gap-4">
             {items.map((item) => (
-              <article key={item.title} className="rounded-xl border border-white/10 bg-white/[0.02] p-6 hover:border-white/20 transition-colors">
-                <div className="text-[10px] font-medium tracking-widest uppercase mb-3 text-white/50">{item.date}</div>
+              <article key={item.title} className="rounded-xl border border-black/10 bg-black/[0.03] p-6 hover:border-black/10 transition-colors">
+                <div className="text-[10px] font-medium tracking-widest uppercase mb-3 text-black/60">{item.date}</div>
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-sm text-white/55 leading-relaxed">{item.body}</p>
+                <p className="text-sm text-black/60 leading-relaxed">{item.body}</p>
                 {item.link && (
                   <a
                     href={item.link.href}
                     target="_blank"
                     rel="noopener"
                     className="text-sm font-medium mt-5 inline-flex items-center gap-1"
-                    style={{ color: TEAL }}
+                    style={{ color: "#0a8f63" }}
                   >
                     {item.link.label} <ArrowRight size={13} />
                   </a>
@@ -85,13 +87,14 @@ export default function News() {
               </article>
             ))}
 
-            <article className="rounded-xl border border-dashed border-white/10 bg-white/[0.02] p-6 text-center hover:border-white/20 transition-colors">
+            <article className="rounded-xl border border-dashed border-black/10 bg-black/[0.03] p-6 text-center hover:border-black/10 transition-colors">
               <h3 className="text-xl font-semibold mb-2">More news coming soon</h3>
-              <p className="text-sm text-white/55 leading-relaxed">Stay tuned for more updates and announcements.</p>
+              <p className="text-sm text-black/60 leading-relaxed">Stay tuned for more updates and announcements.</p>
             </article>
           </div>
         </div>
       </section>
+      <SectionSeam to="dark" align="left" />
     </>
   );
 }

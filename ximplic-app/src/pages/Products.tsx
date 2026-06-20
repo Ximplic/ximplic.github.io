@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import RequestAccessButton from "@/components/RequestAccessButton";
 import IntegrationSoC from "@/components/IntegrationSoC";
+import SectionSeam from "@/components/SectionSeam";
 
 const TEAL = "#2BE8A5";
 const gradText = {
@@ -67,17 +68,19 @@ export default function Products() {
       <IntegrationSoC />
 
       {/* CONTACT */}
-      <section id="contact" className="px-6 py-28 border-t border-white/[0.06]">
+      <SectionSeam to="light" align="right" />
+      <section id="contact" className="px-6 py-28 bg-white text-black">
         <div className="max-w-2xl mx-auto text-center rv">
-          <span className="inline-block text-xs font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border mb-6" style={{ color: TEAL, borderColor: `${TEAL}40`, background: `${TEAL}14` }}>Partner with Ximplic</span>
+          <span className="inline-block text-xs font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border mb-6" style={{ color: "#0a8f63", borderColor: `${TEAL}40`, background: `${TEAL}14` }}>Partner with Ximplic</span>
           <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.015em] mb-5" style={{ letterSpacing: "-0.03em" }}>Find the right starting point</h2>
-          <p className="text-white/55 mb-9">Not sure where to begin? Share the target workloads and platform. We'll recommend the right product and set up an evaluation.</p>
+          <p className="text-black/60 mb-9">Not sure where to begin? Share the target workloads and platform. We'll recommend the right product and set up an evaluation.</p>
           <div className="flex items-center justify-center">
             <RequestAccessButton subject="Ximplic — platform enquiry" className="inline-flex items-center gap-2 text-sm md:text-base font-medium px-7 h-12 rounded-lg text-black transition-transform hover:scale-[1.04] active:scale-95" style={{ background: TEAL }}>Request evaluation <ArrowRight size={16} /></RequestAccessButton>
           </div>
-          <p className="text-xs text-white/55 mt-7">Email <a href="mailto:info@ximplic.com" style={{ color: TEAL }}>info@ximplic.com</a> · Groningen, The Netherlands</p>
+          <p className="text-xs text-black/60 mt-7">Email <a href="mailto:info@ximplic.com" style={{ color: "#0a8f63" }}>info@ximplic.com</a> · Groningen, The Netherlands</p>
         </div>
       </section>
+      <SectionSeam to="dark" align="left" />
     </>
   );
 }

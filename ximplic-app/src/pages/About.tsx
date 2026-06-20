@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import RequestAccessButton from "@/components/RequestAccessButton";
+import SectionSeam from "@/components/SectionSeam";
 
 const LinkedinIcon = ({ size = 18 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -160,11 +161,12 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="px-6 py-28 border-t border-white/[0.06]">
+      <SectionSeam to="light" align="right" />
+      <section className="px-6 py-28 bg-white text-black">
         <div className="max-w-2xl mx-auto text-center rv">
-          <span className="inline-block text-xs font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border mb-6" style={{ color: TEAL, borderColor: `${TEAL}40`, background: `${TEAL}14` }}>Work with us</span>
+          <span className="inline-block text-xs font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border mb-6" style={{ color: "#0a8f63", borderColor: `${TEAL}40`, background: `${TEAL}14` }}>Work with us</span>
           <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.015em] mb-5" style={{ letterSpacing: "-0.03em" }}>Let's build efficient edge AI together</h2>
-          <p className="text-white/55 mb-9">
+          <p className="text-black/60 mb-9">
             Evaluate Ximplic Vyzora on target workloads, or talk to us about partnership and design-in.
           </p>
           <div className="flex items-center justify-center">
@@ -172,9 +174,10 @@ export default function About() {
               Request evaluation <ArrowRight size={16} />
             </RequestAccessButton>
           </div>
-          <p className="text-xs text-white/55 mt-7">Email <a href="mailto:info@ximplic.com" style={{ color: TEAL }}>info@ximplic.com</a> · Groningen, The Netherlands</p>
+          <p className="text-xs text-black/60 mt-7">Email <a href="mailto:info@ximplic.com" style={{ color: "#0a8f63" }}>info@ximplic.com</a> · Groningen, The Netherlands</p>
         </div>
       </section>
+      <SectionSeam to="dark" align="left" />
     </>
   );
 }
