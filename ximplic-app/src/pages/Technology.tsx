@@ -18,17 +18,20 @@ export default function Technology() {
         </div>
       </section>
 
-      {/* 01 · THE PROBLEM */}
-      <section className="px-6 py-24 border-t border-white/[0.06]">
+      {/* SEAM: dark head → light problem */}
+      <SectionSeam to="light" align="left" />
+
+      {/* 01 · THE PROBLEM — light band */}
+      <section className="bg-white text-black px-6 py-24">
         <div className="max-w-5xl mx-auto rv">
-          <p className="text-xs font-medium tracking-widest uppercase mb-3 text-white/50">The problem</p>
+          <p className="text-xs font-medium tracking-widest uppercase mb-3 text-black/60">The problem</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">The energy goes into moving data, not using it</h2>
-          <p className="text-white/55 max-w-2xl leading-relaxed mb-12">In a conventional design, memory and compute sit apart, and data is moved between them for every operation. On small models that run constantly, that movement, not the calculation, dominates the energy.</p>
+          <p className="text-black/60 max-w-2xl leading-relaxed mb-12">In a conventional design, memory and compute sit apart, and data is moved between them for every operation. On small models that run constantly, that movement, not the calculation, dominates the energy.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-white/20">
+            <div className="rounded-xl border border-black/10 bg-black/[0.03] p-6 transition-colors hover:border-black/20">
               <div className="flex items-center justify-between mb-5">
                 <h3 className="text-xl font-semibold">Ximplic</h3>
-                <span className="text-[10px] font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border" style={{ color: TEAL, borderColor: `${TEAL}40`, background: `${TEAL}14` }}>Compute in memory</span>
+                <span className="text-[10px] font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border" style={{ color: "#0a8f63", borderColor: `${TEAL}40`, background: `${TEAL}14` }}>Compute in memory</span>
               </div>
               <ul className="space-y-3">
                 {[
@@ -37,17 +40,17 @@ export default function Technology() {
                   "Energy tracks the useful work",
                   "Standard memory, buildable today",
                 ].map((t) => (
-                  <li key={t} className="flex items-start gap-3 text-sm text-white/75 leading-relaxed">
-                    <Check size={16} className="mt-0.5 shrink-0" style={{ color: TEAL }} />
+                  <li key={t} className="flex items-start gap-3 text-sm text-black leading-relaxed">
+                    <Check size={16} className="mt-0.5 shrink-0" style={{ color: "#0a8f63" }} />
                     <span>{t}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-white/20">
+            <div className="rounded-xl border border-black/10 bg-black/[0.03] p-6 transition-colors hover:border-black/20">
               <div className="flex items-center justify-between mb-5">
                 <h3 className="text-xl font-semibold">Conventional</h3>
-                <span className="text-[10px] font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border border-white/15 text-white/40">Memory apart from logic</span>
+                <span className="text-[10px] font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border border-black/10 text-black/60">Memory apart from logic</span>
               </div>
               <ul className="space-y-3">
                 {[
@@ -56,8 +59,8 @@ export default function Technology() {
                   "Battery drains on always-on models",
                   "Designed around constant movement",
                 ].map((t) => (
-                  <li key={t} className="flex items-start gap-3 text-sm text-white/55 leading-relaxed">
-                    <span className="mt-0.5 shrink-0 text-white/40">✕</span>
+                  <li key={t} className="flex items-start gap-3 text-sm text-black/60 leading-relaxed">
+                    <span className="mt-0.5 shrink-0 text-black/60">✕</span>
                     <span>{t}</span>
                   </li>
                 ))}
@@ -66,6 +69,9 @@ export default function Technology() {
           </div>
         </div>
       </section>
+
+      {/* SEAM: light problem → dark idea */}
+      <SectionSeam to="dark" align="right" />
 
       {/* 02 · THE IDEA */}
       <section className="px-6 py-24 border-t border-white/[0.06]">

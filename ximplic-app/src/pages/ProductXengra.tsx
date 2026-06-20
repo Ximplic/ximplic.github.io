@@ -149,11 +149,12 @@ export default function ProductXengra() {
       </section>
 
       {/* APPLICATIONS */}
-      <section id="usecases" className="px-6 py-24 border-t border-white/[0.06]">
+      <SectionSeam to="light" align="left" />
+      <section id="usecases" className="px-6 py-24 bg-white text-black">
         <div className="max-w-7xl mx-auto rv">
-          <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Where it fits</p>
+          <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: "#0a8f63" }}>Where it fits</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">Built for always-on edge inference</h2>
-          <p className="text-white/55 max-w-2xl mb-12">It wins where models are small and run continuously, the workloads that drain a battery on a conventional NPU.</p>
+          <p className="text-black/60 max-w-2xl mb-12">It wins where models are small and run continuously, the workloads that drain a battery on a conventional NPU.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { tag: "Audio", h: "Keyword spotting", p: "Wake-word and command detection at sub-mW duty cycles." },
@@ -161,15 +162,16 @@ export default function ProductXengra() {
               { tag: "Vision", h: "Compact CNN inference", p: "MobileNet-class person, gesture and presence sensing." },
               { tag: "Fusion", h: "Sensor-hub AI", p: "Low-power classification in always-on sensor hubs." },
             ].map((u) => (
-              <div key={u.h} className="rounded-xl border border-white/10 bg-white/[0.02] p-6 hover:border-white/20 transition-colors">
-                <span className="text-[10px] font-medium tracking-widest uppercase text-white/55">{u.tag}</span>
+              <div key={u.h} className="rounded-xl border border-black/10 bg-black/[0.03] p-6 hover:border-black/20 transition-colors">
+                <span className="text-[10px] font-medium tracking-widest uppercase" style={{ color: "#0a8f63" }}>{u.tag}</span>
                 <h3 className="text-lg font-semibold mt-3 mb-2">{u.h}</h3>
-                <p className="text-sm text-white/55 leading-relaxed">{u.p}</p>
+                <p className="text-sm text-black/60 leading-relaxed">{u.p}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
+      <SectionSeam to="dark" align="right" />
 
       {/* DELIVERABLES */}
       <section id="deliverables" className="px-6 py-24 border-t border-white/[0.06]">

@@ -62,11 +62,14 @@ export default function HomeV2() {
         </div>
       </section>
 
-      {/* PRODUCTS */}
-      <section id="products" className="px-6 py-24 border-t border-white/[0.06]">
+      {/* SEAM: dark hero → light products */}
+      <SectionSeam to="light" align="left" />
+
+      {/* PRODUCTS — light band */}
+      <section id="products" className="bg-white text-black px-6 py-24">
         <div className="max-w-7xl mx-auto rv">
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">Energy-efficient inference IP for the edge</h2>
-          <p className="text-white/55 max-w-2xl mb-12">Evaluate it in software, map any model onto it, then integrate the same validated design into the SoC.</p>
+          <p className="text-black/60 max-w-2xl mb-12">Evaluate it in software, map any model onto it, then integrate the same validated design into the SoC.</p>
           <div className="rvs grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { tag: "Virtual prototype", name: "Vyzora", desc: "The Virtual Prototype. Run any model, measure power, no hardware.", to: "/products/vyzora" },
@@ -75,24 +78,27 @@ export default function HomeV2() {
               { tag: "In development", name: "Silven", desc: "The Silicon IP. Hardened to silicon as a drop-in macro.", to: null },
             ].map((p) => (
               p.to ? (
-                <Link key={p.name} to={p.to} className="group rounded-xl border border-white/10 bg-white/[0.02] p-6 flex flex-col transition-colors hover:border-white/20 hover:bg-white/[0.04]">
-                  <span className="text-[10px] font-medium tracking-widest uppercase text-white/55 mb-4">{p.tag}</span>
+                <Link key={p.name} to={p.to} className="group rounded-xl border border-black/10 bg-black/[0.03] p-6 flex flex-col transition-colors hover:border-black/20 hover:bg-black/[0.04]">
+                  <span className="text-[10px] font-medium tracking-widest uppercase text-black/60 mb-4">{p.tag}</span>
                   <h3 className="text-xl font-semibold mb-2">{p.name}</h3>
-                  <p className="text-sm text-white/55 flex-1 leading-relaxed">{p.desc}</p>
-                  <span className="text-sm font-medium mt-4 inline-flex items-center gap-1 transition-[gap] group-hover:gap-2" style={{ color: TEAL }}>Explore <ArrowRight size={13} /></span>
+                  <p className="text-sm text-black/60 flex-1 leading-relaxed">{p.desc}</p>
+                  <span className="text-sm font-medium mt-4 inline-flex items-center gap-1 transition-[gap] group-hover:gap-2" style={{ color: "#0a8f63" }}>Explore <ArrowRight size={13} /></span>
                 </Link>
               ) : (
-                <div key={p.name} className="rounded-xl border border-white/10 bg-white/[0.02] p-6 flex flex-col opacity-60">
-                  <span className="text-[10px] font-medium tracking-widest uppercase text-white/55 mb-4">{p.tag}</span>
+                <div key={p.name} className="rounded-xl border border-black/10 bg-black/[0.03] p-6 flex flex-col opacity-60">
+                  <span className="text-[10px] font-medium tracking-widest uppercase text-black/60 mb-4">{p.tag}</span>
                   <h3 className="text-xl font-semibold mb-2">{p.name}</h3>
-                  <p className="text-sm text-white/55 flex-1 leading-relaxed">{p.desc}</p>
-                  <span className="text-xs uppercase tracking-wider text-white/55 mt-5">Coming soon</span>
+                  <p className="text-sm text-black/60 flex-1 leading-relaxed">{p.desc}</p>
+                  <span className="text-xs uppercase tracking-wider text-black/60 mt-5">Coming soon</span>
                 </div>
               )
             ))}
           </div>
         </div>
       </section>
+
+      {/* SEAM: light products → dark energy */}
+      <SectionSeam to="dark" align="right" />
 
       {/* ENERGY */}
       <section id="why" className="px-6 py-24 border-t border-white/[0.06]">

@@ -289,11 +289,12 @@ export default function ProductVyzora() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="px-6 py-24 border-t border-white/[0.06]">
+      <SectionSeam to="light" align="left" />
+      <section id="faq" className="px-6 py-24 bg-white text-black">
         <div className="max-w-3xl mx-auto rv">
-          <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Questions</p>
+          <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: "#0a8f63" }}>Questions</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-12 max-w-2xl">Frequently asked</h2>
-          <Faq items={[
+          <Faq light items={[
             { q: "What exactly is available to evaluate?", a: "Ximplic Vyzora: a SystemC TLM-2.0 model of the accelerator. Plug it into the SoC over AXI, run any model, and measure latency and energy. No hardware, no proprietary EDA, zero licence cost." },
             { q: "Is special hardware or a toolchain required?", a: "No. Ximplic Vyzora runs in pure software on open SystemC. Evaluation happens entirely on standard machines before committing to any hardware." },
             { q: "Which models can it run?", a: "Any standard model. Ximplic Vextyl maps an ONNX or framework model onto the accelerator and targets both Ximplic Vyzora and the RTL, so what is measured in software matches what runs on the RTL." },
@@ -302,6 +303,7 @@ export default function ProductVyzora() {
           ]} />
         </div>
       </section>
+      <SectionSeam to="dark" align="right" />
 
       {/* CTA / CONTACT */}
       <section id="contact" className="px-6 py-28 border-t border-white/[0.06]">

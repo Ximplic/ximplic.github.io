@@ -111,9 +111,10 @@ export default function ProductVextyl() {
       </section>
 
       {/* 02 · CAPABILITIES */}
-      <section id="features" className="px-6 py-24 border-t border-white/[0.06]">
+      <SectionSeam to="light" align="left" />
+      <section id="features" className="px-6 py-24 bg-white text-black">
         <div className="max-w-7xl mx-auto rv">
-          <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Capabilities</p>
+          <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: "#0a8f63" }}>Capabilities</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-12 max-w-2xl">A production deployment toolchain</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
@@ -124,17 +125,18 @@ export default function ProductVextyl() {
               { Icon: ShieldCheck, h: "Hardware-faithful behaviour", p: "Deployments checked bit-for-bit against the accelerator. A compile that succeeds, runs." },
               { Icon: TrendingUp, h: "Multiple model families", p: "CNNs, depthwise-separable vision nets and dense autoencoders, one core." },
             ].map(({ Icon, h, p }) => (
-              <div key={h} className="rounded-xl border border-white/10 bg-white/[0.02] p-6 hover:border-white/20 transition-colors">
-                <div className="w-10 h-10 rounded-lg border border-white/10 bg-white/[0.03] flex items-center justify-center mb-4" style={{ color: TEAL }}>
+              <div key={h} className="rounded-xl border border-black/10 bg-black/[0.03] p-6 hover:border-black/20 transition-colors">
+                <div className="w-10 h-10 rounded-lg border border-black/10 bg-black/[0.03] flex items-center justify-center mb-4" style={{ color: "#0a8f63" }}>
                   <Icon size={18} />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{h}</h3>
-                <p className="text-sm text-white/55 leading-relaxed">{p}</p>
+                <p className="text-sm text-black/60 leading-relaxed">{p}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
+      <SectionSeam to="dark" align="right" />
 
       {/* SPECS */}
       <section id="specs" className="px-6 py-24 border-t border-white/[0.06]">
