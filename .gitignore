@@ -5,3 +5,18 @@ dist-ssr/
 *.local
 ximplic-app/node_modules/
 ximplic-app/dist/
+
+# internal — not for the public repo
+.agents/
+.claude/
+.impeccable/
+docs/
+business_card/
+skills-lock.json
+DESIGN.md
+PRODUCT.md
+ximplic-app/DESIGN.md
+*-design.md
+*-DESIGN.md
+*.pptx
+*Pitch*.pdf
