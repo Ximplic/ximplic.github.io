@@ -26,7 +26,7 @@ export default function HomeV2() {
   return (
     <>
       {/* HERO */}
-      <section className="relative min-h-[82vh] flex flex-col items-center justify-center px-6 pt-28 pb-20 overflow-hidden">
+      <section className="relative min-h-svh flex flex-col items-center justify-center px-6 pt-28 pb-20 overflow-hidden">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
           {SHAPES.map((s, i) => (
             <div key={i} className={cn("hero-shape", s.pos)} style={{ ["--r"]: `${s.r}deg`, ["--d"]: `${s.d}s` } as CSSProperties}>

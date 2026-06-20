@@ -28,7 +28,7 @@ export default function ProductXengra() {
   return (
     <>
       {/* HERO */}
-      <section className="px-6 pt-32 md:pt-36 pb-10" style={{ animation: "fadeIn 0.6s ease-out" }}>
+      <section className="min-h-svh flex flex-col justify-center px-6 py-24" style={{ animation: "fadeIn 0.6s ease-out" }}>
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
           <div>
             <p className="text-xs font-medium tracking-widest uppercase mb-4" style={{ color: TEAL }}>RTL IP · Edge AI · In-Memory Computing</p>
