@@ -3,6 +3,7 @@ import RequestAccessButton from "@/components/RequestAccessButton";
 import Faq from "@/components/Faq";
 import SpecTable from "@/components/SpecTable";
 import SectionSeam from "@/components/SectionSeam";
+import SubNav from "@/components/SubNav";
 
 const TEAL = "#2BE8A5";
 const gradText = {
@@ -11,6 +12,16 @@ const gradText = {
   WebkitTextFillColor: "transparent" as const,
   backgroundClip: "text" as const,
 };
+
+const subnavLinks = [
+  { href: "#overview", label: "Overview" },
+  { href: "#features", label: "Capabilities" },
+  { href: "#specs", label: "Specifications" },
+  { href: "#usecases", label: "Applications" },
+  { href: "#deliverables", label: "What's included" },
+  { href: "#performance", label: "Validation" },
+  { href: "#faq", label: "FAQ" },
+];
 
 export default function ProductVextyl() {
   return (
@@ -71,17 +82,7 @@ export default function ProductVextyl() {
       </section>
 
       {/* SECTION SUB-NAV */}
-      <nav className="sticky top-[57px] z-40 bg-black/70 backdrop-blur-md border-b border-white/10" aria-label="On this page">
-        <div className="max-w-7xl mx-auto px-6 flex gap-6 overflow-x-auto h-12 items-center">
-          <a href="#overview" className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">Overview</a>
-          <a href="#features" className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">Capabilities</a>
-          <a href="#specs" className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">Specifications</a>
-          <a href="#usecases" className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">Applications</a>
-          <a href="#deliverables" className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">What's included</a>
-          <a href="#performance" className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">Validation</a>
-          <a href="#faq" className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">FAQ</a>
-        </div>
-      </nav>
+      <SubNav links={subnavLinks} />
 
       {/* 01 · OVERVIEW */}
       <section id="overview" className="px-6 py-24 border-t border-white/[0.06]">

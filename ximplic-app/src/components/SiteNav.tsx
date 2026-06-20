@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, Cpu, Code2, CircuitBoard, LayoutGrid, Building2, Newspaper, Calendar } from "lucide-react";
+import { cn } from "@/lib/utils";
 import RequestAccessButton from "@/components/RequestAccessButton";
 
 import {
@@ -54,8 +55,12 @@ const menu: Item[] = [
   },
 ];
 
-const triggerCls =
-  "bg-transparent text-white/70 hover:text-white hover:bg-white/5 focus:bg-white/5 data-[state=open]:bg-white/5 data-[state=open]:text-white";
+const triggerBase =
+  "relative bg-transparent hover:bg-white/5 focus:bg-white/5 data-[state=open]:bg-white/5 transition-colors";
+// teal underline tab-indicator for the current route
+const activeMark =
+  "text-white after:absolute after:left-3 after:right-3 after:bottom-1 after:h-[2px] after:rounded-full after:bg-[#2BE8A5]";
+const idle = "text-white/70 hover:text-white data-[state=open]:text-white";
 
 function SubLink({ s, onClick }: { s: Sub; onClick?: () => void }) {
   return (
@@ -78,6 +83,11 @@ export default function SiteNav() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
+  const isActive = (item: Item) =>
+    pathname === item.to ||
+    pathname.startsWith(item.to + "/") ||
+    (item.items?.some((s) => pathname === s.to || pathname.startsWith(s.to + "/")) ?? false);
+
   return (
     <header className="fixed top-0 w-full z-50 border-b border-white/10 bg-black/70 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -92,7 +102,7 @@ export default function SiteNav() {
               {menu.map((item) =>
                 item.items ? (
                   <NavigationMenuItem key={item.title}>
-                    <NavigationMenuTrigger className={triggerCls} onClick={() => navigate(item.to)}>{item.title}</NavigationMenuTrigger>
+                    <NavigationMenuTrigger className={cn(triggerBase, isActive(item) ? activeMark : idle)} onClick={() => navigate(item.to)}>{item.title}</NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className="w-80 p-2">
                         {item.items.map((s) => (
@@ -110,7 +120,10 @@ export default function SiteNav() {
                     <NavigationMenuLink asChild>
                       <Link
                         to={item.to}
-                        className={`inline-flex h-9 w-max items-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-white/5 ${pathname === item.to ? "text-white" : "text-white/70 hover:text-white"}`}
+                        className={cn(
+                          "relative inline-flex h-9 w-max items-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-white/5",
+                          isActive(item) ? activeMark : "text-white/70 hover:text-white",
+                        )}
                       >
                         {item.title}
                       </Link>
@@ -149,13 +162,13 @@ export default function SiteNav() {
                   {menu.map((item) =>
                     item.items ? (
                       <AccordionItem key={item.title} value={item.title} className="border-white/10">
-                        <AccordionTrigger className="py-3 font-semibold text-white hover:no-underline">{item.title}</AccordionTrigger>
+                        <AccordionTrigger className={cn("py-3 font-semibold hover:no-underline", isActive(item) ? "text-[#2BE8A5]" : "text-white")}>{item.title}</AccordionTrigger>
                         <AccordionContent className="pb-2">
                           {item.items.map((s) => <SubLink key={s.title} s={s} onClick={() => setOpen(false)} />)}
                         </AccordionContent>
                       </AccordionItem>
                     ) : (
-                      <Link key={item.title} to={item.to} onClick={() => setOpen(false)} className="py-3 font-semibold text-white border-b border-white/10">{item.title}</Link>
+                      <Link key={item.title} to={item.to} onClick={() => setOpen(false)} className={cn("py-3 font-semibold border-b border-white/10", isActive(item) ? "text-[#2BE8A5]" : "text-white")}>{item.title}</Link>
                     )
                   )}
                 </Accordion>

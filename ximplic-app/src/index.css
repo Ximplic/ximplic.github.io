@@ -171,10 +171,15 @@
      so 100% looks like browser zoom 110%. (16px browser default -> 17.6px root) */
   html {
     font-size: 110%;
+    scroll-behavior: smooth;
   }
   body {
     background: #000;
     color: #fff;
     font-family: 'Poppins', sans-serif;
+  }
+  /* anchored sections clear the fixed header (~57px) + sticky product sub-nav (48px) */
+  section[id] {
+    scroll-margin-top: 116px;
   }
 }

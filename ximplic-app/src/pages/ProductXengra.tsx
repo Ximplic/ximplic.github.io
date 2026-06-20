@@ -4,6 +4,7 @@ import Faq from "@/components/Faq";
 import SpecTable from "@/components/SpecTable";
 import IntegrationSoC from "@/components/IntegrationSoC";
 import SectionSeam from "@/components/SectionSeam";
+import SubNav from "@/components/SubNav";
 
 const TEAL = "#2BE8A5";
 const gradText = {
@@ -12,6 +13,16 @@ const gradText = {
   WebkitTextFillColor: "transparent" as const,
   backgroundClip: "text" as const,
 };
+
+const subnavLinks = [
+  { href: "#overview", label: "Overview" },
+  { href: "#features", label: "Architecture" },
+  { href: "#integration", label: "Integration" },
+  { href: "#specs", label: "Specifications" },
+  { href: "#usecases", label: "Applications" },
+  { href: "#performance", label: "Validation" },
+  { href: "#faq", label: "FAQ" },
+];
 
 export default function ProductXengra() {
   return (
@@ -63,17 +74,7 @@ export default function ProductXengra() {
       </section>
 
       {/* SECTION SUB-NAV */}
-      <nav className="sticky top-[57px] z-40 bg-black/70 backdrop-blur-md border-b border-white/10" aria-label="On this page">
-        <div className="max-w-7xl mx-auto px-6 flex gap-6 overflow-x-auto h-12 items-center">
-          <a href="#overview" className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">Overview</a>
-          <a href="#features" className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">Architecture</a>
-          <a href="#integration" className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">Integration</a>
-          <a href="#specs" className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">Specifications</a>
-          <a href="#usecases" className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">Applications</a>
-          <a href="#performance" className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">Validation</a>
-          <a href="#faq" className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">FAQ</a>
-        </div>
-      </nav>
+      <SubNav links={subnavLinks} />
 
       {/* 01 · OVERVIEW */}
       <section id="overview" className="px-6 py-24 border-t border-white/[0.06]">

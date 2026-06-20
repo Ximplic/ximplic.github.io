@@ -3,6 +3,7 @@ import RequestAccessButton from "@/components/RequestAccessButton";
 import Faq from "@/components/Faq";
 import SpecTable from "@/components/SpecTable";
 import SectionSeam from "@/components/SectionSeam";
+import SubNav from "@/components/SubNav";
 
 const TEAL = "#2BE8A5";
 const gradText = {
@@ -118,13 +119,7 @@ export default function ProductVyzora() {
       </section>
 
       {/* SECTION SUB-NAV */}
-      <nav className="sticky top-[57px] z-40 bg-black/70 backdrop-blur-md border-b border-white/10" aria-label="On this page">
-        <div className="max-w-7xl mx-auto px-6 flex gap-6 overflow-x-auto h-12 items-center">
-          {subnavLinks.map((l) => (
-            <a key={l.href} href={l.href} className="text-xs uppercase tracking-wider text-white/50 hover:text-white transition-colors whitespace-nowrap">{l.label}</a>
-          ))}
-        </div>
-      </nav>
+      <SubNav links={subnavLinks} />
 
       {/* OVERVIEW */}
       <section id="overview" className="px-6 py-24 border-t border-white/[0.06]">
