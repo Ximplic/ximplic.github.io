@@ -15,8 +15,6 @@ import ProductVyzora from "./pages/ProductVyzora";
 import ProductVextyl from "./pages/ProductVextyl";
 import ProductXengra from "./pages/ProductXengra";
 import NotFound from "./pages/NotFound";
-import Demo from "./components/ui/demo";
-import Navbar1Demo from "./components/blocks/navbar1-demo";
 
 const router = createBrowserRouter([
   {
@@ -34,8 +32,6 @@ const router = createBrowserRouter([
       { path: "*", element: <NotFound /> },
     ],
   },
-  { path: "/demo", element: <Demo /> },
-  { path: "/navbar-demo", element: <Navbar1Demo /> },
 ]);
 
 createRoot(document.getElementById("root")!).render(

@@ -1,5 +1,3 @@
-import { cn } from "@/lib/utils";
-
 const TEAL = "#2BE8A5";
 
 type Props = {
@@ -30,7 +28,7 @@ export default function SectionSeam({ to = "light", align = "right" }: Props) {
     <div aria-hidden="true" className="relative h-24 overflow-hidden" style={{ background: bottomColor }}>
       <div className="absolute inset-x-0 top-0 h-1/2" style={{ background: topColor }} />
       <div
-        className={cn("absolute top-1/2 -translate-y-1/2 h-11 w-[44%] max-w-[560px] rounded-[3px]", side)}
+        className={`absolute top-1/2 -translate-y-1/2 h-11 w-[44%] max-w-[560px] rounded-[3px] ${side}`}
         style={{ background: grad, boxShadow: "0 0 60px rgba(43,232,165,0.28)" }}
       />
     </div>
