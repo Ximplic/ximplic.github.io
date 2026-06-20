@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import RequestAccessButton from "@/components/RequestAccessButton";
 import Faq from "@/components/Faq";
 import SpecTable from "@/components/SpecTable";
+import IntegrationSoC from "@/components/IntegrationSoC";
 
 const TEAL = "#2BE8A5";
 const gradText = {
@@ -20,7 +20,7 @@ export default function ProductXengra() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
           <div>
             <p className="text-xs font-medium tracking-widest uppercase mb-4" style={{ color: TEAL }}>RTL IP · Edge AI · In-Memory Computing</p>
-            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-balance mb-6" style={{ letterSpacing: "-0.04em" }}>
+            <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.015em] text-balance mb-6" style={{ letterSpacing: "-0.02em" }}>
               <span style={gradText}>Xengra</span><br />
               <span style={gradText}>the </span><span style={{ color: TEAL }}>in-memory</span><span style={gradText}>{" RTL IP"}</span>
             </h1>
@@ -78,7 +78,7 @@ export default function ProductXengra() {
       <section id="overview" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>What it is</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 max-w-2xl">Compute where the data already lives</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">Compute where the data already lives</h2>
           <p className="text-white/55 max-w-3xl mb-12">Conventional accelerators burn most of their energy moving weights between memory and compute. Ximplic Xengra keeps weights pinned inside the SRAM array and does the multiply-accumulate in place. On always-on models, weight movement stops being the dominant cost.</p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="space-y-4">
@@ -103,7 +103,7 @@ export default function ProductXengra() {
       <section id="features" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Architecture</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-12 max-w-2xl">Efficiency from several techniques combined</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-12 max-w-2xl">Efficiency from several techniques combined</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18M9 3v18" /></svg>, h: "In-memory MAC array", p: "Weights pinned in the SRAM array; activations stream in, no weight movement." },
@@ -125,69 +125,13 @@ export default function ProductXengra() {
       </section>
 
       {/* INTEGRATION */}
-      <section id="integration" className="px-6 py-24 border-t border-white/[0.06]">
-        <div className="max-w-7xl mx-auto rv">
-          <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Integration</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 max-w-2xl">Two ways it integrates into the SoC</h2>
-          <p className="text-white/55 max-w-2xl mb-12">From a low-risk drop-in to an in-place memory upgrade. Option A is available and FPGA-tested today. Option B is on the way.</p>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6 hover:border-white/20 transition-colors">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] font-medium tracking-widest uppercase text-white/55">Option A</span>
-                <span className="text-[10px] font-medium tracking-widest uppercase px-2.5 py-1 rounded-full" style={{ color: TEAL, background: `${TEAL}14`, border: `1px solid ${TEAL}40` }}>Available · tested</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-4">External Accelerator</h3>
-              <svg className="idia" viewBox="0 0 460 190" role="img" aria-label="Core connected to a host SoC over an AXI bus">
-                <rect className="ibox" x="34" y="58" width="160" height="74" rx="12" />
-                <text className="il" x="114" y="92">Host SoC</text>
-                <text className="is" x="114" y="112">unchanged</text>
-                <rect className="ibox x" x="266" y="58" width="160" height="74" rx="12" />
-                <text className="il x" x="346" y="92">Xengra</text>
-                <text className="is" x="346" y="112">drop-in block</text>
-                <path className="iwire" d="M194 95 H256" />
-                <polygon className="iarr" points="266,95 253,88 253,102" />
-                <text className="iwl" x="226" y="83">AXI</text>
-              </svg>
-              <ul className="space-y-2 text-sm text-white/55 mt-4">
-                <li className="flex items-start gap-2"><span style={{ color: TEAL }}>—</span> Sits next to the host SoC as separate IP</li>
-                <li className="flex items-start gap-2"><span style={{ color: TEAL }}>—</span> Standard AXI bus connection</li>
-                <li className="flex items-start gap-2"><span style={{ color: TEAL }}>—</span> Zero changes to host silicon</li>
-              </ul>
-              <Link className="text-sm font-medium mt-5 inline-flex items-center gap-1" style={{ color: TEAL }} to="/products/vyzora">Evaluate via the Virtual Prototype <ArrowRight size={13} /></Link>
-              <div className="text-xs uppercase tracking-wider text-white/35 mt-4">Lowest risk · fastest PoC</div>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6 hover:border-white/20 transition-colors">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] font-medium tracking-widest uppercase text-white/55">Option B</span>
-                <span className="text-[10px] font-medium tracking-widest uppercase px-2.5 py-1 rounded-full text-white/50 border border-white/15">In progress</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-4">In-Place Memory Upgrade</h3>
-              <svg className="idia" viewBox="0 0 460 190" role="img" aria-label="XIM SRAM replacing passive SRAM inside a host node">
-                <rect className="idash" x="34" y="40" width="392" height="120" rx="16" />
-                <text className="icap" x="56" y="66">HOST NODE</text>
-                <rect className="ibox" x="58" y="80" width="160" height="64" rx="12" />
-                <text className="il" x="138" y="117">cores</text>
-                <rect className="ibox x" x="242" y="80" width="160" height="64" rx="12" />
-                <text className="il x" x="322" y="108">XIM SRAM</text>
-                <text className="is" x="322" y="128">compute + memory</text>
-              </svg>
-              <ul className="space-y-2 text-sm text-white/55 mt-4">
-                <li className="flex items-start gap-2"><span style={{ color: TEAL }}>—</span> Replaces passive on-chip SRAM</li>
-                <li className="flex items-start gap-2"><span style={{ color: TEAL }}>—</span> Same footprint, memory now computes</li>
-                <li className="flex items-start gap-2"><span style={{ color: TEAL }}>—</span> Zero data movement</li>
-              </ul>
-              <a className="text-sm font-medium mt-5 inline-flex items-center gap-1" style={{ color: TEAL }} href="#contact">Register interest <ArrowRight size={13} /></a>
-              <div className="text-xs uppercase tracking-wider text-white/35 mt-4">Highest performance · production target</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <IntegrationSoC />
 
       {/* SPECS */}
       <section id="specs" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Specifications</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-12 max-w-2xl">Technical summary</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-12 max-w-2xl">Technical summary</h2>
           <SpecTable rows={[
             ["Architecture", "Weight-stationary digital in-memory MAC"],
             ["Post-processing", "LUT activation · requant · eltwise · pool"],
@@ -207,7 +151,7 @@ export default function ProductXengra() {
       <section id="usecases" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Where it fits</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 max-w-2xl">Built for always-on edge inference</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">Built for always-on edge inference</h2>
           <p className="text-white/55 max-w-2xl mb-12">It wins where models are small and run continuously, the workloads that drain a battery on a conventional NPU.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
@@ -231,7 +175,7 @@ export default function ProductXengra() {
         <div className="max-w-7xl mx-auto rv grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div>
             <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>What it includes</p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-8">A validated Xengra IP package</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-8">A validated Xengra IP package</h2>
             <ul className="space-y-4">
               {[
                 ["Xengra RTL", "Synthesisable DIMC core with configurable, multi-cluster array."],
@@ -251,7 +195,7 @@ export default function ProductXengra() {
           </div>
           <div>
             <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>How to engage</p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-8">From evaluation to integration</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-8">From evaluation to integration</h2>
             <div className="space-y-4">
               {[
                 ["Scope", "Share workloads and power budget; we confirm fit and array sizing."],
@@ -273,7 +217,7 @@ export default function ProductXengra() {
       <section id="performance" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Validation</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 max-w-2xl">Proven on FPGA</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">Proven on FPGA</h2>
           <p className="text-white/55 max-w-2xl mb-12">Ximplic Xengra runs real models end-to-end on an FPGA, bit-exact against simulation.</p>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden mb-6">
             <table className="w-full text-left text-sm">
@@ -311,7 +255,7 @@ export default function ProductXengra() {
       <section id="faq" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-3xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Questions</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-12">Frequently asked</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-12">Frequently asked</h2>
           <Faq items={[
             { q: "What exactly is available to evaluate?", a: "Ximplic Vyzora: a SystemC TLM-2.0 model of the accelerator. Plug it into the SoC over AXI, run any model, and measure latency and energy. No hardware, no proprietary EDA, zero licence cost." },
             { q: "Is special hardware or a toolchain required?", a: "No. Ximplic Vyzora runs in pure software on open SystemC. Evaluation happens entirely on standard machines before committing to any hardware." },
@@ -326,7 +270,7 @@ export default function ProductXengra() {
       <section id="contact" className="px-6 py-28 border-t border-white/[0.06]">
         <div className="max-w-2xl mx-auto text-center rv">
           <span className="inline-block text-xs font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border mb-6" style={{ color: TEAL, borderColor: `${TEAL}40`, background: `${TEAL}14` }}>Partner with Ximplic</span>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mb-5" style={{ letterSpacing: "-0.03em" }}>Designing an always-on AI SoC?</h2>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.015em] mb-5" style={{ letterSpacing: "-0.03em" }}>Designing an always-on AI SoC?</h2>
           <p className="text-white/55 mb-9">Ready to license Ximplic Xengra into an always-on AI SoC? Let's set up an evaluation tailored to the target workloads and power budget.</p>
           <div className="flex items-center justify-center">
             <RequestAccessButton subject="Ximplic Xengra — RTL IP licensing enquiry" className="inline-flex items-center gap-2 text-sm md:text-base font-medium px-7 h-12 rounded-lg text-black transition-transform hover:scale-[1.04] active:scale-95" style={{ background: TEAL }}>License Xengra <ArrowRight size={16} /></RequestAccessButton>

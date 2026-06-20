@@ -11,7 +11,7 @@ export default function FooterV2() {
             <img src="/XIM_Logo/ximplic-mark-white.svg" alt="Ximplic" className="w-6 h-6 transition-transform duration-500 ease-[cubic-bezier(.22,1,.36,1)] group-hover:rotate-90" />
             <span className="font-semibold tracking-tight">Ximplic</span>
           </Link>
-          <p className="text-sm text-white/55 max-w-[28ch]">Energy-efficient AI inference IP for always-on edge devices.</p>
+          <p className="text-sm text-white/55 max-w-[28ch]">Simplifying intelligence for everyday devices.</p>
         </div>
         <div className={col}>
           <h3 className="text-xs font-medium tracking-widest uppercase text-white/55 mb-1.5">Products</h3>

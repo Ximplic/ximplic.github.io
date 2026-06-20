@@ -19,7 +19,7 @@ const TEAM = [
   {
     photo: "/image/simranjeet.jpg",
     name: "Simranjeet Singh",
-    role: "Co-founder & CTO",
+    role: "Co-founder, CTO & CEO",
     linkedin: "https://www.linkedin.com/in/simranbhangu/",
   },
   {
@@ -31,7 +31,7 @@ const TEAM = [
   {
     photo: "/image/stealth.jpg",
     name: "Stealth Mode",
-    role: "Co-founder & CEO",
+    role: "Technical Lead",
     linkedin: null,
   },
 ];
@@ -57,6 +57,21 @@ const PARTNERS = [
     src: "/image/partners/cognigron.jpeg",
     alt: "Cognigron",
   },
+  {
+    href: "https://www.founded.in/",
+    src: "/image/partners/founded_in_groningen_logo.jpeg",
+    alt: "Founded in Groningen",
+  },
+  {
+    href: "https://www.nom.nl/",
+    src: "/image/partners/NOM-logo.png",
+    alt: "NOM — Investment & Development Agency for the Northern Netherlands",
+  },
+  {
+    href: "https://www.futuretechventures.nl/",
+    src: "/image/partners/future-tech-ventures.png",
+    alt: "Future Tech Ventures",
+  },
 ];
 
 export default function About() {
@@ -66,7 +81,7 @@ export default function About() {
       <section className="px-6 pt-32 md:pt-36 pb-16">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>About</p>
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight mb-6 max-w-4xl" style={{ letterSpacing: "-0.04em" }}>
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.015em] mb-6 max-w-4xl" style={{ letterSpacing: "-0.02em" }}>
             <span style={gradText}>The people building efficient edge AI</span>
           </h1>
           <p className="text-white/55 max-w-2xl leading-relaxed">
@@ -79,7 +94,7 @@ export default function About() {
       <section id="team" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Team</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 max-w-2xl">Small team, deep expertise</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">Small team, deep expertise</h2>
           <p className="text-white/55 max-w-2xl mb-12">
             Focused on energy-efficient inference IP and memory systems, from device physics to system integration.
           </p>
@@ -127,15 +142,15 @@ export default function About() {
       <section id="partners" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Partners &amp; backers</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-12 max-w-2xl">Building with leading institutions</h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-12 max-w-2xl">Building with leading institutions</h2>
+          <div className="flex flex-wrap justify-center gap-4">
             {PARTNERS.map((p) => (
               <a
                 key={p.alt}
                 href={p.href}
                 target="_blank"
                 rel="noopener"
-                className="bg-white rounded-xl p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all"
+                className="w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)] bg-white rounded-xl p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all"
               >
                 <img src={p.src} alt={p.alt} className="max-h-12 w-auto object-contain" />
               </a>
@@ -148,7 +163,7 @@ export default function About() {
       <section className="px-6 py-28 border-t border-white/[0.06]">
         <div className="max-w-2xl mx-auto text-center rv">
           <span className="inline-block text-xs font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border mb-6" style={{ color: TEAL, borderColor: `${TEAL}40`, background: `${TEAL}14` }}>Work with us</span>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mb-5" style={{ letterSpacing: "-0.03em" }}>Let's build efficient edge AI together</h2>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.015em] mb-5" style={{ letterSpacing: "-0.03em" }}>Let's build efficient edge AI together</h2>
           <p className="text-white/55 mb-9">
             Evaluate Ximplic Vyzora on target workloads, or talk to us about partnership and design-in.
           </p>

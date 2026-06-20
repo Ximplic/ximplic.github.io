@@ -9,7 +9,7 @@ export default function Events() {
       <section className="px-6 pt-32 md:pt-36 pb-8">
         <div className="max-w-3xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Events</p>
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight mb-5" style={{ letterSpacing: "-0.04em" }}>Where to find Ximplic</h1>
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.015em] mb-5" style={{ letterSpacing: "-0.02em" }}>Where to find Ximplic</h1>
           <p className="text-white/55 max-w-2xl leading-relaxed">Talks, conferences and meetups on energy-efficient edge AI and in-memory computing.</p>
         </div>
       </section>

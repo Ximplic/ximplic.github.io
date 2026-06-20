@@ -29,7 +29,7 @@ export default function ProductVyzora() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
           <div>
             <p className="text-xs font-medium tracking-widest uppercase mb-4" style={{ color: TEAL }}>Edge AI IP · Virtual Prototype</p>
-            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05] text-balance mb-6" style={{ letterSpacing: "-0.04em" }}>
+            <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.015em] leading-[1.12] text-balance mb-6" style={{ letterSpacing: "-0.02em" }}>
               <span style={gradText}>Vyzora</span><br />
               <span style={gradText}>the Virtual </span><span style={{ color: TEAL }}>Prototype</span>
             </h1>
@@ -129,7 +129,7 @@ export default function ProductVyzora() {
       <section id="overview" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>What it is</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 max-w-3xl">Design around the accelerator before the silicon exists</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-3xl">Design around the accelerator before the silicon exists</h2>
           <p className="text-white/55 max-w-3xl mb-12">An executable, cycle-approximate model of the accelerator IP. Drops into a SystemC platform to run any workload, returning trustworthy cycles, latency and energy to drive architecture and software decisions.</p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
             <div className="space-y-4">
@@ -158,7 +158,7 @@ export default function ProductVyzora() {
       <section id="features" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Capabilities</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-12 max-w-2xl">Everything needed to evaluate and integrate</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-12 max-w-2xl">Everything needed to evaluate and integrate</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { title: "Configurable compute array", desc: "INT8 / INT4 / INT2 / INT1, sized to a target power and area budget.", icon: <><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18M9 3v18" /></> },
@@ -184,7 +184,7 @@ export default function ProductVyzora() {
       <section id="specs" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Specifications</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-12 max-w-2xl">Technical summary</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-12 max-w-2xl">Technical summary</h2>
           <SpecTable rows={[
             ["Model type", "Cycle-approximate SystemC TLM-2.0"],
             ["Scaling", "Configurable, parallel"],
@@ -204,7 +204,7 @@ export default function ProductVyzora() {
       <section id="usecases" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Where it fits</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 max-w-2xl">Built for always-on edge inference</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">Built for always-on edge inference</h2>
           <p className="text-white/55 max-w-3xl mb-12">In-memory computing wins when models are small and run all the time, exactly the workloads that flatten a battery on a conventional NPU.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
@@ -228,7 +228,7 @@ export default function ProductVyzora() {
         <div className="max-w-7xl mx-auto rv grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
             <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>What's included</p>
-            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-8">A complete integration kit</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.015em] mb-8">A complete integration kit</h2>
             <ul className="deliv space-y-px rounded-xl border border-white/10 bg-white/[0.02] p-2">
               <li><b>The accelerator core</b><span>SystemC IP-block model plus a static library to link in.</span></li>
               <li><b>AMBA reference wrappers</b><span>AXI4 wrappers verified against the ARM AMBA TLM-2.0 kit.</span></li>
@@ -241,7 +241,7 @@ export default function ProductVyzora() {
           </div>
           <div>
             <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>How to engage</p>
-            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-8">From evaluation to design-in</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.015em] mb-8">From evaluation to design-in</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
                 { h: "Scope", p: "Share target workloads, power budget and platform. We confirm fit." },
@@ -263,7 +263,7 @@ export default function ProductVyzora() {
       <section id="performance" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Validation</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 max-w-2xl">Numbers worth trusting</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">Numbers worth trusting</h2>
           <p className="text-white/55 max-w-2xl mb-12">Validated against RTL co-simulation and FPGA measurement.</p>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-2 overflow-x-auto mb-6">
             <table className="t">
@@ -289,7 +289,7 @@ export default function ProductVyzora() {
       <section id="faq" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-3xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Questions</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-12 max-w-2xl">Frequently asked</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-12 max-w-2xl">Frequently asked</h2>
           <Faq items={[
             { q: "What exactly is available to evaluate?", a: "Ximplic Vyzora: a SystemC TLM-2.0 model of the accelerator. Plug it into the SoC over AXI, run any model, and measure latency and energy. No hardware, no proprietary EDA, zero licence cost." },
             { q: "Is special hardware or a toolchain required?", a: "No. Ximplic Vyzora runs in pure software on open SystemC. Evaluation happens entirely on standard machines before committing to any hardware." },
@@ -304,7 +304,7 @@ export default function ProductVyzora() {
       <section id="contact" className="px-6 py-28 border-t border-white/[0.06]">
         <div className="max-w-2xl mx-auto text-center rv">
           <span className="inline-block text-xs font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border mb-6" style={{ color: TEAL, borderColor: `${TEAL}40`, background: `${TEAL}14` }}>Partner with Ximplic</span>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mb-5" style={{ letterSpacing: "-0.03em" }}>Plug the XIM accelerator into a target design</h2>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.015em] mb-5" style={{ letterSpacing: "-0.03em" }}>Plug the XIM accelerator into a target design</h2>
           <p className="text-white/55 mb-9">Scoping an always-on AI SoC, benchmarking for a product roadmap, or ready to design-in? Let's set up an evaluation of Ximplic Vyzora, tailored to target workloads.</p>
           <div className="flex items-center justify-center">
             <RequestAccessButton subject="Ximplic Vyzora — integration enquiry" className="inline-flex items-center gap-2 text-sm md:text-base font-medium px-7 h-12 rounded-lg text-black transition-transform hover:scale-[1.04] active:scale-95" style={{ background: TEAL }}>Request integration <ArrowRight size={16} /></RequestAccessButton>

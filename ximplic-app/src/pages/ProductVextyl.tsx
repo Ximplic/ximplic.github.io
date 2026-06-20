@@ -19,7 +19,7 @@ export default function ProductVextyl() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
           <div>
             <p className="text-xs font-medium tracking-widest uppercase mb-4" style={{ color: TEAL }}>Toolchain · ONNX · Deploy</p>
-            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05] text-balance mb-6" style={{ letterSpacing: "-0.04em" }}>
+            <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.015em] leading-[1.12] text-balance mb-6" style={{ letterSpacing: "-0.02em" }}>
               <span style={gradText}>Vextyl</span><br />
               <span style={gradText}>the </span><span style={{ color: TEAL }}>Compiler</span>
             </h1>
@@ -86,7 +86,7 @@ export default function ProductVextyl() {
       <section id="overview" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>What it is</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 max-w-3xl">From a trained model to running on the accelerator</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-3xl">From a trained model to running on the accelerator</h2>
           <p className="text-white/55 max-w-3xl mb-12 leading-relaxed">In-memory computing only pays off if a model can be mapped onto it. Ximplic Vextyl turns a standard ONNX model into a hardware-ready deployment for the XIM accelerator: it quantizes weights and activations, calibrates the requantization, optionally prunes channels, schedules the work across the compute banks, and emits the descriptor the hardware runs, with the numerical behaviour matched to the hardware.</p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
             <div className="space-y-5">
@@ -113,7 +113,7 @@ export default function ProductVextyl() {
       <section id="features" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Capabilities</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-12 max-w-2xl">A production deployment toolchain</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-12 max-w-2xl">A production deployment toolchain</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { Icon: Square, h: "Standard ONNX frontend", p: "Any framework, exported to ONNX. No proprietary format to learn." },
@@ -139,7 +139,7 @@ export default function ProductVextyl() {
       <section id="specs" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Specifications</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-12 max-w-2xl">Technical summary</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-12 max-w-2xl">Technical summary</h2>
           <SpecTable rows={[
             ["Input", "Standard ONNX + calibration data"],
             ["Scheduling", "Tiling, column-split, bank allocation"],
@@ -159,7 +159,7 @@ export default function ProductVextyl() {
       <section id="usecases" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Where it fits</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 max-w-2xl">Built for always-on edge inference</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">Built for always-on edge inference</h2>
           <p className="text-white/55 max-w-2xl mb-12 leading-relaxed">Ximplic Vextyl targets the small, continuously-running models that define battery-powered edge AI, the workloads in-memory computing was made for.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
@@ -183,7 +183,7 @@ export default function ProductVextyl() {
         <div className="max-w-7xl mx-auto rv grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div>
             <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>What's included</p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-8">A complete deployment toolchain</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-8">A complete deployment toolchain</h2>
             <ul className="space-y-4">
               {[
                 ["Vextyl", "A pip-installable Python package: ONNX in, deploy descriptor out."],
@@ -203,7 +203,7 @@ export default function ProductVextyl() {
           </div>
           <div>
             <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>How to engage</p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-8">From a model to a deployment</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-8">From a model to a deployment</h2>
             <div className="space-y-4">
               {[
                 ["Scope", "Share the model, accuracy and power budget. We confirm fit."],
@@ -228,7 +228,7 @@ export default function ProductVextyl() {
       <section id="performance" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Validation</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 max-w-2xl">Validated on FPGA, honest about the trade-offs</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">Validated on FPGA, honest about the trade-offs</h2>
           <p className="text-white/55 max-w-2xl mb-12 leading-relaxed">Deployments are confirmed on the XIM accelerator on an FPGA, against simulation, not assumed in software.</p>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] overflow-x-auto mb-8">
             <table className="t reveal w-full text-sm">
@@ -254,7 +254,7 @@ export default function ProductVextyl() {
       <section id="faq" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-3xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Questions</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-12">Frequently asked</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-12">Frequently asked</h2>
           <Faq items={[
             { q: "What exactly is available to evaluate?", a: "Ximplic Vyzora: a SystemC TLM-2.0 model of the accelerator. Plug it into the SoC over AXI, run any model, and measure latency and energy. No hardware, no proprietary EDA, zero licence cost." },
             { q: "Is special hardware or a toolchain required?", a: "No. Ximplic Vyzora runs in pure software on open SystemC. Evaluation happens entirely on standard machines before committing to any hardware." },
@@ -269,7 +269,7 @@ export default function ProductVextyl() {
       <section id="contact" className="px-6 py-28 border-t border-white/[0.06]">
         <div className="max-w-2xl mx-auto text-center rv">
           <span className="inline-block text-xs font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border mb-6" style={{ color: TEAL, borderColor: `${TEAL}40`, background: `${TEAL}14` }}>Partner with Ximplic</span>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mb-5" style={{ letterSpacing: "-0.03em" }}>Have a model to run at the edge?</h2>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.015em] mb-5" style={{ letterSpacing: "-0.03em" }}>Have a model to run at the edge?</h2>
           <p className="text-white/55 mb-9">Ready to deploy a model on the XIM accelerator? Let's set up an evaluation of Ximplic Vextyl against target workloads.</p>
           <div className="flex items-center justify-center gap-3">
             <RequestAccessButton subject="Ximplic Vextyl — compiler enquiry" className="inline-flex items-center gap-2 text-sm md:text-base font-medium px-7 h-12 rounded-lg text-black transition-transform hover:scale-[1.04] active:scale-95" style={{ background: TEAL }}>Request access <ArrowRight size={16} /></RequestAccessButton>

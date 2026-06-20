@@ -12,7 +12,7 @@ export default function Technology() {
       <section className="px-6 pt-32 md:pt-36 pb-16 border-b border-white/[0.06]">
         <div className="max-w-5xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>Technology</p>
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-white mb-6" style={{ letterSpacing: "-0.04em" }}>We compute inside the memory</h1>
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.015em] text-white mb-6" style={{ letterSpacing: "-0.02em" }}>We compute inside the memory</h1>
           <p className="text-white/55 max-w-2xl leading-relaxed">Conventional chips spend most of their energy shuttling data between memory and logic. Ximplic does the computation inside the memory itself, so always-on AI runs on a fraction of the power.</p>
         </div>
       </section>
@@ -21,7 +21,7 @@ export default function Technology() {
       <section className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-5xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3 text-white/50">The problem</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 max-w-2xl">The energy goes into moving data, not using it</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">The energy goes into moving data, not using it</h2>
           <p className="text-white/55 max-w-2xl leading-relaxed mb-12">In a conventional design, memory and compute sit apart, and data is moved between them for every operation. On small models that run constantly, that movement, not the calculation, dominates the energy.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-white/20">
@@ -72,7 +72,7 @@ export default function Technology() {
           <p className="text-xs font-medium tracking-widest uppercase mb-3 text-white/50">The approach</p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4">The memory does the computation</h2>
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4">The memory does the computation</h2>
               <p className="text-white/55 leading-relaxed mb-6">The model lives inside the memory array, and the array computes directly on it. Data goes in, the result comes out, and almost nothing moves in between.</p>
               <ul className="space-y-3">
                 {[
@@ -122,7 +122,7 @@ export default function Technology() {
       <section className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-5xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3 text-white/50">The payoff</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 max-w-2xl">Where the energy goes</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">Where the energy goes</h2>
           <p className="text-white/55 max-w-2xl leading-relaxed mb-12">The computation itself costs about the same either way. The difference is the data movement around it. Remove the movement and the total energy drops sharply.</p>
           <EnergyBars />
         </div>
@@ -132,7 +132,7 @@ export default function Technology() {
       <section id="performance" className="px-6 py-24 border-t border-white/[0.06]">
         <div className="max-w-5xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3 text-white/50">Proof</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 max-w-2xl">Proven on real hardware</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.015em] mb-4 max-w-2xl">Proven on real hardware</h2>
           <p className="text-white/55 max-w-2xl leading-relaxed mb-12">The design runs end to end on an FPGA today, with results correlated to the hardware design and calibrated against board measurement.</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
@@ -154,7 +154,7 @@ export default function Technology() {
       <section className="px-6 py-28 border-t border-white/[0.06]">
         <div className="max-w-2xl mx-auto text-center rv">
           <span className="inline-block text-xs font-medium tracking-widest uppercase px-3 py-1.5 rounded-full border mb-6" style={{ color: TEAL, borderColor: `${TEAL}40`, background: `${TEAL}14` }}>Talk to us</span>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mb-5" style={{ letterSpacing: "-0.03em" }}>See it on a real workload</h2>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.015em] mb-5" style={{ letterSpacing: "-0.03em" }}>See it on a real workload</h2>
           <p className="text-white/55 mb-9">Evaluate it in software with Ximplic Vyzora, then take the same design into a chip as licensable RTL.</p>
           <div className="flex items-center justify-center">
             <RequestAccessButton subject="Ximplic Vyzora evaluation" className="inline-flex items-center gap-2 text-sm md:text-base font-medium px-7 h-12 rounded-lg text-black transition-transform hover:scale-[1.04] active:scale-95" style={{ background: TEAL }}>Request evaluation <ArrowRight size={16} /></RequestAccessButton>

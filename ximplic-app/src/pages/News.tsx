@@ -53,7 +53,7 @@ export default function News() {
       <section className="px-6 pt-32 md:pt-36 pb-8">
         <div className="max-w-3xl mx-auto rv">
           <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: TEAL }}>News &amp; updates</p>
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight mb-5" style={{ letterSpacing: "-0.04em" }}>
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.015em] mb-5" style={{ letterSpacing: "-0.02em" }}>
             <span style={gradText}>Latest from Ximplic</span>
           </h1>
           <p className="text-white/55 leading-relaxed max-w-2xl">

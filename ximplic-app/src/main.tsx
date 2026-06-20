@@ -14,6 +14,7 @@ import Events from "./pages/Events";
 import ProductVyzora from "./pages/ProductVyzora";
 import ProductVextyl from "./pages/ProductVextyl";
 import ProductXengra from "./pages/ProductXengra";
+import NotFound from "./pages/NotFound";
 import Demo from "./components/ui/demo";
 import Navbar1Demo from "./components/blocks/navbar1-demo";
 
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       { path: "/about", element: <About /> },
       { path: "/news", element: <News /> },
       { path: "/events", element: <Events /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
   { path: "/demo", element: <Demo /> },
