@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /vp/
+Sitemap: https://ximplic.com/sitemap.xml
