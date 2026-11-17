@@ -1,0 +1,15 @@
+# Ximplic
+
+> Ximplic licenses energy-efficient compute-in-memory (CiM) AI inference IP for always-on edge devices. The inference block runs AI inside the chip's memory, so wearables, cameras and sensors run AI without draining the battery. It is proven in software and on FPGA today; hardened silicon is on the roadmap. Behind the IP is a proprietary design flow that maps any trained model onto the hardware and proves it automatically, and that re-targets new compute-in-memory technologies.
+
+## Pages
+- [Home](https://ximplic.com/): What Ximplic is and why compute-in-memory saves energy.
+- [Technology](https://ximplic.com/technology): How computing inside the memory works; FPGA-proven results.
+- [Inference IP](https://ximplic.com/products): The product — one compute-in-memory inference IP and how to adopt it.
+- [About](https://ximplic.com/about): The team, based in Groningen, NL.
+- [News](https://ximplic.com/news): Announcements, including first investment from Future Tech Ventures.
+- [Events](https://ximplic.com/events): Where Ximplic presents.
+
+## Contact
+- Email: info@ximplic.com
+- LinkedIn: https://www.linkedin.com/company/ximplic-systems
